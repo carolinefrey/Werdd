@@ -10,9 +10,12 @@
 		B99BEC0528EC4FDC000AB9BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99BEC0428EC4FDC000AB9BE /* AppDelegate.swift */; };
 		B99BEC0728EC4FDC000AB9BE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99BEC0628EC4FDC000AB9BE /* SceneDelegate.swift */; };
 		B99BEC0928EC4FDC000AB9BE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99BEC0828EC4FDC000AB9BE /* ViewController.swift */; };
-		B99BEC0C28EC4FDC000AB9BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B99BEC0A28EC4FDC000AB9BE /* Main.storyboard */; };
 		B99BEC0E28EC4FDD000AB9BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B99BEC0D28EC4FDD000AB9BE /* Assets.xcassets */; };
 		B99BEC1128EC4FDD000AB9BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B99BEC0F28EC4FDD000AB9BE /* LaunchScreen.storyboard */; };
+		B9C4E22928ED0502000E3B32 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B9C4E22628ED04B9000E3B32 /* Rubik-Regular.ttf */; };
+		B9C4E22A28ED0504000E3B32 /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B9C4E22728ED04C3000E3B32 /* Rubik-Bold.ttf */; };
+		B9C4E22C28ED05AB000E3B32 /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B9C4E22B28ED05A9000E3B32 /* Rubik-Light.ttf */; };
+		B9C4E22E28ED0DE5000E3B32 /* Rubik-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B9C4E22D28ED0DE3000E3B32 /* Rubik-Italic.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,10 +23,13 @@
 		B99BEC0428EC4FDC000AB9BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B99BEC0628EC4FDC000AB9BE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B99BEC0828EC4FDC000AB9BE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B99BEC0B28EC4FDC000AB9BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B99BEC0D28EC4FDD000AB9BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B99BEC1028EC4FDD000AB9BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B99BEC1228EC4FDD000AB9BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B9C4E22628ED04B9000E3B32 /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
+		B9C4E22728ED04C3000E3B32 /* Rubik-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Bold.ttf"; sourceTree = "<group>"; };
+		B9C4E22B28ED05A9000E3B32 /* Rubik-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Light.ttf"; sourceTree = "<group>"; };
+		B9C4E22D28ED0DE3000E3B32 /* Rubik-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Italic.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +62,26 @@
 		B99BEC0328EC4FDC000AB9BE /* Werdd */ = {
 			isa = PBXGroup;
 			children = (
+				B9C4E22828ED04E6000E3B32 /* Rubik */,
 				B99BEC0428EC4FDC000AB9BE /* AppDelegate.swift */,
 				B99BEC0628EC4FDC000AB9BE /* SceneDelegate.swift */,
 				B99BEC0828EC4FDC000AB9BE /* ViewController.swift */,
-				B99BEC0A28EC4FDC000AB9BE /* Main.storyboard */,
 				B99BEC0D28EC4FDD000AB9BE /* Assets.xcassets */,
 				B99BEC0F28EC4FDD000AB9BE /* LaunchScreen.storyboard */,
 				B99BEC1228EC4FDD000AB9BE /* Info.plist */,
 			);
 			path = Werdd;
+			sourceTree = "<group>";
+		};
+		B9C4E22828ED04E6000E3B32 /* Rubik */ = {
+			isa = PBXGroup;
+			children = (
+				B9C4E22628ED04B9000E3B32 /* Rubik-Regular.ttf */,
+				B9C4E22728ED04C3000E3B32 /* Rubik-Bold.ttf */,
+				B9C4E22B28ED05A9000E3B32 /* Rubik-Light.ttf */,
+				B9C4E22D28ED0DE3000E3B32 /* Rubik-Italic.ttf */,
+			);
+			path = Rubik;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,8 +143,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B99BEC1128EC4FDD000AB9BE /* LaunchScreen.storyboard in Resources */,
+				B9C4E22A28ED0504000E3B32 /* Rubik-Bold.ttf in Resources */,
+				B9C4E22E28ED0DE5000E3B32 /* Rubik-Italic.ttf in Resources */,
+				B9C4E22C28ED05AB000E3B32 /* Rubik-Light.ttf in Resources */,
+				B9C4E22928ED0502000E3B32 /* Rubik-Regular.ttf in Resources */,
 				B99BEC0E28EC4FDD000AB9BE /* Assets.xcassets in Resources */,
-				B99BEC0C28EC4FDC000AB9BE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,14 +167,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		B99BEC0A28EC4FDC000AB9BE /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B99BEC0B28EC4FDC000AB9BE /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		B99BEC0F28EC4FDD000AB9BE /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -292,7 +304,6 @@
 				INFOPLIST_FILE = Werdd/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -320,7 +331,6 @@
 				INFOPLIST_FILE = Werdd/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
