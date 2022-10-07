@@ -7,6 +7,24 @@
 
 import UIKit
 
+let wordArray = [
+    ["Programming", "noun", "creating a sequence of instructions to enable the computer to do something"],
+    ["Algorithm", "noun", "specific procedures used to solve computational problems"],
+    ["Compile", "verb", "convert (a program) into a machine-code or lower-level form in which the program can be executed."],
+    ["Latency", "noun", "measure of time between entering an input and the returned output"],
+    ["Syntax", "noun", "the rules that dictate the structure of a language"],
+    ["Bug", "noun", "a programming error that causes unexpected glitches or problems for a program’s end user"],
+    ["CPU", "noun", "stands for the Central Processing Unit. It is the processing chip that serves as the brains of a device that interprets (or processes) the digital instructions provided by applications"],
+    ["Bit", "noun", "an abbreviation for “binary digit,” the smallest piece of information used by a computer"],
+    ["Conditional statements", "noun", "another fundamental piece of programming instructions, set the terms for when a program moves forward"],
+    ["Bandwidth", "noun", "the amount of information that hard-wired or wireless connections can process or transmit"],
+]
+
+let largeConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .regular, scale: .large)
+let buttonSymbol = UIImage(systemName: "arrow.triangle.2.circlepath.circle", withConfiguration: largeConfig)
+
+var wordChoice = 0
+
 class ViewController: UIViewController {
     
     let werddTitle: UILabel = {
@@ -19,8 +37,8 @@ class ViewController: UIViewController {
         return text
     }()
     
-    let definitionBox: UILabel = {
-        let box = UILabel()
+    let definitionBox: UIView = {
+        let box = UIView()
         box.translatesAutoresizingMaskIntoConstraints = false
         box.backgroundColor = UIColor(named: "Color1")
         box.clipsToBounds = true
@@ -33,7 +51,7 @@ class ViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: "Rubik-Bold", size: 24)
-        label.text = "Programming"
+        label.text = wordArray[0][0]
         
         return label
     }()
@@ -42,7 +60,7 @@ class ViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: "Rubik-Italic", size: 12)
-        label.text = "noun"
+        label.text = wordArray[0][1]
         
         return label
     }()
@@ -51,7 +69,7 @@ class ViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: "Rubik-Light", size: 16)
-        label.text = "creating a sequence of instructions to enable the computer to do something"
+        label.text = wordArray[0][2]
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
         
@@ -69,17 +87,31 @@ class ViewController: UIViewController {
         return stack
     }()
     
+    let newWordButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(buttonSymbol, for: .normal)
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(newWordButtonPressed), for: .touchUpInside)
+        
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.init(named: "Color5")
+
+        setUpUI()
+    }
+    
+    func setUpUI() {
         
         view.addSubview(werddTitle)
         view.addSubview(definitionBox)
         view.addSubview(wordAndPartofSpeech)
         view.addSubview(definition)
-
-        //view.addSubview(word)
+        view.addSubview(newWordButton)
         
         wordAndPartofSpeech.addArrangedSubview(word)
         wordAndPartofSpeech.addArrangedSubview(partOfSpeech)
@@ -95,16 +127,21 @@ class ViewController: UIViewController {
             
             wordAndPartofSpeech.leadingAnchor.constraint(equalTo: definitionBox.leadingAnchor, constant: 20),
             wordAndPartofSpeech.topAnchor.constraint(equalTo: definitionBox.topAnchor, constant: 20),
-            //wordAndPartofSpeech.trailingAnchor.constraint(equalTo: definitionBox.trailingAnchor, constant: -20),
-
-//            word.leadingAnchor.constraint(equalTo: definitionBox.leadingAnchor, constant: 20),
-//            word.topAnchor.constraint(equalTo: definitionBox.topAnchor, constant: 20),
             
             definition.leadingAnchor.constraint(equalTo: definitionBox.leadingAnchor, constant: 20),
             definition.topAnchor.constraint(equalTo: word.bottomAnchor, constant: 10),
             definition.trailingAnchor.constraint(equalTo: definitionBox.trailingAnchor, constant: -20),
+            
+            newWordButton.trailingAnchor.constraint(equalTo: definitionBox.trailingAnchor, constant: -20),
+            newWordButton.bottomAnchor.constraint(equalTo: definitionBox.bottomAnchor, constant: -20),
         ])
-
+    }
+    
+    @objc func newWordButtonPressed() {
+        wordChoice = Int.random(in: 0..<wordArray.count)
+        word.text = wordArray[wordChoice][0]
+        partOfSpeech.text = wordArray[wordChoice][1]
+        definition.text = wordArray[wordChoice][2]
     }
 }
 
