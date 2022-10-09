@@ -25,7 +25,7 @@ let buttonSymbol = UIImage(systemName: "arrow.triangle.2.circlepath.circle", wit
 
 var wordChoice = 0
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource { //UITableViewDelegate NOT used in V3, might need for V5
+class ViewController: UIViewController {
     
     let werddTitle: UILabel = {
         let text = UILabel()
@@ -42,7 +42,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         box.translatesAutoresizingMaskIntoConstraints = false
         box.backgroundColor = UIColor(named: "Color1")
         box.clipsToBounds = true
-        box.layer.cornerRadius = 30
+        box.layer.cornerRadius = 45
         
         return box
     }()
@@ -76,23 +76,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return label
     }()
     
-    let wordAndPartofSpeechStack: UIStackView = {
+    let wordAndPartofSpeech: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .horizontal
-        stack.alignment = .lastBaseline
+        stack.alignment = .bottom
         stack.distribution = .fill
-        stack.spacing = 10
-        
-        return stack
-    }()
-    
-    let fullDefinitionStack: UIStackView = {
-        let stack = UIStackView()
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.axis = .vertical
-        stack.alignment = .leading
-        stack.distribution = .fillProportionally
         stack.spacing = 10
         
         return stack
@@ -108,19 +97,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return button
     }()
     
-    let tableView: UITableView = {
-        let table = UITableView()
-        table.translatesAutoresizingMaskIntoConstraints = false
-        table.clipsToBounds = true
-        table.layer.cornerRadius = 30
-        
-        return table
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.init(named: "Color5")
+
         setUpUI()
     }
     
@@ -128,66 +109,32 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         view.addSubview(werddTitle)
         view.addSubview(definitionBox)
-        view.addSubview(fullDefinitionStack)
+        view.addSubview(wordAndPartofSpeech)
+        view.addSubview(definition)
         view.addSubview(newWordButton)
         
-        wordAndPartofSpeechStack.addArrangedSubview(word)
-        wordAndPartofSpeechStack.addArrangedSubview(partOfSpeech)
+        wordAndPartofSpeech.addArrangedSubview(word)
+        wordAndPartofSpeech.addArrangedSubview(partOfSpeech)
         
-        fullDefinitionStack.addArrangedSubview(wordAndPartofSpeechStack)
-        fullDefinitionStack.addArrangedSubview(definition)
-        
-        //TABLEVIEW
-        view.addSubview(tableView)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.dataSource = self //self means the current class (in this case the class is ViewController) conforms to the protocol
-        tableView.delegate = self //NOT used in V3, might need for V5
-                
         NSLayoutConstraint.activate([
-            werddTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
             werddTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            werddTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
             
-            definitionBox.topAnchor.constraint(equalTo: werddTitle.bottomAnchor, constant: 20),
             definitionBox.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             definitionBox.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            definitionBox.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.25),
+            definitionBox.topAnchor.constraint(equalTo: werddTitle.bottomAnchor, constant: 20),
+            definitionBox.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5),
             
-            fullDefinitionStack.topAnchor.constraint(equalTo: definitionBox.topAnchor, constant: 20),
-            fullDefinitionStack.leadingAnchor.constraint(equalTo: definitionBox.leadingAnchor, constant: 20),
-            fullDefinitionStack.trailingAnchor.constraint(equalTo: definitionBox.trailingAnchor, constant: -20),
+            wordAndPartofSpeech.leadingAnchor.constraint(equalTo: definitionBox.leadingAnchor, constant: 20),
+            wordAndPartofSpeech.topAnchor.constraint(equalTo: definitionBox.topAnchor, constant: 20),
+            
+            definition.leadingAnchor.constraint(equalTo: definitionBox.leadingAnchor, constant: 20),
+            definition.topAnchor.constraint(equalTo: word.bottomAnchor, constant: 10),
+            definition.trailingAnchor.constraint(equalTo: definitionBox.trailingAnchor, constant: -20),
             
             newWordButton.trailingAnchor.constraint(equalTo: definitionBox.trailingAnchor, constant: -20),
             newWordButton.bottomAnchor.constraint(equalTo: definitionBox.bottomAnchor, constant: -20),
-            
-            tableView.topAnchor.constraint(equalTo: definitionBox.bottomAnchor, constant: 20),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
-    }
-    
-    //Two methods required for UITableViewDataSource conformance
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return wordArray.count //number of rows in table
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.translatesAutoresizingMaskIntoConstraints = false
-        
-        var config = cell.defaultContentConfiguration()
-        config.text = "\(wordArray[indexPath.row][0])"
-        config.secondaryText = "\(wordArray[indexPath.row][2])"
-
-        config.secondaryTextProperties.lineBreakMode = .byTruncatingTail
-        config.secondaryTextProperties.numberOfLines = 1
-        
-        config.textProperties.font = UIFont(name: "Rubik-Light", size: 14)!
-        config.secondaryTextProperties.font = UIFont(name: "Rubik-Light", size: 12)!
-
-        
-        
-        cell.contentConfiguration = config
-        return cell
     }
     
     @objc func newWordButtonPressed() {
@@ -197,3 +144,4 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         definition.text = wordArray[wordChoice][2]
     }
 }
+
