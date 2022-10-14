@@ -9,85 +9,83 @@ import UIKit
 
 class DefinitionBoxView: UIView {
     
-    let blueBox: UIView = {
-        let box = UIView()
-        box.translatesAutoresizingMaskIntoConstraints = false
-        box.backgroundColor = UIColor(named: "Color1")
-        box.clipsToBounds = true
-        box.layer.cornerRadius = 30
-        
-        return box
-    }()
-    
-    let word: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Rubik-Bold", size: 24)
-        label.text = wordArray[0].word
-        
-        return label
-    }()
-    
-    let partOfSpeech: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Rubik-Italic", size: 12)
-        label.text = wordArray[0].partOfSpeech
-        
-        return label
-    }()
-    
-    let definition: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Rubik-Light", size: 16)
-        label.text = wordArray[0].definition
-        label.lineBreakMode = .byWordWrapping
-        label.numberOfLines = 0
-        
-        return label
-    }()
-    
-    let wordAndPartofSpeechStack: UIStackView = {
-        let stack = UIStackView()
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.axis = .horizontal
-        stack.alignment = .lastBaseline
-        stack.distribution = .fill
-        stack.spacing = 10
-        
-        return stack
-    }()
-    
-    let fullDefinitionStack: UIStackView = {
-        let stack = UIStackView()
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.axis = .vertical
-        stack.alignment = .leading
-        stack.distribution = .fillProportionally
-        stack.spacing = 10
-        
-        return stack
-    }()
+    var blueBox = UIView()
+    var word = UILabel()
+    var partOfSpeech = UILabel()
+    var definition = UILabel()
+    var wordAndPartOfSpeechStack = UIStackView()
+    var fullDefinitionStack = UIStackView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        setUpUI()
+        addSubview(blueBox)
+        addSubview(fullDefinitionStack)
+        
+        configureBlueBox()
+        configureWord()
+        configurePartOfSpeech()
+        configureDefinition()
+        configureWordAndPartOfSpeechStack()
+        configureFullDefinitionStack()
+        
+        setConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setUpUI() {
-        addSubview(blueBox)
-        addSubview(fullDefinitionStack)
+    func configureBlueBox() {
+        blueBox.backgroundColor = UIColor(named: "Color1")
+        blueBox.clipsToBounds = true
+        blueBox.layer.cornerRadius = 30
+    }
+    
+    func configureWord() {
+        word.font = UIFont(name: "Rubik-Bold", size: 24)
+        word.text = wordArray[0].word
+        word.adjustsFontSizeToFitWidth = true
+    }
+    
+    func configurePartOfSpeech() {
+        partOfSpeech.font = UIFont(name: "Rubik-Italic", size: 12)
+        partOfSpeech.text = wordArray[0].partOfSpeech
+    }
+    
+    func configureDefinition() {
+        definition.font = UIFont(name: "Rubik-Light", size: 16)
+        definition.text = wordArray[0].definition
+        definition.lineBreakMode = .byWordWrapping
+        definition.numberOfLines = 0
+    }
+    
+    func configureWordAndPartOfSpeechStack() {
+        wordAndPartOfSpeechStack.axis = .horizontal
+        wordAndPartOfSpeechStack.alignment = .lastBaseline
+        wordAndPartOfSpeechStack.distribution = .fillProportionally
+        wordAndPartOfSpeechStack.spacing = 10
+    }
+    
+    func configureFullDefinitionStack() {
+        fullDefinitionStack.axis = .vertical
+        fullDefinitionStack.alignment = .leading
+        fullDefinitionStack.distribution = .fillProportionally
+        fullDefinitionStack.spacing = 10
+    }
+    
+    func setConstraints() {
+        blueBox.translatesAutoresizingMaskIntoConstraints = false
+        word.translatesAutoresizingMaskIntoConstraints = false
+        partOfSpeech.translatesAutoresizingMaskIntoConstraints = false
+        definition.translatesAutoresizingMaskIntoConstraints = false
+        wordAndPartOfSpeechStack.translatesAutoresizingMaskIntoConstraints = false
+        fullDefinitionStack.translatesAutoresizingMaskIntoConstraints = false
         
-        wordAndPartofSpeechStack.addArrangedSubview(word)
-        wordAndPartofSpeechStack.addArrangedSubview(partOfSpeech)
+        wordAndPartOfSpeechStack.addArrangedSubview(word)
+        wordAndPartOfSpeechStack.addArrangedSubview(partOfSpeech)
         
-        fullDefinitionStack.addArrangedSubview(wordAndPartofSpeechStack)
+        fullDefinitionStack.addArrangedSubview(wordAndPartOfSpeechStack)
         fullDefinitionStack.addArrangedSubview(definition)
         
         NSLayoutConstraint.activate([
@@ -96,10 +94,11 @@ class DefinitionBoxView: UIView {
             blueBox.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             blueBox.heightAnchor.constraint(equalTo: heightAnchor),
             
+            //partOfSpeech.trailingAnchor.constraint(equalTo: blueBox.trailingAnchor),
+            
             fullDefinitionStack.topAnchor.constraint(equalTo: blueBox.topAnchor, constant: 20),
             fullDefinitionStack.leadingAnchor.constraint(equalTo: blueBox.leadingAnchor, constant: 20),
             fullDefinitionStack.trailingAnchor.constraint(equalTo: blueBox.trailingAnchor, constant: -20),
         ])
     }
-
 }

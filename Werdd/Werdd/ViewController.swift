@@ -152,7 +152,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier) as! CustomTableViewCell //gives us access to methods
         let currentWord = wordArray[indexPath.row]
         cell.set(word: currentWord)
-        
+
         return cell
     }
 }

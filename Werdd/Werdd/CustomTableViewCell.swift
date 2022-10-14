@@ -65,7 +65,6 @@ class CustomTableViewCell: UITableViewCell {
         definitionLabel.font = UIFont(name: "Rubik-Light", size: 12)!
         definitionLabel.clipsToBounds = true
         definitionLabel.lineBreakMode = .byTruncatingTail
-        definitionLabel.numberOfLines = 1
     }
     
     func setConstraints() {
@@ -87,7 +86,8 @@ class CustomTableViewCell: UITableViewCell {
             partOfSpeechLabel.bottomAnchor.constraint(equalTo: wordLabel.bottomAnchor),
             
             definitionLabel.topAnchor.constraint(equalTo: wordLabel.bottomAnchor, constant: 5),
-            definitionLabel.leadingAnchor.constraint(equalTo: wordLabel.leadingAnchor)
+            definitionLabel.leadingAnchor.constraint(equalTo: wordLabel.leadingAnchor),
+            definitionLabel.trailingAnchor.constraint(equalTo: backgroundCell.trailingAnchor, constant: -20)
         ])
     }
 }
