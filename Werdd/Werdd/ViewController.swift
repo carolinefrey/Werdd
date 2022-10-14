@@ -28,7 +28,7 @@ var wordArray: [Word] = [
 let largeConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .regular, scale: .large)
 let buttonSymbol = UIImage(systemName: "arrow.triangle.2.circlepath.circle", withConfiguration: largeConfig)
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource { //UITableViewDelegate NOT used in V3, might need for V5
+class ViewController: UIViewController {
     
     let werddTitle: UILabel = {
         let text = UILabel()
@@ -58,21 +58,25 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     let tableView: UITableView = {
         let table = UITableView()
+        table.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
         table.translatesAutoresizingMaskIntoConstraints = false
         table.clipsToBounds = true
         table.layer.cornerRadius = 30
-        
+        table.rowHeight = 70
+
         return table
     }()
     
+    var allWords: [Word] = [] //create empty array to be populated and passed into tableView
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        allWords = wordArray //populate array to be passed into tableView
         view.backgroundColor = UIColor.init(named: "Color5")
         setUpUI()
     }
     
-    func setUpUI() {
+    private func setUpUI() {
         
         view.addSubview(werddTitle)
         NSLayoutConstraint.activate([
@@ -104,12 +108,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     private func setUpTableView() {
-        
         view.addSubview(tableView)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.dataSource = self //self means the current class (in this case the class is ViewController) conforms to the protocol
         tableView.delegate = self //NOT used in V3, might need for V5
-        
+        tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
+
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: definitionBoxView.bottomAnchor, constant: 40),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -118,40 +121,38 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         ])
     }
     
-    //Two methods required for UITableViewDataSource conformance
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return wordArray.count //number of rows in table
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.translatesAutoresizingMaskIntoConstraints = false
-        
-        var config = cell.defaultContentConfiguration()
-        config.text = "\(wordArray[indexPath.row].word)"
-        config.secondaryText = "\(wordArray[indexPath.row].definition)"
-        
-        config.secondaryTextProperties.lineBreakMode = .byTruncatingTail
-        config.secondaryTextProperties.numberOfLines = 1
-        
-        config.textProperties.font = UIFont(name: "Rubik-Light", size: 14)!
-        config.secondaryTextProperties.font = UIFont(name: "Rubik-Light", size: 12)!
-        
-        cell.contentConfiguration = config
-        return cell
-    }
-    
     @objc func newWordButtonPressed() {
         let randomWord = randomizedWord()
         updateDefinitionBox(withword: randomWord)
     }
     
-    func randomizedWord() -> Word? {
+    private func randomizedWord() -> Word? {
         return wordArray.randomElement()
     }
     
-    func updateDefinitionBox(withword wordChoice: Word?) {
+    private func updateDefinitionBox(withword wordChoice: Word?) {
         definitionBoxView.word.text = wordChoice?.word
         definitionBoxView.partOfSpeech.text = wordChoice?.partOfSpeech
         definitionBoxView.definition.text = wordChoice?.definition
+    }
+}
+
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    //Two methods required for UITableViewDataSource conformance
+    //1. How many cells am I showing?
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return wordArray.count //number of rows in table
+    }
+    
+    //2. What cells am I showing?
+    //   ** This function gets called REPEATEDLY as you scroll down the list. It loads the next cell that is about to show on the screen.
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier) as! CustomTableViewCell //gives us access to methods
+        let currentWord = wordArray[indexPath.row]
+        cell.set(word: currentWord)
+        
+        return cell
     }
 }
