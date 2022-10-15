@@ -25,47 +25,16 @@ var wordArray: [Word] = [
     Word(word: "Conditional statements", partOfSpeech: "noun", definition: "another fundamental piece of programming instructions, set the terms for when a program moves forward"),
     Word(word: "Bandwidth", partOfSpeech: "noun", definition: "the amount of information that hard-wired or wireless connections can process or transmit"),
 ]
+
 let largeConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .regular, scale: .large)
 let buttonSymbol = UIImage(systemName: "arrow.triangle.2.circlepath.circle", withConfiguration: largeConfig)
 
 class ViewController: UIViewController {
     
-    let werddTitle: UILabel = {
-        let text = UILabel()
-        text.translatesAutoresizingMaskIntoConstraints = false
-        text.font = UIFont(name: "Rubik-Bold", size: 36)
-        text.text = "Werdd."
-        text.textAlignment = .left
-        
-        return text
-    }()
-    
-    let definitionBoxView: DefinitionBoxView = {
-        let definitionBoxView = DefinitionBoxView()
-        definitionBoxView.translatesAutoresizingMaskIntoConstraints = false
-        return definitionBoxView
-    }()
-    
-    let newWordButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(buttonSymbol, for: .normal)
-        button.tintColor = .white
-        button.addTarget(self, action: #selector(newWordButtonPressed), for: .touchUpInside)
-        
-        return button
-    }()
-    
-    let tableView: UITableView = {
-        let table = UITableView()
-        table.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
-        table.translatesAutoresizingMaskIntoConstraints = false
-        table.clipsToBounds = true
-        table.layer.cornerRadius = 30
-        table.rowHeight = 70
-
-        return table
-    }()
+    let werddTitle = UILabel()
+    let definitionBoxView = DefinitionBoxView()
+    let newWordButton = UIButton()
+    let tableView = UITableView()
     
     var allWords: [Word] = [] //create empty array to be populated and passed into tableView
     
@@ -73,47 +42,61 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         allWords = wordArray //populate array to be passed into tableView
         view.backgroundColor = UIColor.init(named: "Color5")
-        setUpUI()
-    }
-    
-    private func setUpUI() {
         
         view.addSubview(werddTitle)
+        view.addSubview(definitionBoxView)
+        view.addSubview(newWordButton)
+        view.addSubview(tableView)
+        
+        configureWerddTitle()
+        configureNewWordButton()
+        configureTableView()
+        
+        setConstraints()
+        
+    }
+    
+    func configureWerddTitle() {
+        werddTitle.font = UIFont(name: "Rubik-Bold", size: 36)
+        werddTitle.text = "Werdd."
+        werddTitle.textAlignment = .left
+    }
+    
+    func configureNewWordButton() {
+        newWordButton.setImage(buttonSymbol, for: .normal)
+        newWordButton.tintColor = .white
+        newWordButton.addTarget(self, action: #selector(newWordButtonPressed), for: .touchUpInside)
+    }
+    
+    func configureTableView() {
+        tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
+        tableView.clipsToBounds = true
+        tableView.layer.cornerRadius = 30
+        tableView.rowHeight = 70
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
+    }
+
+    func setConstraints() {
+        werddTitle.translatesAutoresizingMaskIntoConstraints = false
+        definitionBoxView.translatesAutoresizingMaskIntoConstraints = false
+        newWordButton.translatesAutoresizingMaskIntoConstraints = false
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
             werddTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             werddTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-        ])
         
-        setUpDefinitionBox()
-        
-        view.addSubview(newWordButton)
-        NSLayoutConstraint.activate([
             newWordButton.trailingAnchor.constraint(equalTo: definitionBoxView.trailingAnchor, constant: -40),
             newWordButton.bottomAnchor.constraint(equalTo: definitionBoxView.bottomAnchor),
-        ])
-        
-        setUpTableView()
-    }
-    
-    private func setUpDefinitionBox() {
-        
-        view.addSubview(definitionBoxView)
-        
-        NSLayoutConstraint.activate([
+            
             definitionBoxView.topAnchor.constraint(equalTo: werddTitle.bottomAnchor),
             definitionBoxView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             definitionBoxView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             definitionBoxView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.25),
-        ])
-    }
-    
-    private func setUpTableView() {
-        view.addSubview(tableView)
-        tableView.dataSource = self //self means the current class (in this case the class is ViewController) conforms to the protocol
-        tableView.delegate = self //NOT used in V3, might need for V5
-        tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
-
-        NSLayoutConstraint.activate([
+        
             tableView.topAnchor.constraint(equalTo: definitionBoxView.bottomAnchor, constant: 40),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -126,11 +109,11 @@ class ViewController: UIViewController {
         updateDefinitionBox(withword: randomWord)
     }
     
-    private func randomizedWord() -> Word? {
+    func randomizedWord() -> Word? {
         return wordArray.randomElement()
     }
     
-    private func updateDefinitionBox(withword wordChoice: Word?) {
+    func updateDefinitionBox(withword wordChoice: Word?) {
         definitionBoxView.word.text = wordChoice?.word
         definitionBoxView.partOfSpeech.text = wordChoice?.partOfSpeech
         definitionBoxView.definition.text = wordChoice?.definition
