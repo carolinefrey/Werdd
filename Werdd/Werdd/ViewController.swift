@@ -13,7 +13,7 @@ struct Word {
     let definition: String
 }
 
-var wordArray: [Word] = [
+let wordArray: [Word] = [
     Word(word: "Programming", partOfSpeech: "noun", definition: "creating a sequence of instructions to enable the computer to do something"),
     Word(word: "Algorithm", partOfSpeech: "noun", definition: "specific procedures used to solve computational problems"),
     Word(word: "Compile", partOfSpeech: "verb", definition: "convert (a program) into a machine-code or lower-level form in which the program can be executed."),
@@ -25,9 +25,6 @@ var wordArray: [Word] = [
     Word(word: "Conditional statements", partOfSpeech: "noun", definition: "another fundamental piece of programming instructions, set the terms for when a program moves forward"),
     Word(word: "Bandwidth", partOfSpeech: "noun", definition: "the amount of information that hard-wired or wireless connections can process or transmit"),
 ]
-
-let largeConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .regular, scale: .large)
-let buttonSymbol = UIImage(systemName: "arrow.triangle.2.circlepath.circle", withConfiguration: largeConfig)
 
 class ViewController: UIViewController {
     
@@ -55,7 +52,7 @@ class ViewController: UIViewController {
         setConstraints()
         
     }
-    
+
     func configureWerddTitle() {
         werddTitle.font = UIFont(name: "Rubik-Bold", size: 36)
         werddTitle.text = "Werdd."
@@ -63,6 +60,9 @@ class ViewController: UIViewController {
     }
     
     func configureNewWordButton() {
+        let largeConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .regular, scale: .large)
+        let buttonSymbol = UIImage(systemName: "arrow.triangle.2.circlepath.circle", withConfiguration: largeConfig)
+        
         newWordButton.setImage(buttonSymbol, for: .normal)
         newWordButton.tintColor = .white
         newWordButton.addTarget(self, action: #selector(newWordButtonPressed), for: .touchUpInside)
