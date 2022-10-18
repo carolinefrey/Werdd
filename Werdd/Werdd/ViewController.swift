@@ -30,7 +30,7 @@ class ViewController: UIViewController {
     
     let werddTitle = UILabel()
     let definitionBoxView = DefinitionBoxView()
-    let newWordButton = UIButton()
+    lazy var newWordButton = UIButton()
     let tableView = UITableView()
     
     var allWords: [Word] = [] //create empty array to be populated and passed into tableView
@@ -120,16 +120,13 @@ class ViewController: UIViewController {
     }
 }
 
+//MARK: UITableViewDataSource Methods
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
-    //Two methods required for UITableViewDataSource conformance
-    //1. How many cells am I showing?
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return wordArray.count //number of rows in table
     }
-    
-    //2. What cells am I showing?
-    //   ** This function gets called REPEATEDLY as you scroll down the list. It loads the next cell that is about to show on the screen.
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier) as! CustomTableViewCell //gives us access to methods
