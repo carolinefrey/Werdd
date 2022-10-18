@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B921919928FEC50500E6EBD8 /* Words.swift in Sources */ = {isa = PBXBuildFile; fileRef = B921919828FEC50500E6EBD8 /* Words.swift */; };
 		B981341428F63D8F00F0DED9 /* DefinitionBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B981341328F63D8F00F0DED9 /* DefinitionBoxView.swift */; };
 		B99BEC0528EC4FDC000AB9BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99BEC0428EC4FDC000AB9BE /* AppDelegate.swift */; };
 		B99BEC0728EC4FDC000AB9BE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99BEC0628EC4FDC000AB9BE /* SceneDelegate.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B921919828FEC50500E6EBD8 /* Words.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Words.swift; sourceTree = "<group>"; };
 		B981341328F63D8F00F0DED9 /* DefinitionBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefinitionBoxView.swift; sourceTree = "<group>"; };
 		B99BEC0128EC4FDC000AB9BE /* Werdd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Werdd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B99BEC0428EC4FDC000AB9BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				B99BEC0828EC4FDC000AB9BE /* ViewController.swift */,
 				B9C194AE28F82F8B008FFABF /* CustomTableViewCell.swift */,
 				B981341328F63D8F00F0DED9 /* DefinitionBoxView.swift */,
+				B921919828FEC50500E6EBD8 /* Words.swift */,
 				B99BEC0D28EC4FDD000AB9BE /* Assets.xcassets */,
 				B99BEC0F28EC4FDD000AB9BE /* LaunchScreen.storyboard */,
 				B99BEC1228EC4FDD000AB9BE /* Info.plist */,
@@ -167,6 +170,7 @@
 				B99BEC0928EC4FDC000AB9BE /* ViewController.swift in Sources */,
 				B9C194AF28F82F8B008FFABF /* CustomTableViewCell.swift in Sources */,
 				B99BEC0528EC4FDC000AB9BE /* AppDelegate.swift in Sources */,
+				B921919928FEC50500E6EBD8 /* Words.swift in Sources */,
 				B99BEC0728EC4FDC000AB9BE /* SceneDelegate.swift in Sources */,
 				B981341428F63D8F00F0DED9 /* DefinitionBoxView.swift in Sources */,
 			);
