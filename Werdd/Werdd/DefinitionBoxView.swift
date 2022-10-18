@@ -9,6 +9,7 @@ import UIKit
 
 class DefinitionBoxView: UIView {
     
+    let words = Words()
     var blueBox = UIView()
     var word = UILabel()
     var partOfSpeech = UILabel()
@@ -44,18 +45,18 @@ class DefinitionBoxView: UIView {
     
     func configureWord() {
         word.font = UIFont(name: "Rubik-Bold", size: 24)
-        word.text = wordArray[0].word
+        word.text = words.wordArray[0].word
         word.adjustsFontSizeToFitWidth = true
     }
     
     func configurePartOfSpeech() {
         partOfSpeech.font = UIFont(name: "Rubik-Italic", size: 12)
-        partOfSpeech.text = wordArray[0].partOfSpeech
+        partOfSpeech.text = words.wordArray[0].partOfSpeech
     }
     
     func configureDefinition() {
         definition.font = UIFont(name: "Rubik-Light", size: 16)
-        definition.text = wordArray[0].definition
+        definition.text = words.wordArray[0].definition
         definition.lineBreakMode = .byWordWrapping
         definition.numberOfLines = 0
     }
