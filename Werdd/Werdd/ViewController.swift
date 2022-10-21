@@ -8,13 +8,13 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
+
     let words = Words()
     let werddTitle = UILabel()
     let definitionBoxView = DefinitionBoxView()
     lazy var newWordButton = UIButton()
     let tableView = UITableView()
-        
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.init(named: "Color5")
@@ -29,9 +29,16 @@ class ViewController: UIViewController {
         configureTableView()
         
         setConstraints()
-        
     }
-
+    
+    // MARK: Deselect cell when view controller pops off the stack
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let selectedIndexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: selectedIndexPath, animated: animated)
+        }
+    }
+    
     func configureWerddTitle() {
         werddTitle.font = UIFont(name: "Rubik-Bold", size: 36)
         werddTitle.text = "Werdd."
@@ -48,14 +55,13 @@ class ViewController: UIViewController {
     }
     
     func configureTableView() {
-        tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
-        tableView.clipsToBounds = true
-        tableView.layer.cornerRadius = 30
-        tableView.rowHeight = 70
-        
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
+        
+        tableView.clipsToBounds = true
+        tableView.layer.cornerRadius = 30
+        tableView.rowHeight = 70
     }
 
     func setConstraints() {
@@ -100,18 +106,25 @@ class ViewController: UIViewController {
 }
 
 //MARK: UITableViewDataSource Methods
-extension ViewController: UITableViewDelegate, UITableViewDataSource {
+extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return words.wordArray.count //number of rows in table
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier) as! CustomTableViewCell //gives us access to methods
         let currentWord = words.wordArray[indexPath.row]
         cell.set(word: currentWord)
-
         return cell
+    }
+}
+
+//MARK: UITableViewDelegate Methods
+extension ViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailVC = DetailViewController(selectedWord: words.wordArray[indexPath.row])
+        show(detailVC, sender: self)
     }
 }

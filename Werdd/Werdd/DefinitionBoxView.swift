@@ -94,9 +94,7 @@ class DefinitionBoxView: UIView {
             blueBox.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             blueBox.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             blueBox.heightAnchor.constraint(equalTo: heightAnchor),
-            
-            //partOfSpeech.trailingAnchor.constraint(equalTo: blueBox.trailingAnchor),
-            
+                        
             fullDefinitionStack.topAnchor.constraint(equalTo: blueBox.topAnchor, constant: 20),
             fullDefinitionStack.leadingAnchor.constraint(equalTo: blueBox.leadingAnchor, constant: 20),
             fullDefinitionStack.trailingAnchor.constraint(equalTo: blueBox.trailingAnchor, constant: -20),

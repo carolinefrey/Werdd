@@ -23,9 +23,9 @@ class Words {
 }
 
 class Word {
-    let word: String
-    let partOfSpeech: String
-    let definition: String
+    var word: String
+    var partOfSpeech: String
+    var definition: String
     
     init(word: String, partOfSpeech: String, definition: String) {
         self.word = word
