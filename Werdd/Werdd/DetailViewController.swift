@@ -10,24 +10,25 @@ import UIKit
 class DetailViewController: UIViewController {
     
     var selectedWord = Word(word: "", partOfSpeech: "", definition: "")
+    
     let wordTitle = UILabel()
     
-    let definitionBox = UIView()
+    let definition = DefinitionBoxDetailView()
     
-    let synonymsBox = UIView()
+    let synonyms = UIView()
     
-    let antonymsBox = UIView()
+    let antonyms = UIView()
     
-    let exampleBox = UIView()
+    let exampleUsage = UIView()
     
     init(selectedWord: Word) {
         self.selectedWord.word = selectedWord.word
         self.selectedWord.partOfSpeech = selectedWord.partOfSpeech
         self.selectedWord.definition = selectedWord.definition
-        
+
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -37,10 +38,9 @@ class DetailViewController: UIViewController {
         view.backgroundColor = UIColor.init(named: "Color5")
         
         view.addSubview(wordTitle)
-        view.addSubview(definitionBox)
+        view.addSubview(definition)
         
         configureWordTitle()
-        configureDefinitionBox()
         
         setConstraints()
     }
@@ -52,24 +52,18 @@ class DetailViewController: UIViewController {
         wordTitle.textAlignment = .left
     }
     
-    private func configureDefinitionBox() {
-        definitionBox.backgroundColor = UIColor(named: "Color1")
-        definitionBox.clipsToBounds = true
-        definitionBox.layer.cornerRadius = 30
-    }
-    
     private func setConstraints() {
         wordTitle.translatesAutoresizingMaskIntoConstraints = false
-        definitionBox.translatesAutoresizingMaskIntoConstraints = false
+        definition.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             wordTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             wordTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             
-            definitionBox.topAnchor.constraint(equalTo: wordTitle.bottomAnchor, constant: 20),
-            definitionBox.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            definitionBox.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            definitionBox.heightAnchor.constraint(equalTo: view.heightAnchor),
+            definition.topAnchor.constraint(equalTo: wordTitle.bottomAnchor, constant: 20),
+            definition.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            definition.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+
         ])
     }
 }
