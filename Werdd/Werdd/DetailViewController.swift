@@ -15,11 +15,11 @@ class DetailViewController: UIViewController {
     
     let definition = DefinitionBoxDetailView()
     
-    let synonyms = UIView()
+    let synonyms = SynonymsBoxView()
     
-    let antonyms = UIView()
+    let antonyms = AntonymsBoxView()
     
-    let exampleUsage = UIView()
+    let exampleUsage = ExampleUsageBoxView()
     
     init(selectedWord: Word) {
         self.selectedWord.word = selectedWord.word
@@ -39,6 +39,9 @@ class DetailViewController: UIViewController {
         
         view.addSubview(wordTitle)
         view.addSubview(definition)
+        view.addSubview(synonyms)
+        view.addSubview(antonyms)
+        view.addSubview(exampleUsage)
         
         configureWordTitle()
         
@@ -55,6 +58,9 @@ class DetailViewController: UIViewController {
     private func setConstraints() {
         wordTitle.translatesAutoresizingMaskIntoConstraints = false
         definition.translatesAutoresizingMaskIntoConstraints = false
+        synonyms.translatesAutoresizingMaskIntoConstraints = false
+        antonyms.translatesAutoresizingMaskIntoConstraints = false
+        exampleUsage.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             wordTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
@@ -64,6 +70,17 @@ class DetailViewController: UIViewController {
             definition.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             definition.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
 
+            synonyms.topAnchor.constraint(equalTo: definition.bottomAnchor, constant: 180),
+            synonyms.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            synonyms.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            
+            antonyms.topAnchor.constraint(equalTo: synonyms.bottomAnchor, constant: 130),
+            antonyms.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            antonyms.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            
+            exampleUsage.topAnchor.constraint(equalTo: antonyms.bottomAnchor, constant: 130),
+            exampleUsage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            exampleUsage.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -20)
         ])
     }
 }

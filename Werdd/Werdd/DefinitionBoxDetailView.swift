@@ -9,7 +9,7 @@ import UIKit
 
 class DefinitionBoxDetailView: UIView {
     
-    let box = UIView()
+    let blueBox = UIView()
     let partOfSpeech = UILabel()
     let definition = UILabel()
     let defBoxLabel = UILabel()
@@ -17,7 +17,7 @@ class DefinitionBoxDetailView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        addSubview(box)
+        addSubview(blueBox)
         addSubview(partOfSpeech)
         addSubview(definition)
         addSubview(defBoxLabel)
@@ -31,9 +31,9 @@ class DefinitionBoxDetailView: UIView {
     }
     
     private func configureBox() {
-        box.backgroundColor = UIColor(named: "Color1")
-        box.clipsToBounds = true
-        box.layer.cornerRadius = 30
+        blueBox.backgroundColor = UIColor(named: "Color1")
+        blueBox.clipsToBounds = true
+        blueBox.layer.cornerRadius = 30
     }
     
     private func configurePartOfSpeech() {
@@ -55,26 +55,26 @@ class DefinitionBoxDetailView: UIView {
     }
     
     private func setConstraints() {
-        box.translatesAutoresizingMaskIntoConstraints = false
+        blueBox.translatesAutoresizingMaskIntoConstraints = false
         partOfSpeech.translatesAutoresizingMaskIntoConstraints = false
         definition.translatesAutoresizingMaskIntoConstraints = false
         defBoxLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            box.topAnchor.constraint(equalTo: topAnchor),
-            box.leadingAnchor.constraint(equalTo: leadingAnchor),
-            box.trailingAnchor.constraint(equalTo: trailingAnchor),
-            box.heightAnchor.constraint(equalToConstant: 150),
+            blueBox.topAnchor.constraint(equalTo: topAnchor),
+            blueBox.leadingAnchor.constraint(equalTo: leadingAnchor),
+            blueBox.trailingAnchor.constraint(equalTo: trailingAnchor),
+            blueBox.heightAnchor.constraint(equalToConstant: 150),
             
-            partOfSpeech.topAnchor.constraint(equalTo: box.topAnchor, constant: 20),
-            partOfSpeech.leadingAnchor.constraint(equalTo: box.leadingAnchor, constant: 20),
+            partOfSpeech.topAnchor.constraint(equalTo: blueBox.topAnchor, constant: 20),
+            partOfSpeech.leadingAnchor.constraint(equalTo: blueBox.leadingAnchor, constant: 20),
             
             definition.topAnchor.constraint(equalTo: partOfSpeech.bottomAnchor, constant: 5),
-            definition.leadingAnchor.constraint(equalTo: box.leadingAnchor, constant: 20),
-            definition.trailingAnchor.constraint(equalTo: box.trailingAnchor, constant: -20),
+            definition.leadingAnchor.constraint(equalTo: blueBox.leadingAnchor, constant: 20),
+            definition.trailingAnchor.constraint(equalTo: blueBox.trailingAnchor, constant: -20),
             
-            defBoxLabel.bottomAnchor.constraint(equalTo: box.bottomAnchor, constant: -20),
-            defBoxLabel.leadingAnchor.constraint(equalTo: box.leadingAnchor, constant: 20),
+            defBoxLabel.bottomAnchor.constraint(equalTo: blueBox.bottomAnchor, constant: -20),
+            defBoxLabel.leadingAnchor.constraint(equalTo: blueBox.leadingAnchor, constant: 20),
         ])
     }
     
