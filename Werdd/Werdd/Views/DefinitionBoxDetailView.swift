@@ -9,14 +9,18 @@ import UIKit
 
 class DefinitionBoxDetailView: UIView {
     
+    var word = Word(word: "", partOfSpeech: "", definition: "", synonyms: "", antonyms: "")
     let blueBox = UIView()
     let partOfSpeech = UILabel()
     let definition = UILabel()
     let defBoxLabel = UILabel()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
+    init(word: Word) {
+        super.init(frame: CGRect.zero)
+
+        self.word.partOfSpeech = word.partOfSpeech
+        self.word.definition = word.definition
+
         addSubview(blueBox)
         addSubview(partOfSpeech)
         addSubview(definition)
@@ -37,13 +41,13 @@ class DefinitionBoxDetailView: UIView {
     }
     
     private func configurePartOfSpeech() {
-        partOfSpeech.text = "POS"
+        partOfSpeech.text = word.partOfSpeech
         partOfSpeech.textColor = .black
         partOfSpeech.font = UIFont(name: "Rubik-Italic", size: 14)
     }
     
     private func configureDefinition() {
-        definition.text = "Selected word definition"
+        definition.text = word.definition
         definition.textColor = .black
         definition.font = UIFont(name: "Rubik-Regular", size: 20)
     }

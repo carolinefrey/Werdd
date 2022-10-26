@@ -9,12 +9,15 @@ import UIKit
 
 class AntonymsBoxView: UIView {
     
+    var word = Word(word: "", partOfSpeech: "", definition: "", synonyms: "", antonyms: "")
     let pinkBox = UIView()
     let antonyms = UILabel()
     let antBoxLabel = UILabel()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(word: Word) {
+        super.init(frame: CGRect.zero)
+
+        self.word.antonyms = word.antonyms
         
         addSubview(pinkBox)
         addSubview(antonyms)
@@ -34,7 +37,7 @@ class AntonymsBoxView: UIView {
     }
     
     private func configureAntonyms() {
-        antonyms.text = "Selected word antonyms"
+        antonyms.text = word.antonyms
         antonyms.textColor = .black
         antonyms.font = UIFont(name: "Rubik-Light", size: 14)
     }

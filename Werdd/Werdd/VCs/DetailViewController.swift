@@ -9,15 +9,15 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
-    var selectedWord = Word(word: "", partOfSpeech: "", definition: "")
+    var selectedWord = Word(word: "", partOfSpeech: "", definition: "", synonyms: "", antonyms: "")
     
     let wordTitle = UILabel()
     
-    let definition = DefinitionBoxDetailView()
+    var definitionBox: DefinitionBoxDetailView
     
-    let synonyms = SynonymsBoxView()
+    var synonymsBox: SynonymsBoxView
     
-    let antonyms = AntonymsBoxView()
+    var antonymsBox: AntonymsBoxView
     
     let exampleUsage = ExampleUsageBoxView()
     
@@ -25,6 +25,10 @@ class DetailViewController: UIViewController {
         self.selectedWord.word = selectedWord.word
         self.selectedWord.partOfSpeech = selectedWord.partOfSpeech
         self.selectedWord.definition = selectedWord.definition
+        
+        definitionBox = DefinitionBoxDetailView(word: selectedWord)
+        synonymsBox = SynonymsBoxView(word: selectedWord)
+        antonymsBox = AntonymsBoxView(word: selectedWord)
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -38,9 +42,9 @@ class DetailViewController: UIViewController {
         view.backgroundColor = UIColor.init(named: "Color5")
         
         view.addSubview(wordTitle)
-        view.addSubview(definition)
-        view.addSubview(synonyms)
-        view.addSubview(antonyms)
+        view.addSubview(definitionBox)
+        view.addSubview(synonymsBox)
+        view.addSubview(antonymsBox)
         view.addSubview(exampleUsage)
         
         configureWordTitle()
@@ -57,28 +61,28 @@ class DetailViewController: UIViewController {
     
     private func setConstraints() {
         wordTitle.translatesAutoresizingMaskIntoConstraints = false
-        definition.translatesAutoresizingMaskIntoConstraints = false
-        synonyms.translatesAutoresizingMaskIntoConstraints = false
-        antonyms.translatesAutoresizingMaskIntoConstraints = false
+        definitionBox.translatesAutoresizingMaskIntoConstraints = false
+        synonymsBox.translatesAutoresizingMaskIntoConstraints = false
+        antonymsBox.translatesAutoresizingMaskIntoConstraints = false
         exampleUsage.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             wordTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             wordTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             
-            definition.topAnchor.constraint(equalTo: wordTitle.bottomAnchor, constant: 20),
-            definition.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            definition.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            definitionBox.topAnchor.constraint(equalTo: wordTitle.bottomAnchor, constant: 20),
+            definitionBox.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            definitionBox.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
 
-            synonyms.topAnchor.constraint(equalTo: definition.bottomAnchor, constant: 180),
-            synonyms.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            synonyms.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            synonymsBox.topAnchor.constraint(equalTo: definitionBox.bottomAnchor, constant: 180),
+            synonymsBox.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            synonymsBox.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
-            antonyms.topAnchor.constraint(equalTo: synonyms.bottomAnchor, constant: 130),
-            antonyms.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            antonyms.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            antonymsBox.topAnchor.constraint(equalTo: synonymsBox.bottomAnchor, constant: 130),
+            antonymsBox.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            antonymsBox.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
-            exampleUsage.topAnchor.constraint(equalTo: antonyms.bottomAnchor, constant: 130),
+            exampleUsage.topAnchor.constraint(equalTo: antonymsBox.bottomAnchor, constant: 130),
             exampleUsage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             exampleUsage.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -20)
         ])

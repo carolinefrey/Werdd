@@ -59,6 +59,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B92B128829094FAA0002537B /* VCs */ = {
+			isa = PBXGroup;
+			children = (
+				B99BEC0828EC4FDC000AB9BE /* ViewController.swift */,
+				B923C57B2900291F00CC37A1 /* DetailViewController.swift */,
+			);
+			path = VCs;
+			sourceTree = "<group>";
+		};
+		B92B128929094FB80002537B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B9C194AE28F82F8B008FFABF /* CustomTableViewCell.swift */,
+				B981341328F63D8F00F0DED9 /* DefinitionBoxView.swift */,
+				B96480232902E68300010EBD /* DefinitionBoxDetailView.swift */,
+				B9383F392907456D00ACAAF4 /* SynonymsBoxView.swift */,
+				B9383F3B290749E100ACAAF4 /* AntonymsBoxView.swift */,
+				B9383F3D29074B4600ACAAF4 /* ExampleUsageBoxView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		B99BEBF828EC4FDC000AB9BE = {
 			isa = PBXGroup;
 			children = (
@@ -81,15 +103,9 @@
 				B9C4E22828ED04E6000E3B32 /* Rubik */,
 				B99BEC0428EC4FDC000AB9BE /* AppDelegate.swift */,
 				B99BEC0628EC4FDC000AB9BE /* SceneDelegate.swift */,
-				B99BEC0828EC4FDC000AB9BE /* ViewController.swift */,
-				B9C194AE28F82F8B008FFABF /* CustomTableViewCell.swift */,
-				B981341328F63D8F00F0DED9 /* DefinitionBoxView.swift */,
-				B923C57B2900291F00CC37A1 /* DetailViewController.swift */,
-				B96480232902E68300010EBD /* DefinitionBoxDetailView.swift */,
-				B9383F392907456D00ACAAF4 /* SynonymsBoxView.swift */,
-				B9383F3B290749E100ACAAF4 /* AntonymsBoxView.swift */,
-				B9383F3D29074B4600ACAAF4 /* ExampleUsageBoxView.swift */,
 				B921919828FEC50500E6EBD8 /* Words.swift */,
+				B92B128829094FAA0002537B /* VCs */,
+				B92B128929094FB80002537B /* Views */,
 				B99BEC0D28EC4FDD000AB9BE /* Assets.xcassets */,
 				B99BEC0F28EC4FDD000AB9BE /* LaunchScreen.storyboard */,
 				B99BEC1228EC4FDD000AB9BE /* Info.plist */,

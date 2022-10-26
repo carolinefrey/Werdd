@@ -9,12 +9,15 @@ import UIKit
 
 class SynonymsBoxView: UIView {
 
+    var word = Word(word: "", partOfSpeech: "", definition: "", synonyms: "", antonyms: "")
     let greenBox = UIView()
     let synonyms = UILabel()
     let synBoxLabel = UILabel()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(word: Word) {
+        super.init(frame: CGRect.zero)
+
+        self.word.synonyms = word.synonyms
         
         addSubview(greenBox)
         addSubview(synonyms)
@@ -34,7 +37,7 @@ class SynonymsBoxView: UIView {
     }
     
     private func configureSynonyms() {
-        synonyms.text = "Selected word synonyms"
+        synonyms.text = word.synonyms
         synonyms.textColor = .black
         synonyms.font = UIFont(name: "Rubik-Light", size: 14)
     }
