@@ -42,19 +42,19 @@ class ExampleUsageBoxView: UIView {
     private func configureExample1() {
         example1.text = "Example usage sentence"
         example1.textColor = .black
-        example1.font = UIFont(name: "Rubik-Light", size: 12)
+        example1.font = UIFont(name: "Rubik-Light", size: 14)
     }
     
     private func configureExample2() {
         example2.text = "Example usage sentence"
         example2.textColor = .black
-        example2.font = UIFont(name: "Rubik-Light", size: 12)
+        example2.font = UIFont(name: "Rubik-Light", size: 14)
     }
     
     private func configureExample3() {
         example3.text = "Example usage sentence"
         example3.textColor = .black
-        example3.font = UIFont(name: "Rubik-Light", size: 12)
+        example3.font = UIFont(name: "Rubik-Light", size: 14)
     }
     
     private func configureUsageBoxLabel() {

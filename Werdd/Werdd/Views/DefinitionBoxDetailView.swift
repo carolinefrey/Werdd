@@ -49,7 +49,10 @@ class DefinitionBoxDetailView: UIView {
     private func configureDefinition() {
         definition.text = word.definition
         definition.textColor = .black
-        definition.font = UIFont(name: "Rubik-Regular", size: 20)
+        definition.font = UIFont(name: "Rubik-Regular", size: 18)
+        definition.lineBreakMode = .byTruncatingTail
+        definition.numberOfLines = 3
+        definition.adjustsFontSizeToFitWidth = true
     }
     
     private func configureDefBoxLabel() {

@@ -57,6 +57,9 @@ class DetailViewController: UIViewController {
         wordTitle.textColor = .black
         wordTitle.font = UIFont(name: "Rubik-Bold", size: 36)
         wordTitle.textAlignment = .left
+        wordTitle.lineBreakMode = .byWordWrapping
+        wordTitle.numberOfLines = 0
+        wordTitle.adjustsFontSizeToFitWidth = true
     }
     
     private func setConstraints() {
@@ -69,6 +72,7 @@ class DetailViewController: UIViewController {
         NSLayoutConstraint.activate([
             wordTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             wordTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            wordTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 20),
             
             definitionBox.topAnchor.constraint(equalTo: wordTitle.bottomAnchor, constant: 20),
             definitionBox.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
