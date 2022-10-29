@@ -54,10 +54,9 @@ class SynonymsBoxView: UIView {
         synBoxLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            greenBox.topAnchor.constraint(equalTo: topAnchor),
             greenBox.leadingAnchor.constraint(equalTo: leadingAnchor),
             greenBox.trailingAnchor.constraint(equalTo: trailingAnchor),
-            greenBox.heightAnchor.constraint(equalToConstant: 95),
+            greenBox.heightAnchor.constraint(equalToConstant: 150),
             
             synonyms.topAnchor.constraint(equalTo: greenBox.topAnchor, constant: 20),
             synonyms.leadingAnchor.constraint(equalTo: greenBox.leadingAnchor, constant: 20),

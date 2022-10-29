@@ -10,16 +10,13 @@ import UIKit
 class DetailViewController: UIViewController {
     
     var selectedWord = Word(word: "", partOfSpeech: "", definition: "", synonyms: "", antonyms: "")
-    
     let wordTitle = UILabel()
-    
     var definitionBox: DefinitionBoxDetailView
-    
     var synonymsBox: SynonymsBoxView
-    
     var antonymsBox: AntonymsBoxView
-    
     let exampleUsage = ExampleUsageBoxView()
+    
+    var stackView = UIStackView()
     
     init(selectedWord: Word) {
         self.selectedWord.word = selectedWord.word
@@ -39,15 +36,14 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.backgroundColor = UIColor.init(named: "Color5")
         
         view.addSubview(wordTitle)
-        view.addSubview(definitionBox)
-        view.addSubview(synonymsBox)
-        view.addSubview(antonymsBox)
-        view.addSubview(exampleUsage)
+        view.addSubview(stackView)
         
         configureWordTitle()
+        configureStackView()
         
         setConstraints()
     }
@@ -62,33 +58,40 @@ class DetailViewController: UIViewController {
         wordTitle.adjustsFontSizeToFitWidth = true
     }
     
+    private func configureStackView() {
+        stackView.axis = .vertical
+        stackView.alignment = .leading
+        stackView.distribution = .fill
+        stackView.spacing = 160
+    }
+    
     private func setConstraints() {
         wordTitle.translatesAutoresizingMaskIntoConstraints = false
         definitionBox.translatesAutoresizingMaskIntoConstraints = false
         synonymsBox.translatesAutoresizingMaskIntoConstraints = false
         antonymsBox.translatesAutoresizingMaskIntoConstraints = false
         exampleUsage.translatesAutoresizingMaskIntoConstraints = false
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         
+        stackView.addArrangedSubview(definitionBox)
+        stackView.addArrangedSubview(synonymsBox)
+        stackView.addArrangedSubview(antonymsBox)
+        stackView.addArrangedSubview(exampleUsage)
+
         NSLayoutConstraint.activate([
             wordTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             wordTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             wordTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 20),
             
-            definitionBox.topAnchor.constraint(equalTo: wordTitle.bottomAnchor, constant: 20),
-            definitionBox.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            definitionBox.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            definitionBox.blueBox.widthAnchor.constraint(equalTo: stackView.widthAnchor),
+            synonymsBox.greenBox.widthAnchor.constraint(equalTo: stackView.widthAnchor),
+            antonymsBox.pinkBox.widthAnchor.constraint(equalTo: stackView.widthAnchor),
+            exampleUsage.orangeBox.widthAnchor.constraint(equalTo: stackView.widthAnchor),
 
-            synonymsBox.topAnchor.constraint(equalTo: definitionBox.bottomAnchor, constant: 180),
-            synonymsBox.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            synonymsBox.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            
-            antonymsBox.topAnchor.constraint(equalTo: synonymsBox.bottomAnchor, constant: 130),
-            antonymsBox.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            antonymsBox.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            
-            exampleUsage.topAnchor.constraint(equalTo: antonymsBox.bottomAnchor, constant: 130),
-            exampleUsage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            exampleUsage.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -20)
+            stackView.topAnchor.constraint(equalTo: wordTitle.bottomAnchor, constant: 20),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            stackView.heightAnchor.constraint(equalTo: view.heightAnchor),
         ])
     }
 }

@@ -71,8 +71,8 @@
 		B92B128929094FB80002537B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B9C194AE28F82F8B008FFABF /* CustomTableViewCell.swift */,
 				B981341328F63D8F00F0DED9 /* DefinitionBoxView.swift */,
+				B9C194AE28F82F8B008FFABF /* CustomTableViewCell.swift */,
 				B96480232902E68300010EBD /* DefinitionBoxDetailView.swift */,
 				B9383F392907456D00ACAAF4 /* SynonymsBoxView.swift */,
 				B9383F3B290749E100ACAAF4 /* AntonymsBoxView.swift */,

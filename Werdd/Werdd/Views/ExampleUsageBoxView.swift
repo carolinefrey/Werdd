@@ -71,10 +71,11 @@ class ExampleUsageBoxView: UIView {
         usageBoxLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            orangeBox.topAnchor.constraint(equalTo: topAnchor),
-            orangeBox.leadingAnchor.constraint(equalTo: leadingAnchor),
-            orangeBox.trailingAnchor.constraint(equalTo: trailingAnchor),
+//            orangeBox.topAnchor.constraint(equalTo: topAnchor),
+//            orangeBox.leadingAnchor.constraint(equalTo: leadingAnchor),
+//            orangeBox.trailingAnchor.constraint(equalTo: trailingAnchor),
             orangeBox.heightAnchor.constraint(equalToConstant: 150),
+            orangeBox.widthAnchor.constraint(equalTo: widthAnchor),
             
             example1.topAnchor.constraint(equalTo: orangeBox.topAnchor, constant: 20),
             example1.leadingAnchor.constraint(equalTo: orangeBox.leadingAnchor, constant: 20),

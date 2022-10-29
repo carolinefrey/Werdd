@@ -68,11 +68,10 @@ class DefinitionBoxDetailView: UIView {
         defBoxLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            blueBox.topAnchor.constraint(equalTo: topAnchor),
             blueBox.leadingAnchor.constraint(equalTo: leadingAnchor),
             blueBox.trailingAnchor.constraint(equalTo: trailingAnchor),
             blueBox.heightAnchor.constraint(equalToConstant: 150),
-            
+
             partOfSpeech.topAnchor.constraint(equalTo: blueBox.topAnchor, constant: 20),
             partOfSpeech.leadingAnchor.constraint(equalTo: blueBox.leadingAnchor, constant: 20),
             
