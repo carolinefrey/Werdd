@@ -71,7 +71,7 @@ class ViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            werddTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            werddTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             werddTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
         
             newWordButton.trailingAnchor.constraint(equalTo: definitionBoxView.trailingAnchor, constant: -40),
@@ -125,6 +125,6 @@ extension ViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailVC = DetailViewController(selectedWord: words.wordArray[indexPath.row])
-        show(detailVC, sender: self)
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }
