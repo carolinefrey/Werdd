@@ -13,7 +13,9 @@ class ViewController: UIViewController {
     let werddTitle = UILabel()
     let definitionBoxView = DefinitionBoxView()
     lazy var newWordButton = UIButton()
-    let tableView = UITableView()
+    
+    lazy var collectionViewLayout = UICollectionViewFlowLayout()
+    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,23 +24,25 @@ class ViewController: UIViewController {
         view.addSubview(werddTitle)
         view.addSubview(definitionBoxView)
         view.addSubview(newWordButton)
-        view.addSubview(tableView)
+        view.addSubview(collectionView)
         
         configureWerddTitle()
         configureNewWordButton()
-        configureTableView()
+        
+        configureCollectionViewLayout()
+        configureCollectionView()
         
         setConstraints()
     }
     
-    // MARK: Deselect cell when view controller pops off the stack
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        if let selectedIndexPath = tableView.indexPathForSelectedRow {
-            tableView.deselectRow(at: selectedIndexPath, animated: animated)
-        }
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        if let selectedIndexPath = tableView.indexPathForSelectedRow {
+//            tableView.deselectRow(at: selectedIndexPath, animated: animated)
+//        }
+//    }
     
+    //MARK: - Configure Views
     func configureWerddTitle() {
         werddTitle.font = UIFont(name: "Rubik-Bold", size: 36)
         werddTitle.text = "Werdd."
@@ -54,21 +58,24 @@ class ViewController: UIViewController {
         newWordButton.addTarget(self, action: #selector(newWordButtonPressed), for: .touchUpInside)
     }
     
-    func configureTableView() {
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
-        
-        tableView.clipsToBounds = true
-        tableView.layer.cornerRadius = 30
-        tableView.rowHeight = 70
+    func configureCollectionViewLayout() {
+        collectionViewLayout.scrollDirection = .vertical
+        collectionViewLayout.itemSize = CGSize(width: 180, height: 90)
+        collectionViewLayout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    }
+    
+    func configureCollectionView() {
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(CustomCollectionViewCell.self, forCellWithReuseIdentifier: CustomCollectionViewCell.identifier)
     }
 
+    //MARK: - Set Constraints
     func setConstraints() {
         werddTitle.translatesAutoresizingMaskIntoConstraints = false
         definitionBoxView.translatesAutoresizingMaskIntoConstraints = false
         newWordButton.translatesAutoresizingMaskIntoConstraints = false
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             werddTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -82,13 +89,14 @@ class ViewController: UIViewController {
             definitionBoxView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             definitionBoxView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.25),
         
-            tableView.topAnchor.constraint(equalTo: definitionBoxView.bottomAnchor, constant: 40),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            collectionView.topAnchor.constraint(equalTo: definitionBoxView.bottomAnchor, constant: 40),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
     
+    //MARK: - Button Methods
     @objc func newWordButtonPressed() {
         let randomWord = randomizedWord()
         updateDefinitionBox(withword: randomWord)
@@ -105,25 +113,24 @@ class ViewController: UIViewController {
     }
 }
 
-//MARK: UITableViewDataSource Methods
-extension ViewController: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return words.wordArray.count //number of rows in table
+
+//MARK: - UICollectionViewDataSource Methods
+extension ViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return words.wordArray.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier) as! CustomTableViewCell //gives us access to methods
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCollectionViewCell.identifier, for: indexPath) as? CustomCollectionViewCell else { return UICollectionViewCell() }
         let currentWord = words.wordArray[indexPath.row]
-        cell.set(word: currentWord)
+        cell.configure(word: currentWord)
         return cell
     }
 }
 
-//MARK: UITableViewDelegate Methods
-extension ViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//MARK: - UICollectionViewDelegate Methods
+extension ViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailVC = DetailViewController(selectedWord: words.wordArray[indexPath.row])
         navigationController?.pushViewController(detailVC, animated: true)
     }

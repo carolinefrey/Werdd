@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B921919928FEC50500E6EBD8 /* Words.swift in Sources */ = {isa = PBXBuildFile; fileRef = B921919828FEC50500E6EBD8 /* Words.swift */; };
 		B923C57C2900291F00CC37A1 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B923C57B2900291F00CC37A1 /* DetailViewController.swift */; };
+		B93580402911F85D0008F10C /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B935803F2911F85D0008F10C /* CustomCollectionViewCell.swift */; };
 		B9383F3A2907456D00ACAAF4 /* SynonymsBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9383F392907456D00ACAAF4 /* SynonymsBoxView.swift */; };
 		B9383F3C290749E100ACAAF4 /* AntonymsBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9383F3B290749E100ACAAF4 /* AntonymsBoxView.swift */; };
 		B9383F3E29074B4600ACAAF4 /* ExampleUsageBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9383F3D29074B4600ACAAF4 /* ExampleUsageBoxView.swift */; };
@@ -29,6 +30,7 @@
 /* Begin PBXFileReference section */
 		B921919828FEC50500E6EBD8 /* Words.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Words.swift; sourceTree = "<group>"; };
 		B923C57B2900291F00CC37A1 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		B935803F2911F85D0008F10C /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		B9383F392907456D00ACAAF4 /* SynonymsBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynonymsBoxView.swift; sourceTree = "<group>"; };
 		B9383F3B290749E100ACAAF4 /* AntonymsBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntonymsBoxView.swift; sourceTree = "<group>"; };
 		B9383F3D29074B4600ACAAF4 /* ExampleUsageBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUsageBoxView.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 			children = (
 				B981341328F63D8F00F0DED9 /* DefinitionBoxView.swift */,
 				B9C194AE28F82F8B008FFABF /* CustomTableViewCell.swift */,
+				B935803F2911F85D0008F10C /* CustomCollectionViewCell.swift */,
 				B96480232902E68300010EBD /* DefinitionBoxDetailView.swift */,
 				B9383F392907456D00ACAAF4 /* SynonymsBoxView.swift */,
 				B9383F3B290749E100ACAAF4 /* AntonymsBoxView.swift */,
@@ -205,6 +208,7 @@
 				B9C194AF28F82F8B008FFABF /* CustomTableViewCell.swift in Sources */,
 				B99BEC0528EC4FDC000AB9BE /* AppDelegate.swift in Sources */,
 				B9383F3C290749E100ACAAF4 /* AntonymsBoxView.swift in Sources */,
+				B93580402911F85D0008F10C /* CustomCollectionViewCell.swift in Sources */,
 				B923C57C2900291F00CC37A1 /* DetailViewController.swift in Sources */,
 				B921919928FEC50500E6EBD8 /* Words.swift in Sources */,
 				B99BEC0728EC4FDC000AB9BE /* SceneDelegate.swift in Sources */,
