@@ -35,13 +35,6 @@ class ViewController: UIViewController {
         setConstraints()
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        if let selectedIndexPath = tableView.indexPathForSelectedRow {
-//            tableView.deselectRow(at: selectedIndexPath, animated: animated)
-//        }
-//    }
-    
     //MARK: - Configure Views
     func configureWerddTitle() {
         werddTitle.font = UIFont(name: "Rubik-Bold", size: 36)
