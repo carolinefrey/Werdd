@@ -24,6 +24,7 @@
 		B9C4E22A28ED0504000E3B32 /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B9C4E22728ED04C3000E3B32 /* Rubik-Bold.ttf */; };
 		B9C4E22C28ED05AB000E3B32 /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B9C4E22B28ED05A9000E3B32 /* Rubik-Light.ttf */; };
 		B9C4E22E28ED0DE5000E3B32 /* Rubik-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B9C4E22D28ED0DE3000E3B32 /* Rubik-Italic.ttf */; };
+		B9E3F1DB291BDE3100CE8449 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E3F1DA291BDE3000CE8449 /* APIConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		B9C4E22728ED04C3000E3B32 /* Rubik-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Bold.ttf"; sourceTree = "<group>"; };
 		B9C4E22B28ED05A9000E3B32 /* Rubik-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Light.ttf"; sourceTree = "<group>"; };
 		B9C4E22D28ED0DE3000E3B32 /* Rubik-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Italic.ttf"; sourceTree = "<group>"; };
+		B9E3F1DA291BDE3000CE8449 /* APIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				B99BEC0428EC4FDC000AB9BE /* AppDelegate.swift */,
 				B99BEC0628EC4FDC000AB9BE /* SceneDelegate.swift */,
 				B921919828FEC50500E6EBD8 /* Words.swift */,
+				B9E3F1DA291BDE3000CE8449 /* APIConstants.swift */,
 				B92B128829094FAA0002537B /* VCs */,
 				B92B128929094FB80002537B /* Views */,
 				B99BEC0D28EC4FDD000AB9BE /* Assets.xcassets */,
@@ -206,6 +209,7 @@
 				B99BEC0528EC4FDC000AB9BE /* AppDelegate.swift in Sources */,
 				B9383F3C290749E100ACAAF4 /* AntonymsBoxView.swift in Sources */,
 				B923C57C2900291F00CC37A1 /* DetailViewController.swift in Sources */,
+				B9E3F1DB291BDE3100CE8449 /* APIConstants.swift in Sources */,
 				B921919928FEC50500E6EBD8 /* Words.swift in Sources */,
 				B99BEC0728EC4FDC000AB9BE /* SceneDelegate.swift in Sources */,
 				B981341428F63D8F00F0DED9 /* DefinitionBoxView.swift in Sources */,
