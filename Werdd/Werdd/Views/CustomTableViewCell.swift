@@ -9,69 +9,71 @@ import UIKit
 
 class CustomTableViewCell: UITableViewCell {
     
-    var backgroundCell = UIView()
-    var wordLabel = UILabel()
-    var partOfSpeechLabel = UILabel()
-    var definitionLabel = UILabel()
+    //MARK: - UI Properties
+    
+    var backgroundCell: UIView = {
+        let cell = UIView()
+        cell.translatesAutoresizingMaskIntoConstraints = false
+        cell.backgroundColor = UIColor(named: "Color2")
+        cell.clipsToBounds = true
+        cell.layer.cornerRadius = 20
+        return cell
+    }()
+    
+    var wordLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Word"
+        label.font = UIFont(name: "Rubik-Bold", size: 16)!
+        label.clipsToBounds = true
+        return label
+    }()
+    
+    var partOfSpeechLabel: UILabel = {
+        let partOfSpeechLabel = UILabel()
+        partOfSpeechLabel.translatesAutoresizingMaskIntoConstraints = false
+        partOfSpeechLabel.text = "Part of speech"
+        partOfSpeechLabel.font = UIFont(name: "Rubik-Italic", size: 12)!
+        partOfSpeechLabel.clipsToBounds = true
+        return partOfSpeechLabel
+    }()
+    
+    var definitionLabel: UILabel = {
+        let defLabel = UILabel()
+        defLabel.translatesAutoresizingMaskIntoConstraints = false
+        defLabel.text = "Definition"
+        defLabel.font = UIFont(name: "Rubik-Light", size: 12)!
+        defLabel.clipsToBounds = true
+        defLabel.lineBreakMode = .byTruncatingTail
+        return defLabel
+    }()
     
     static let identifier = "CustomTableViewCell"
     
+    //MARK: - Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        addSubview(backgroundCell)
-        addSubview(wordLabel)
-        addSubview(partOfSpeechLabel)
-        addSubview(definitionLabel)
-        
-        configureBackgroundCell()
-        configureWord()
-        configurePartOfSpeech()
-        configureDefinition()
-        
-        setConstraints()
+        setup()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func set(word: Word) {
+    func set(word: StaticWord) {
         wordLabel.text = word.word
         partOfSpeechLabel.text = word.partOfSpeech
         definitionLabel.text = word.definition
     }
     
-    func configureBackgroundCell() {
-        backgroundCell.backgroundColor = UIColor(named: "Color2")
-        backgroundCell.clipsToBounds = true
-        backgroundCell.layer.cornerRadius = 20
-    }
+    //MARK: - UI Setup
     
-    func configureWord() {
-        wordLabel.text = "Word"
-        wordLabel.font = UIFont(name: "Rubik-Bold", size: 16)!
-        wordLabel.clipsToBounds = true
-    }
-    
-    func configurePartOfSpeech() {
-        partOfSpeechLabel.text = "Part of speech"
-        partOfSpeechLabel.font = UIFont(name: "Rubik-Italic", size: 12)!
-        partOfSpeechLabel.clipsToBounds = true
-    }
-    
-    func configureDefinition() {
-        definitionLabel.text = "Definition"
-        definitionLabel.font = UIFont(name: "Rubik-Light", size: 12)!
-        definitionLabel.clipsToBounds = true
-        definitionLabel.lineBreakMode = .byTruncatingTail
-    }
-    
-    func setConstraints() {
-        backgroundCell.translatesAutoresizingMaskIntoConstraints = false
-        wordLabel.translatesAutoresizingMaskIntoConstraints = false
-        partOfSpeechLabel.translatesAutoresizingMaskIntoConstraints = false
-        definitionLabel.translatesAutoresizingMaskIntoConstraints = false
+    func setup() {
+        
+        addSubview(backgroundCell)
+        addSubview(wordLabel)
+        addSubview(partOfSpeechLabel)
+        addSubview(definitionLabel)
 
         NSLayoutConstraint.activate([
             backgroundCell.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),

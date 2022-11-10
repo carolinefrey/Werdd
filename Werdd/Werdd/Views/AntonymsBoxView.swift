@@ -9,49 +9,53 @@ import UIKit
 
 class AntonymsBoxView: UIView {
     
-    var word = Word(word: "", partOfSpeech: "", definition: "", synonyms: "", antonyms: "")
-    let pinkBox = UIView()
-    let antonyms = UILabel()
-    let antBoxLabel = UILabel()
+    //MARK: - UI Properties
+
+    var word = StaticWord(word: "", partOfSpeech: "", definition: "", synonyms: "", antonyms: "")
+    let pinkBox: UIView = {
+        let box = UIView()
+        box.translatesAutoresizingMaskIntoConstraints = false
+        box.backgroundColor = UIColor(named: "Color4")
+        box.clipsToBounds = true
+        box.layer.cornerRadius = 30
+        return box
+    }()
     
-    init(word: Word) {
+    let antonyms: UILabel = {
+        let antonyms = UILabel()
+        antonyms.translatesAutoresizingMaskIntoConstraints = false
+        antonyms.textColor = .black
+        antonyms.font = UIFont(name: "Rubik-Light", size: 14)
+        return antonyms
+    }()
+    
+    let antBoxLabel: UILabel = {
+        let boxLabel = UILabel()
+        boxLabel.translatesAutoresizingMaskIntoConstraints = false
+        boxLabel.text = "Antonyms"
+        boxLabel.textColor = .white
+        boxLabel.font = UIFont(name: "Rubik-Regular", size: 12)
+        return boxLabel
+    }()
+    
+    //MARK: - Initializers
+
+    init(word: StaticWord) {
         super.init(frame: CGRect.zero)
 
         self.word.antonyms = word.antonyms
+        antonyms.text = word.antonyms
+        
+        setup()
+    }
+    
+    //MARK: - UI Setup
+
+    private func setup() {
         
         addSubview(pinkBox)
         addSubview(antonyms)
         addSubview(antBoxLabel)
-        
-        configurePinkBox()
-        configureAntonyms()
-        configureAntBoxLabel()
-        
-        setConstraints()
-    }
-    
-    private func configurePinkBox() {
-        pinkBox.backgroundColor = UIColor(named: "Color4")
-        pinkBox.clipsToBounds = true
-        pinkBox.layer.cornerRadius = 30
-    }
-    
-    private func configureAntonyms() {
-        antonyms.text = word.antonyms
-        antonyms.textColor = .black
-        antonyms.font = UIFont(name: "Rubik-Light", size: 14)
-    }
-    
-    private func configureAntBoxLabel() {
-        antBoxLabel.text = "Antonyms"
-        antBoxLabel.textColor = .white
-        antBoxLabel.font = UIFont(name: "Rubik-Regular", size: 12)
-    }
-    
-    private func setConstraints() {
-        pinkBox.translatesAutoresizingMaskIntoConstraints = false
-        antonyms.translatesAutoresizingMaskIntoConstraints = false
-        antBoxLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             pinkBox.leadingAnchor.constraint(equalTo: leadingAnchor),

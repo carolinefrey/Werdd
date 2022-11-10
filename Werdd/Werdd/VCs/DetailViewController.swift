@@ -9,20 +9,42 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
-    var selectedWord = Word(word: "", partOfSpeech: "", definition: "", synonyms: "", antonyms: "")
-    let wordTitle = UILabel()
+    var selectedWord = StaticWord(word: "", partOfSpeech: "", definition: "", synonyms: "", antonyms: "")
+    
+    let wordTitle: UILabel = {
+        let wordTitle = UILabel()
+        wordTitle.translatesAutoresizingMaskIntoConstraints = false
+        wordTitle.textColor = .black
+        wordTitle.font = UIFont(name: "Rubik-Bold", size: 36)
+        wordTitle.textAlignment = .left
+        wordTitle.lineBreakMode = .byWordWrapping
+        wordTitle.numberOfLines = 0
+        wordTitle.adjustsFontSizeToFitWidth = true
+        return wordTitle
+    }()
+    
     var definitionBox: DefinitionBoxDetailView
     var synonymsBox: SynonymsBoxView
     var antonymsBox: AntonymsBoxView
+    
     let exampleUsage = ExampleUsageBoxView()
     
-    var stackView = UIStackView()
+    var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.alignment = .leading
+        stackView.distribution = .fill
+        stackView.spacing = 160
+        return stackView
+    }()
     
-    init(selectedWord: Word) {
+    init(selectedWord: StaticWord) {
         self.selectedWord.word = selectedWord.word
         self.selectedWord.partOfSpeech = selectedWord.partOfSpeech
         self.selectedWord.definition = selectedWord.definition
-        
+
+        wordTitle.text = selectedWord.word
         definitionBox = DefinitionBoxDetailView(word: selectedWord)
         synonymsBox = SynonymsBoxView(word: selectedWord)
         antonymsBox = AntonymsBoxView(word: selectedWord)
@@ -36,42 +58,19 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = UIColor.init(named: "Color5")
+        setup()
+    }
+
+    private func setup() {
         
         view.addSubview(wordTitle)
         view.addSubview(stackView)
         
-        configureWordTitle()
-        configureStackView()
-        
-        setConstraints()
-    }
-    
-    private func configureWordTitle() {
-        wordTitle.text = selectedWord.word
-        wordTitle.textColor = .black
-        wordTitle.font = UIFont(name: "Rubik-Bold", size: 36)
-        wordTitle.textAlignment = .left
-        wordTitle.lineBreakMode = .byWordWrapping
-        wordTitle.numberOfLines = 0
-        wordTitle.adjustsFontSizeToFitWidth = true
-    }
-    
-    private func configureStackView() {
-        stackView.axis = .vertical
-        stackView.alignment = .leading
-        stackView.distribution = .fill
-        stackView.spacing = 160
-    }
-    
-    private func setConstraints() {
-        wordTitle.translatesAutoresizingMaskIntoConstraints = false
         definitionBox.translatesAutoresizingMaskIntoConstraints = false
         synonymsBox.translatesAutoresizingMaskIntoConstraints = false
         antonymsBox.translatesAutoresizingMaskIntoConstraints = false
         exampleUsage.translatesAutoresizingMaskIntoConstraints = false
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         
         stackView.addArrangedSubview(definitionBox)
         stackView.addArrangedSubview(synonymsBox)

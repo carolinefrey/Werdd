@@ -6,46 +6,75 @@
 //
 
 import UIKit
+import Foundation
 
 class ViewController: UIViewController {
 
+    //MARK: - UI Properties
+    
     let words = Words()
-    let werddTitle = UILabel()
-    let definitionBoxView = DefinitionBoxView()
-    lazy var newWordButton = UIButton()
-    let tableView = UITableView()
 
+    let werddTitle: UILabel = {
+        let werddTitle = UILabel()
+        werddTitle.translatesAutoresizingMaskIntoConstraints = false
+        werddTitle.font = UIFont(name: "Rubik-Bold", size: 36)
+        werddTitle.text = "Werdd."
+        werddTitle.textAlignment = .left
+        return werddTitle
+    }()
+    
+    let definitionBoxView: DefinitionBoxView = {
+        let boxView = DefinitionBoxView()
+        boxView.translatesAutoresizingMaskIntoConstraints = false
+        return boxView
+    }()
+    
+    lazy var newWordButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        let largeConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .regular, scale: .large)
+        let buttonSymbol = UIImage(systemName: "arrow.triangle.2.circlepath.circle", withConfiguration: largeConfig)
+        button.setImage(buttonSymbol, for: .normal)
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(newWordButtonPressed), for: .touchUpInside)
+        return button
+    }()
+
+    let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.clipsToBounds = true
+        tableView.layer.cornerRadius = 30
+        tableView.rowHeight = 70
+        return tableView
+    }()
+    
+    // MARK: - Initializers
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.init(named: "Color5")
-        
-        view.addSubview(werddTitle)
-        view.addSubview(definitionBoxView)
-        view.addSubview(newWordButton)
-        view.addSubview(tableView)
-        
-        configureWerddTitle()
-        configureNewWordButton()
-        configureTableView()
-        
-        setConstraints()
+        setup()
     }
     
-    // MARK: Deselect cell when view controller pops off the stack
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let selectedIndexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selectedIndexPath, animated: animated)
         }
     }
-    
-    func configureWerddTitle() {
+
+    //MARK: - UI Setup
+ 
+    private func configureWerddTitle() {
+        werddTitle.translatesAutoresizingMaskIntoConstraints = false
         werddTitle.font = UIFont(name: "Rubik-Bold", size: 36)
         werddTitle.text = "Werdd."
         werddTitle.textAlignment = .left
     }
     
-    func configureNewWordButton() {
+    private func configureNewWordButton() {
+        newWordButton.translatesAutoresizingMaskIntoConstraints = false
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .regular, scale: .large)
         let buttonSymbol = UIImage(systemName: "arrow.triangle.2.circlepath.circle", withConfiguration: largeConfig)
         
@@ -54,21 +83,22 @@ class ViewController: UIViewController {
         newWordButton.addTarget(self, action: #selector(newWordButtonPressed), for: .touchUpInside)
     }
     
-    func configureTableView() {
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
-        
+    private func configureTableView() {
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.clipsToBounds = true
         tableView.layer.cornerRadius = 30
         tableView.rowHeight = 70
     }
-
-    func setConstraints() {
-        werddTitle.translatesAutoresizingMaskIntoConstraints = false
-        definitionBoxView.translatesAutoresizingMaskIntoConstraints = false
-        newWordButton.translatesAutoresizingMaskIntoConstraints = false
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+    
+    private func setup() {
+        view.addSubview(werddTitle)
+        view.addSubview(definitionBoxView)
+        view.addSubview(newWordButton)
+        view.addSubview(tableView)
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
         
         NSLayoutConstraint.activate([
             werddTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -89,16 +119,41 @@ class ViewController: UIViewController {
         ])
     }
     
+    // MARK: - Functions
+    
     @objc func newWordButtonPressed() {
-        let randomWord = randomizedWord()
-        updateDefinitionBox(withword: randomWord)
+//        let randomWord = randomizedWord()
+//        updateDefinitionBox(withword: randomWord)
+        guard let wordsURL = URL(string: "https://wordsapiv1.p.mashape.com/words?random=true") else {
+            print("Invalid URL")
+            return
+        }
+        var urlRequest = URLRequest(url: wordsURL)
+        urlRequest.httpMethod = "GET"
+        urlRequest.setValue(APIConstants.key, forHTTPHeaderField: "x-rapidapi-key")
+        urlRequest.setValue("wordsapiv1.p.rapidapi.com", forHTTPHeaderField: "x-rapidapi-host")
+        
+        URLSession.shared.dataTask(with: urlRequest) { data, response, error in
+            guard let data = data, error == nil else {
+                return
+            }
+            do {
+                var randomWord = try JSONDecoder().decode(RandomWord.self, from: data) //UPDATE FIRST PARAMETER HERE
+//                DispatchQueue.main.async {
+//                    //update UI here
+//                }
+                print(randomWord)
+            } catch {
+                print("Failed to convert \(error.localizedDescription)")
+            }
+        }.resume()
     }
     
-    func randomizedWord() -> Word? {
+    private func randomizedWord() -> StaticWord? {
         return words.wordArray.randomElement()
     }
     
-    func updateDefinitionBox(withword wordChoice: Word?) {
+    private func updateDefinitionBox(withword wordChoice: StaticWord?) {
         definitionBoxView.word.text = wordChoice?.word
         definitionBoxView.partOfSpeech.text = wordChoice?.partOfSpeech
         definitionBoxView.definition.text = wordChoice?.definition
@@ -106,6 +161,7 @@ class ViewController: UIViewController {
 }
 
 //MARK: UITableViewDataSource Methods
+
 extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -121,6 +177,7 @@ extension ViewController: UITableViewDataSource {
 }
 
 //MARK: UITableViewDelegate Methods
+
 extension ViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
