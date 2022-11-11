@@ -20,6 +20,7 @@ class ViewController: UIViewController {
         werddTitle.font = UIFont(name: "Rubik-Bold", size: 36)
         werddTitle.text = "Werdd."
         werddTitle.textAlignment = .left
+        werddTitle.adjustsFontSizeToFitWidth = true
         return werddTitle
     }()
     
@@ -65,30 +66,6 @@ class ViewController: UIViewController {
     }
 
     //MARK: - UI Setup
- 
-    private func configureWerddTitle() {
-        werddTitle.translatesAutoresizingMaskIntoConstraints = false
-        werddTitle.font = UIFont(name: "Rubik-Bold", size: 36)
-        werddTitle.text = "Werdd."
-        werddTitle.textAlignment = .left
-    }
-    
-    private func configureNewWordButton() {
-        newWordButton.translatesAutoresizingMaskIntoConstraints = false
-        let largeConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .regular, scale: .large)
-        let buttonSymbol = UIImage(systemName: "arrow.triangle.2.circlepath.circle", withConfiguration: largeConfig)
-        
-        newWordButton.setImage(buttonSymbol, for: .normal)
-        newWordButton.tintColor = .white
-        newWordButton.addTarget(self, action: #selector(newWordButtonPressed), for: .touchUpInside)
-    }
-    
-    private func configureTableView() {
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.clipsToBounds = true
-        tableView.layer.cornerRadius = 30
-        tableView.rowHeight = 70
-    }
     
     private func setup() {
         view.addSubview(werddTitle)
@@ -122,12 +99,11 @@ class ViewController: UIViewController {
     // MARK: - Functions
     
     @objc func newWordButtonPressed() {
-//        let randomWord = randomizedWord()
-//        updateDefinitionBox(withword: randomWord)
-        guard let wordsURL = URL(string: "https://wordsapiv1.p.mashape.com/words?random=true") else {
+        guard let wordsURL = URL(string: "https://wordsapiv1.p.rapidapi.com/words/?random=true") else {
             print("Invalid URL")
             return
         }
+        
         var urlRequest = URLRequest(url: wordsURL)
         urlRequest.httpMethod = "GET"
         urlRequest.setValue(APIConstants.key, forHTTPHeaderField: "x-rapidapi-key")
@@ -138,25 +114,28 @@ class ViewController: UIViewController {
                 return
             }
             do {
-                var randomWord = try JSONDecoder().decode(RandomWord.self, from: data) //UPDATE FIRST PARAMETER HERE
-//                DispatchQueue.main.async {
-//                    //update UI here
-//                }
-                print(randomWord)
+                let randomWord = try JSONDecoder().decode(RandomWord.self, from: data)
+                DispatchQueue.main.async {
+                    self.updateDefinitionBox(withword: randomWord)
+                }
             } catch {
                 print("Failed to convert \(error.localizedDescription)")
             }
         }.resume()
     }
     
-    private func randomizedWord() -> StaticWord? {
-        return words.wordArray.randomElement()
-    }
+//    private func randomizedWord() -> StaticWord? {
+//        return words.wordArray.randomElement()
+//    }
     
-    private func updateDefinitionBox(withword wordChoice: StaticWord?) {
-        definitionBoxView.word.text = wordChoice?.word
-        definitionBoxView.partOfSpeech.text = wordChoice?.partOfSpeech
-        definitionBoxView.definition.text = wordChoice?.definition
+    private func updateDefinitionBox(withword randomWord: RandomWord?) {
+        definitionBoxView.word.text = randomWord?.word
+        
+        let partOfSpeech = randomWord?.results[0].partOfSpeech
+        definitionBoxView.partOfSpeech.text = "\(partOfSpeech ?? "Not found")"
+        
+        let definition = randomWord?.results[0].definition
+        definitionBoxView.definition.text = "\(definition ?? "Definition not found")"
     }
 }
 

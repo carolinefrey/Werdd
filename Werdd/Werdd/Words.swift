@@ -39,15 +39,11 @@ class StaticWord {
 }
 
 struct RandomWord: Codable {
-    var word: String
-    //var results: [Results]
+    let word: String
+    let results: [Result]
 }
 
-struct Results: Codable {
-    var definition: String
-    var partOfSpeech: String
-    var synonyms: [String]?
-    var typeOf: [String]?
-    var hasTypes: [String]?
-    var derivation: [String]?
+struct Result: Codable {
+    let definition: String
+    let partOfSpeech: String
 }
