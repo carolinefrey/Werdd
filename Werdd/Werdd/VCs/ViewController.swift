@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     //MARK: - UI Properties
     
     let words = Words()
+    var searchResult = StaticWord(word: "", partOfSpeech: "", definition: "", synonyms: "", antonyms: "")
 
     let werddTitle: UILabel = {
         let werddTitle = UILabel()
@@ -41,6 +42,15 @@ class ViewController: UIViewController {
         return button
     }()
 
+    var searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.searchBarStyle = UISearchBar.Style.default
+        searchBar.placeholder = "Find a word..."
+        searchBar.sizeToFit()
+        searchBar.isTranslucent = true
+        return searchBar
+    }()
+    
     let tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -76,6 +86,8 @@ class ViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
+        searchBar.delegate = self
+        tableView.tableHeaderView = searchBar
         
         NSLayoutConstraint.activate([
             werddTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -150,7 +162,10 @@ extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier) as! CustomTableViewCell //gives us access to methods
         let currentWord = words.wordArray[indexPath.row]
+//        let currentWord = searchResult
         cell.set(word: currentWord)
+//        tableView.reloadData()
+
         return cell
     }
 }
@@ -162,5 +177,45 @@ extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailVC = DetailViewController(selectedWord: words.wordArray[indexPath.row])
         navigationController?.pushViewController(detailVC, animated: true)
+    }
+}
+
+//MARK: - UISearchBarDelegate Methods
+
+extension ViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let searchedWord = searchBar.text
+
+        guard let wordsURL = URL(string: "https://wordsapiv1.p.rapidapi.com/words/\(searchedWord ?? "happy")") else {
+            print("Invalid URL")
+            return
+        }
+        
+        var urlRequest = URLRequest(url: wordsURL)
+        urlRequest.httpMethod = "GET"
+        urlRequest.setValue(APIConstants.key, forHTTPHeaderField: "x-rapidapi-key")
+        urlRequest.setValue("wordsapiv1.p.rapidapi.com", forHTTPHeaderField: "x-rapidapi-host")
+        
+        URLSession.shared.dataTask(with: urlRequest) { data, response, error in
+            guard let data = data, error == nil else {
+                return
+            }
+            do {
+                
+                let results = try JSONDecoder().decode(SearchedWord.self, from: data)
+                let unwrappedSearchedWord = searchedWord ?? "Happy"
+                self.searchResult = StaticWord(word: unwrappedSearchedWord, partOfSpeech: results.results[0].partOfSpeech, definition: results.results[0].definition, synonyms: "", antonyms: "")
+                
+//                DispatchQueue.main.async {
+//                    let cell = self.tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier) as! CustomTableViewCell
+//                    let unwrappedSearchedWord = searchedWord ?? "Happy"
+//                    let word = StaticWord(word: unwrappedSearchedWord, partOfSpeech: results.results[0].partOfSpeech, definition: results.results[0].definition, synonyms: "", antonyms: "")
+//                    cell.set(word: word)
+//                    self.tableView.reloadData()
+//                }
+            } catch {
+                print("Failed to convert \(error.localizedDescription)")
+            }
+        }.resume()
     }
 }

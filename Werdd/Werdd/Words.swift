@@ -38,6 +38,8 @@ class StaticWord {
     }
 }
 
+//MARK: - Random Word objects
+
 struct RandomWord: Codable {
     let word: String
     let results: [Result]
@@ -46,4 +48,16 @@ struct RandomWord: Codable {
 struct Result: Codable {
     let definition: String
     let partOfSpeech: String
+}
+
+//MARK: - Get a Word objects
+
+struct SearchedWord: Codable {
+    let results: [SearchResult]
+}
+
+struct SearchResult: Codable {
+    let definition: String
+    let partOfSpeech: String
+    let synonyms: [String]?
 }

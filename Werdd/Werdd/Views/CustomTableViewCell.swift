@@ -59,7 +59,7 @@ class CustomTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     func set(word: StaticWord) {
         wordLabel.text = word.word
         partOfSpeechLabel.text = word.partOfSpeech
@@ -74,7 +74,7 @@ class CustomTableViewCell: UITableViewCell {
         addSubview(wordLabel)
         addSubview(partOfSpeechLabel)
         addSubview(definitionLabel)
-
+        
         NSLayoutConstraint.activate([
             backgroundCell.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             backgroundCell.topAnchor.constraint(equalTo: topAnchor, constant: 8),
