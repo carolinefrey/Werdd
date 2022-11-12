@@ -11,7 +11,7 @@ class DefinitionBoxView: UIView {
     
     //MARK: - UI Properties
     
-    let words = Words()
+    let starterWord = Word(word: "Programming", partOfSpeech: "noun", definition: "creating a sequence of instructions to enable the computer to do something")
     
     var blueBox: UIView = {
         let box = UIView()
@@ -71,9 +71,9 @@ class DefinitionBoxView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        word.text = words.wordArray[0].word
-        partOfSpeech.text = words.wordArray[0].partOfSpeech
-        definition.text = words.wordArray[0].definition
+        word.text = starterWord.word
+        partOfSpeech.text = starterWord.partOfSpeech
+        definition.text = starterWord.definition
 
         setup()
     }

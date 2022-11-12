@@ -11,7 +11,7 @@ class DefinitionBoxDetailView: UIView {
     
     //MARK: - UI Properties
     
-    var word = StaticWord(word: "", partOfSpeech: "", definition: "", synonyms: "", antonyms: "")
+    var word = Word()
     
     let blueBox: UIView = {
         let box = UIView()
@@ -52,11 +52,11 @@ class DefinitionBoxDetailView: UIView {
     
     //MARK: - Initializers
     
-    init(word: StaticWord) {
+    init(word: Word) {
         super.init(frame: CGRect.zero)
 
-        self.word.partOfSpeech = word.partOfSpeech
-        self.word.definition = word.definition
+        self.word = word
+
         partOfSpeech.text = word.partOfSpeech
         definition.text = word.definition
 

@@ -11,7 +11,8 @@ class AntonymsBoxView: UIView {
     
     //MARK: - UI Properties
 
-    var word = StaticWord(word: "", partOfSpeech: "", definition: "", synonyms: "", antonyms: "")
+    var word = Word()
+    
     let pinkBox: UIView = {
         let box = UIView()
         box.translatesAutoresizingMaskIntoConstraints = false
@@ -40,11 +41,11 @@ class AntonymsBoxView: UIView {
     
     //MARK: - Initializers
 
-    init(word: StaticWord) {
+    init(word: Word) {
         super.init(frame: CGRect.zero)
 
-        self.word.antonyms = word.antonyms
-        antonyms.text = word.antonyms
+        self.word = word
+        antonyms.text = word.antonyms?.joined(separator: ", ")
         
         setup()
     }

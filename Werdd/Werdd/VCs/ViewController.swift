@@ -9,12 +9,13 @@ import UIKit
 import Foundation
 
 class ViewController: UIViewController {
-
+    
     //MARK: - UI Properties
     
-    let words = Words()
-    var searchResult = StaticWord(word: "", partOfSpeech: "", definition: "", synonyms: "", antonyms: "")
-
+    //let words = Words()
+    var words: [Word] = []
+    var searchText = ""
+    
     let werddTitle: UILabel = {
         let werddTitle = UILabel()
         werddTitle.translatesAutoresizingMaskIntoConstraints = false
@@ -41,7 +42,7 @@ class ViewController: UIViewController {
         button.addTarget(self, action: #selector(newWordButtonPressed), for: .touchUpInside)
         return button
     }()
-
+    
     var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.searchBarStyle = UISearchBar.Style.default
@@ -74,7 +75,7 @@ class ViewController: UIViewController {
             tableView.deselectRow(at: selectedIndexPath, animated: animated)
         }
     }
-
+    
     //MARK: - UI Setup
     
     private func setup() {
@@ -92,7 +93,7 @@ class ViewController: UIViewController {
         NSLayoutConstraint.activate([
             werddTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             werddTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-        
+            
             newWordButton.trailingAnchor.constraint(equalTo: definitionBoxView.trailingAnchor, constant: -40),
             newWordButton.bottomAnchor.constraint(equalTo: definitionBoxView.bottomAnchor),
             
@@ -100,7 +101,7 @@ class ViewController: UIViewController {
             definitionBoxView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             definitionBoxView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             definitionBoxView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.25),
-        
+            
             tableView.topAnchor.constraint(equalTo: definitionBoxView.bottomAnchor, constant: 40),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -135,11 +136,7 @@ class ViewController: UIViewController {
             }
         }.resume()
     }
-    
-//    private func randomizedWord() -> StaticWord? {
-//        return words.wordArray.randomElement()
-//    }
-    
+
     private func updateDefinitionBox(withword randomWord: RandomWord?) {
         definitionBoxView.word.text = randomWord?.word
         
@@ -149,44 +146,9 @@ class ViewController: UIViewController {
         let definition = randomWord?.results[0].definition
         definitionBoxView.definition.text = "\(definition ?? "Definition not found")"
     }
-}
-
-//MARK: UITableViewDataSource Methods
-
-extension ViewController: UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return words.wordArray.count //number of rows in table
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier) as! CustomTableViewCell //gives us access to methods
-        let currentWord = words.wordArray[indexPath.row]
-//        let currentWord = searchResult
-        cell.set(word: currentWord)
-//        tableView.reloadData()
-
-        return cell
-    }
-}
-
-//MARK: UITableViewDelegate Methods
-
-extension ViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailVC = DetailViewController(selectedWord: words.wordArray[indexPath.row])
-        navigationController?.pushViewController(detailVC, animated: true)
-    }
-}
-
-//MARK: - UISearchBarDelegate Methods
-
-extension ViewController: UISearchBarDelegate {
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        let searchedWord = searchBar.text
-
-        guard let wordsURL = URL(string: "https://wordsapiv1.p.rapidapi.com/words/\(searchedWord ?? "happy")") else {
+    func fetchWord(word: String) {
+        guard let wordsURL = URL(string: "https://wordsapiv1.p.rapidapi.com/words/\(word)") else {
             print("Invalid URL")
             return
         }
@@ -201,21 +163,56 @@ extension ViewController: UISearchBarDelegate {
                 return
             }
             do {
+                let result = try JSONDecoder().decode(SearchedWord.self, from: data)
                 
-                let results = try JSONDecoder().decode(SearchedWord.self, from: data)
-                let unwrappedSearchedWord = searchedWord ?? "Happy"
-                self.searchResult = StaticWord(word: unwrappedSearchedWord, partOfSpeech: results.results[0].partOfSpeech, definition: results.results[0].definition, synonyms: "", antonyms: "")
+                self.words = result.results.map { result in
+                    Word(word: self.searchText, searchResult: result)
+                }
+
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
                 
-//                DispatchQueue.main.async {
-//                    let cell = self.tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier) as! CustomTableViewCell
-//                    let unwrappedSearchedWord = searchedWord ?? "Happy"
-//                    let word = StaticWord(word: unwrappedSearchedWord, partOfSpeech: results.results[0].partOfSpeech, definition: results.results[0].definition, synonyms: "", antonyms: "")
-//                    cell.set(word: word)
-//                    self.tableView.reloadData()
-//                }
             } catch {
                 print("Failed to convert \(error.localizedDescription)")
             }
         }.resume()
     }
 }
+
+//MARK: UITableViewDataSource Methods
+
+extension ViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return words.count //number of rows in table
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier) as! CustomTableViewCell
+        let currentWord = words[indexPath.row]
+        cell.setFetchedResults(word: currentWord)
+
+        return cell
+    }
+}
+
+//MARK: UITableViewDelegate Methods
+
+extension ViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailVC = DetailViewController(word: words[indexPath.row])
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
+}
+
+//MARK: - UISearchBarDelegate Methods
+
+extension ViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchText = searchBar.text ?? ""
+        fetchWord(word: searchText)
+    }
+}
+

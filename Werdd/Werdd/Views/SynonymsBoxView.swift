@@ -11,7 +11,7 @@ class SynonymsBoxView: UIView {
     
     //MARK: - UI Properties
 
-    var word = StaticWord(word: "", partOfSpeech: "", definition: "", synonyms: "", antonyms: "")
+    var word = Word()
     
     let greenBox: UIView = {
         let box = UIView()
@@ -41,11 +41,11 @@ class SynonymsBoxView: UIView {
     
     //MARK: - Initializers
 
-    init(word: StaticWord) {
+    init(word: Word) {
         super.init(frame: CGRect.zero)
 
         self.word.synonyms = word.synonyms
-        synonyms.text = word.synonyms
+        synonyms.text = word.synonyms?.joined(separator: ", ")
         
         setup()
     }

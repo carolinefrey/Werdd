@@ -60,7 +60,7 @@ class CustomTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func set(word: StaticWord) {
+    func setFetchedResults(word: Word) {
         wordLabel.text = word.word
         partOfSpeechLabel.text = word.partOfSpeech
         definitionLabel.text = word.definition

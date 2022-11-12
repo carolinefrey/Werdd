@@ -9,7 +9,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
-    var selectedWord = StaticWord(word: "", partOfSpeech: "", definition: "", synonyms: "", antonyms: "")
+    var selectedWord = Word()
     
     let wordTitle: UILabel = {
         let wordTitle = UILabel()
@@ -27,7 +27,7 @@ class DetailViewController: UIViewController {
     var synonymsBox: SynonymsBoxView
     var antonymsBox: AntonymsBoxView
     
-    let exampleUsage = ExampleUsageBoxView()
+//    let exampleUsage = ExampleUsageBoxView()
     
     var stackView: UIStackView = {
         let stackView = UIStackView()
@@ -39,15 +39,13 @@ class DetailViewController: UIViewController {
         return stackView
     }()
     
-    init(selectedWord: StaticWord) {
-        self.selectedWord.word = selectedWord.word
-        self.selectedWord.partOfSpeech = selectedWord.partOfSpeech
-        self.selectedWord.definition = selectedWord.definition
+    init(word: Word) {
+        self.selectedWord = word
 
-        wordTitle.text = selectedWord.word
-        definitionBox = DefinitionBoxDetailView(word: selectedWord)
-        synonymsBox = SynonymsBoxView(word: selectedWord)
-        antonymsBox = AntonymsBoxView(word: selectedWord)
+        wordTitle.text = word.word
+        definitionBox = DefinitionBoxDetailView(word: word)
+        synonymsBox = SynonymsBoxView(word: word)
+        antonymsBox = AntonymsBoxView(word: word)
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -63,29 +61,29 @@ class DetailViewController: UIViewController {
     }
 
     private func setup() {
-        
+
         view.addSubview(wordTitle)
         view.addSubview(stackView)
-        
+
         definitionBox.translatesAutoresizingMaskIntoConstraints = false
         synonymsBox.translatesAutoresizingMaskIntoConstraints = false
         antonymsBox.translatesAutoresizingMaskIntoConstraints = false
-        exampleUsage.translatesAutoresizingMaskIntoConstraints = false
-        
+//        exampleUsage.translatesAutoresizingMaskIntoConstraints = false
+
         stackView.addArrangedSubview(definitionBox)
         stackView.addArrangedSubview(synonymsBox)
         stackView.addArrangedSubview(antonymsBox)
-        stackView.addArrangedSubview(exampleUsage)
+//        stackView.addArrangedSubview(exampleUsage)
 
         NSLayoutConstraint.activate([
             wordTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             wordTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             wordTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 20),
-            
+
             definitionBox.blueBox.widthAnchor.constraint(equalTo: stackView.widthAnchor),
             synonymsBox.greenBox.widthAnchor.constraint(equalTo: stackView.widthAnchor),
             antonymsBox.pinkBox.widthAnchor.constraint(equalTo: stackView.widthAnchor),
-            exampleUsage.orangeBox.widthAnchor.constraint(equalTo: stackView.widthAnchor),
+//            exampleUsage.orangeBox.widthAnchor.constraint(equalTo: stackView.widthAnchor),
 
             stackView.topAnchor.constraint(equalTo: wordTitle.bottomAnchor, constant: 20),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
