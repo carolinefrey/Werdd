@@ -26,7 +26,9 @@ class SynonymsBoxView: UIView {
         let synonyms = UILabel()
         synonyms.translatesAutoresizingMaskIntoConstraints = false
         synonyms.textColor = .black
-        synonyms.font = UIFont(name: "Rubik-Light", size: 14)
+        synonyms.font = UIFont(name: "Rubik-Regular", size: 18)
+        synonyms.lineBreakMode = .byWordWrapping
+        synonyms.numberOfLines = 0
         return synonyms
     }()
     

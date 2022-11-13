@@ -49,6 +49,7 @@ class ViewController: UIViewController {
         searchBar.placeholder = "Find a word..."
         searchBar.sizeToFit()
         searchBar.isTranslucent = true
+        searchBar.autocapitalizationType = .none
         return searchBar
     }()
     
