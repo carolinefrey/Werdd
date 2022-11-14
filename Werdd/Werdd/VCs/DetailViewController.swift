@@ -26,8 +26,7 @@ class DetailViewController: UIViewController {
     var definitionBox: DefinitionBoxDetailView
     var synonymsBox: SynonymsBoxView
     var antonymsBox: AntonymsBoxView
-    
-//    let exampleUsage = ExampleUsageBoxView()
+    var exampleBox: ExampleUsageBoxView
     
     var stackView: UIStackView = {
         let stackView = UIStackView()
@@ -39,13 +38,14 @@ class DetailViewController: UIViewController {
         return stackView
     }()
     
-    init(word: Word) {
+    init(word: Word, antonyms: String, exampleUsage: String) {
         self.selectedWord = word
 
         wordTitle.text = word.word
         definitionBox = DefinitionBoxDetailView(word: word)
         synonymsBox = SynonymsBoxView(word: word)
-        antonymsBox = AntonymsBoxView(word: word)
+        antonymsBox = AntonymsBoxView(antonyms: antonyms)
+        exampleBox = ExampleUsageBoxView(usage: exampleUsage)
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -68,12 +68,12 @@ class DetailViewController: UIViewController {
         definitionBox.translatesAutoresizingMaskIntoConstraints = false
         synonymsBox.translatesAutoresizingMaskIntoConstraints = false
         antonymsBox.translatesAutoresizingMaskIntoConstraints = false
-//        exampleUsage.translatesAutoresizingMaskIntoConstraints = false
+        exampleBox.translatesAutoresizingMaskIntoConstraints = false
 
         stackView.addArrangedSubview(definitionBox)
         stackView.addArrangedSubview(synonymsBox)
         stackView.addArrangedSubview(antonymsBox)
-//        stackView.addArrangedSubview(exampleUsage)
+        stackView.addArrangedSubview(exampleBox)
 
         NSLayoutConstraint.activate([
             wordTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
@@ -83,7 +83,7 @@ class DetailViewController: UIViewController {
             definitionBox.blueBox.widthAnchor.constraint(equalTo: stackView.widthAnchor),
             synonymsBox.greenBox.widthAnchor.constraint(equalTo: stackView.widthAnchor),
             antonymsBox.pinkBox.widthAnchor.constraint(equalTo: stackView.widthAnchor),
-//            exampleUsage.orangeBox.widthAnchor.constraint(equalTo: stackView.widthAnchor),
+            exampleBox.orangeBox.widthAnchor.constraint(equalTo: stackView.widthAnchor),
 
             stackView.topAnchor.constraint(equalTo: wordTitle.bottomAnchor, constant: 20),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),

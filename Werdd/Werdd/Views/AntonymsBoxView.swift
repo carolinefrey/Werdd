@@ -10,8 +10,6 @@ import UIKit
 class AntonymsBoxView: UIView {
     
     //MARK: - UI Properties
-
-    var word = Word()
     
     let pinkBox: UIView = {
         let box = UIView()
@@ -26,7 +24,7 @@ class AntonymsBoxView: UIView {
         let antonyms = UILabel()
         antonyms.translatesAutoresizingMaskIntoConstraints = false
         antonyms.textColor = .black
-        antonyms.font = UIFont(name: "Rubik-Light", size: 14)
+        antonyms.font = UIFont(name: "Rubik-Regular", size: 18)
         return antonyms
     }()
     
@@ -41,13 +39,16 @@ class AntonymsBoxView: UIView {
     
     //MARK: - Initializers
 
-    init(word: Word) {
+    init(antonyms: String) {
         super.init(frame: CGRect.zero)
-
-        self.word = word
-        antonyms.text = word.antonyms?.joined(separator: ", ")
+        
+        self.antonyms.text = antonyms
         
         setup()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     //MARK: - UI Setup
@@ -70,9 +71,5 @@ class AntonymsBoxView: UIView {
             antBoxLabel.bottomAnchor.constraint(equalTo: pinkBox.bottomAnchor, constant: -20),
             antBoxLabel.leadingAnchor.constraint(equalTo: pinkBox.leadingAnchor, constant: 20),
         ])
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

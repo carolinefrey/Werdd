@@ -25,7 +25,9 @@ class ExampleUsageBoxView: UIView {
         example1.translatesAutoresizingMaskIntoConstraints = false
         example1.text = "Example usage sentence"
         example1.textColor = .black
-        example1.font = UIFont(name: "Rubik-Light", size: 14)
+        example1.font = UIFont(name: "Rubik-Regular", size: 16)
+        example1.lineBreakMode = .byWordWrapping
+        example1.numberOfLines = 2
         return example1
     }()
     
@@ -34,7 +36,9 @@ class ExampleUsageBoxView: UIView {
         example2.translatesAutoresizingMaskIntoConstraints = false
         example2.text = "Example usage sentence"
         example2.textColor = .black
-        example2.font = UIFont(name: "Rubik-Light", size: 14)
+        example2.font = UIFont(name: "Rubik-Regular", size: 16)
+        example2.lineBreakMode = .byWordWrapping
+        example2.numberOfLines = 2
         return example2
     }()
     
@@ -43,7 +47,9 @@ class ExampleUsageBoxView: UIView {
         example3.translatesAutoresizingMaskIntoConstraints = false
         example3.text = "Example usage sentence"
         example3.textColor = .black
-        example3.font = UIFont(name: "Rubik-Light", size: 14)
+        example3.font = UIFont(name: "Rubik-Regular", size: 16)
+        example3.lineBreakMode = .byWordWrapping
+        example3.numberOfLines = 2
         return example3
     }()
     
@@ -58,8 +64,14 @@ class ExampleUsageBoxView: UIView {
     
     //MARK: - Initializers
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(usage: String) {
+        super.init(frame: CGRect.zero)
+        
+        let usageArr = usage.components(separatedBy: ", ")
+        self.example1.text = "1. \(usageArr[0])"
+        self.example2.text = "2. \(usageArr[1])"
+        self.example3.text = "3. \(usageArr[2])"
+        
         setup()
     }
     
@@ -85,11 +97,11 @@ class ExampleUsageBoxView: UIView {
             example1.leadingAnchor.constraint(equalTo: orangeBox.leadingAnchor, constant: 20),
             example1.trailingAnchor.constraint(equalTo: orangeBox.trailingAnchor, constant: -20),
             
-            example2.topAnchor.constraint(equalTo: example1.bottomAnchor, constant: 20),
+            example2.topAnchor.constraint(equalTo: example1.bottomAnchor, constant: 5),
             example2.leadingAnchor.constraint(equalTo: orangeBox.leadingAnchor, constant: 20),
             example2.trailingAnchor.constraint(equalTo: orangeBox.trailingAnchor, constant: -20),
             
-            example3.topAnchor.constraint(equalTo: example2.bottomAnchor, constant: 20),
+            example3.topAnchor.constraint(equalTo: example2.bottomAnchor, constant: 5),
             example3.leadingAnchor.constraint(equalTo: orangeBox.leadingAnchor, constant: 20),
             example3.trailingAnchor.constraint(equalTo: orangeBox.trailingAnchor, constant: -20),
             

@@ -15,6 +15,8 @@ class ViewController: UIViewController {
     //let words = Words()
     var words: [Word] = []
     var searchText = ""
+    var antonyms = ""
+    var exampleUsage = ""
     
     let werddTitle: UILabel = {
         let werddTitle = UILabel()
@@ -137,7 +139,7 @@ class ViewController: UIViewController {
             }
         }.resume()
     }
-
+    
     private func updateDefinitionBox(withword randomWord: RandomWord?) {
         definitionBoxView.word.text = randomWord?.word
         
@@ -169,10 +171,62 @@ class ViewController: UIViewController {
                 self.words = result.results.map { result in
                     Word(word: self.searchText, searchResult: result)
                 }
-
+                
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
+                
+            } catch {
+                print("Failed to convert \(error.localizedDescription)")
+            }
+        }.resume()
+    }
+    
+    func fetchAntonyms(word: String) {
+        guard let wordsURL = URL(string: "https://wordsapiv1.p.rapidapi.com/words/\(word)/antonyms") else {
+            print("Invalid URL")
+            return
+        }
+        
+        var urlRequest = URLRequest(url: wordsURL)
+        urlRequest.httpMethod = "GET"
+        urlRequest.setValue(APIConstants.key, forHTTPHeaderField: "x-rapidapi-key")
+        urlRequest.setValue("wordsapiv1.p.rapidapi.com", forHTTPHeaderField: "x-rapidapi-host")
+        
+        URLSession.shared.dataTask(with: urlRequest) { data, response, error in
+            guard let data = data, error == nil else {
+                return
+            }
+            do {
+                let result = try JSONDecoder().decode(Antonyms.self, from: data)
+                
+                self.antonyms = result.antonyms.joined(separator: ", ")
+                
+            } catch {
+                print("Failed to convert \(error.localizedDescription)")
+            }
+        }.resume()
+    }
+    
+    func fetchExampleUsage(word: String) {
+        guard let wordsURL = URL(string: "https://wordsapiv1.p.rapidapi.com/words/\(word)/examples") else {
+            print("Invalid URL")
+            return
+        }
+        
+        var urlRequest = URLRequest(url: wordsURL)
+        urlRequest.httpMethod = "GET"
+        urlRequest.setValue(APIConstants.key, forHTTPHeaderField: "x-rapidapi-key")
+        urlRequest.setValue("wordsapiv1.p.rapidapi.com", forHTTPHeaderField: "x-rapidapi-host")
+        
+        URLSession.shared.dataTask(with: urlRequest) { data, response, error in
+            guard let data = data, error == nil else {
+                return
+            }
+            do {
+                let result = try JSONDecoder().decode(ExampleUsage.self, from: data)
+                
+                self.exampleUsage = result.examples.joined(separator: ", ")
                 
             } catch {
                 print("Failed to convert \(error.localizedDescription)")
@@ -193,7 +247,7 @@ extension ViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier) as! CustomTableViewCell
         let currentWord = words[indexPath.row]
         cell.setFetchedResults(word: currentWord)
-
+        
         return cell
     }
 }
@@ -203,7 +257,7 @@ extension ViewController: UITableViewDataSource {
 extension ViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailVC = DetailViewController(word: words[indexPath.row])
+        let detailVC = DetailViewController(word: words[indexPath.row], antonyms: antonyms, exampleUsage: exampleUsage)
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }
@@ -214,6 +268,8 @@ extension ViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchText = searchBar.text ?? ""
         fetchWord(word: searchText)
+        fetchAntonyms(word: searchText)
+        fetchExampleUsage(word: searchText)
     }
 }
 

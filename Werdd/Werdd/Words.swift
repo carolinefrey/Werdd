@@ -12,14 +12,14 @@ struct Word {
     var partOfSpeech: String
     var definition: String
     var synonyms: [String]?
-    var antonyms: [String]?
+    //var antonyms: [String]?
     
     init(word: String = "", partOfSpeech: String = "", definition: String = "", synonyms: [String] = [], antonyms: [String] = []) {
         self.word = word
         self.partOfSpeech = partOfSpeech
         self.definition = definition
         self.synonyms = synonyms
-        self.antonyms = antonyms
+        //self.antonyms = antonyms
     }
     
     init(word: String, searchResult: SearchResult) {
@@ -27,11 +27,11 @@ struct Word {
         self.partOfSpeech = searchResult.partOfSpeech
         self.definition = searchResult.definition
         self.synonyms = searchResult.synonyms
-        self.antonyms = []
+        //self.antonyms = []
     }
 }
 
-//MARK: - Random Word objects
+//MARK: - Random Word
 
 struct RandomWord: Codable {
     let word: String
@@ -43,7 +43,7 @@ struct Result: Codable {
     let partOfSpeech: String
 }
 
-//MARK: - Get a Word objects
+//MARK: - Get a Word
 
 struct SearchedWord: Codable {
     let results: [SearchResult]
@@ -53,4 +53,14 @@ struct SearchResult: Codable {
     let definition: String
     let partOfSpeech: String
     let synonyms: [String]?
+}
+
+//MARK: - Get Word Details, Antonyms
+struct Antonyms: Codable {
+    let antonyms: [String]
+}
+
+//MARK: - Get Word Details, Examples
+struct ExampleUsage: Codable {
+    let examples: [String]
 }
