@@ -23,7 +23,6 @@ class ExampleUsageBoxView: UIView {
     let example1: UILabel = {
         let example1 = UILabel()
         example1.translatesAutoresizingMaskIntoConstraints = false
-        example1.text = "Example usage sentence"
         example1.textColor = .black
         example1.font = UIFont(name: "Rubik-Regular", size: 16)
         example1.lineBreakMode = .byWordWrapping
@@ -34,7 +33,6 @@ class ExampleUsageBoxView: UIView {
     let example2: UILabel = {
         let example2 = UILabel()
         example2.translatesAutoresizingMaskIntoConstraints = false
-        example2.text = "Example usage sentence"
         example2.textColor = .black
         example2.font = UIFont(name: "Rubik-Regular", size: 16)
         example2.lineBreakMode = .byWordWrapping
@@ -45,7 +43,6 @@ class ExampleUsageBoxView: UIView {
     let example3: UILabel = {
         let example3 = UILabel()
         example3.translatesAutoresizingMaskIntoConstraints = false
-        example3.text = "Example usage sentence"
         example3.textColor = .black
         example3.font = UIFont(name: "Rubik-Regular", size: 16)
         example3.lineBreakMode = .byWordWrapping
@@ -66,12 +63,14 @@ class ExampleUsageBoxView: UIView {
 
     init(usage: String) {
         super.init(frame: CGRect.zero)
-        
         let usageArr = usage.components(separatedBy: ", ")
-        self.example1.text = "1. \(usageArr[0])"
-        self.example2.text = "2. \(usageArr[1])"
-        self.example3.text = "3. \(usageArr[2])"
-        
+        if usageArr.count > 0 {
+            self.example1.text = "1. \(usageArr[0])"
+        } else if usageArr.count > 1 {
+            self.example2.text = "2. \(usageArr[1])"
+        } else if usageArr.count > 2 {
+            self.example3.text = "3. \(usageArr[2])"
+        }
         setup()
     }
     

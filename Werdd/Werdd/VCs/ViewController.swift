@@ -64,6 +64,13 @@ class ViewController: UIViewController {
         return tableView
     }()
     
+    let spinner: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView(style: .large)
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        
+        return spinner
+    }()
+    
     // MARK: - Initializers
     
     override func viewDidLoad() {
@@ -86,6 +93,7 @@ class ViewController: UIViewController {
         view.addSubview(definitionBoxView)
         view.addSubview(newWordButton)
         view.addSubview(tableView)
+        view.addSubview(spinner)
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -109,35 +117,16 @@ class ViewController: UIViewController {
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            spinner.topAnchor.constraint(equalTo: tableView.topAnchor, constant: 60),
+            spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
     
     // MARK: - Functions
     
     @objc func newWordButtonPressed() {
-        guard let wordsURL = URL(string: "https://wordsapiv1.p.rapidapi.com/words/?random=true") else {
-            print("Invalid URL")
-            return
-        }
-        
-        var urlRequest = URLRequest(url: wordsURL)
-        urlRequest.httpMethod = "GET"
-        urlRequest.setValue(APIConstants.key, forHTTPHeaderField: "x-rapidapi-key")
-        urlRequest.setValue("wordsapiv1.p.rapidapi.com", forHTTPHeaderField: "x-rapidapi-host")
-        
-        URLSession.shared.dataTask(with: urlRequest) { data, response, error in
-            guard let data = data, error == nil else {
-                return
-            }
-            do {
-                let randomWord = try JSONDecoder().decode(RandomWord.self, from: data)
-                DispatchQueue.main.async {
-                    self.updateDefinitionBox(withword: randomWord)
-                }
-            } catch {
-                print("Failed to convert \(error.localizedDescription)")
-            }
-        }.resume()
+        fetchRandomWord()
     }
     
     private func updateDefinitionBox(withword randomWord: RandomWord?) {
@@ -150,6 +139,35 @@ class ViewController: UIViewController {
         definitionBoxView.definition.text = "\(definition ?? "Definition not found")"
     }
     
+    func fetchRandomWord() {
+        guard let wordsURL = URL(string: "https://wordsapiv1.p.rapidapi.com/words/?random=true") else {
+            print("Invalid URL")
+            return
+        }
+        
+        var urlRequest = URLRequest(url: wordsURL)
+        urlRequest.httpMethod = "GET"
+        urlRequest.setValue(APIConstants.key, forHTTPHeaderField: "x-rapidapi-key")
+        urlRequest.setValue("wordsapiv1.p.rapidapi.com", forHTTPHeaderField: "x-rapidapi-host")
+        
+        spinner.startAnimating()
+        
+        URLSession.shared.dataTask(with: urlRequest) { data, response, error in
+            guard let data = data, error == nil else {
+                return
+            }
+            do {
+                let randomWord = try JSONDecoder().decode(RandomWord.self, from: data)
+                DispatchQueue.main.async {
+                    self.updateDefinitionBox(withword: randomWord)
+                    self.spinner.stopAnimating()
+                }
+            } catch {
+                print("Failed to convert \(error.localizedDescription)")
+            }
+        }.resume()
+    }
+    
     func fetchWord(word: String) {
         guard let wordsURL = URL(string: "https://wordsapiv1.p.rapidapi.com/words/\(word)") else {
             print("Invalid URL")
@@ -160,6 +178,8 @@ class ViewController: UIViewController {
         urlRequest.httpMethod = "GET"
         urlRequest.setValue(APIConstants.key, forHTTPHeaderField: "x-rapidapi-key")
         urlRequest.setValue("wordsapiv1.p.rapidapi.com", forHTTPHeaderField: "x-rapidapi-host")
+        
+        spinner.startAnimating()
         
         URLSession.shared.dataTask(with: urlRequest) { data, response, error in
             guard let data = data, error == nil else {
@@ -174,6 +194,7 @@ class ViewController: UIViewController {
                 
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                    self.spinner.stopAnimating()
                 }
                 
             } catch {
