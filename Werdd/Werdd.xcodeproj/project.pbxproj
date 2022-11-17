@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B90578532926602100D1CA57 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90578522926602100D1CA57 /* FavoritesViewController.swift */; };
 		B921919928FEC50500E6EBD8 /* Words.swift in Sources */ = {isa = PBXBuildFile; fileRef = B921919828FEC50500E6EBD8 /* Words.swift */; };
 		B923C57C2900291F00CC37A1 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B923C57B2900291F00CC37A1 /* DetailViewController.swift */; };
 		B9383F3A2907456D00ACAAF4 /* SynonymsBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9383F392907456D00ACAAF4 /* SynonymsBoxView.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B90578522926602100D1CA57 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		B921919828FEC50500E6EBD8 /* Words.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Words.swift; sourceTree = "<group>"; };
 		B923C57B2900291F00CC37A1 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		B9383F392907456D00ACAAF4 /* SynonymsBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynonymsBoxView.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 			children = (
 				B99BEC0828EC4FDC000AB9BE /* ViewController.swift */,
 				B923C57B2900291F00CC37A1 /* DetailViewController.swift */,
+				B90578522926602100D1CA57 /* FavoritesViewController.swift */,
 			);
 			path = VCs;
 			sourceTree = "<group>";
@@ -137,6 +140,7 @@
 				B99BEBFD28EC4FDC000AB9BE /* Sources */,
 				B99BEBFE28EC4FDC000AB9BE /* Frameworks */,
 				B99BEBFF28EC4FDC000AB9BE /* Resources */,
+				B905785129265BD700D1CA57 /* Display Warnings for TODOs and FIXMEs */,
 			);
 			buildRules = (
 			);
@@ -196,11 +200,33 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		B905785129265BD700D1CA57 /* Display Warnings for TODOs and FIXMEs */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Display Warnings for TODOs and FIXMEs";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nTAGS=\"TODO:|FIXME:|WARNING:\"\nERRORTAG=\"ERROR:\"\nfind \"${SRCROOT}\" \\( -name \"*.h\" -or -name \"*.m\" -or -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$|($ERRORTAG).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\"| perl -p -e \"s/($ERRORTAG)/ error: \\$1/\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B99BEBFD28EC4FDC000AB9BE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B90578532926602100D1CA57 /* FavoritesViewController.swift in Sources */,
 				B96480242902E68300010EBD /* DefinitionBoxDetailView.swift in Sources */,
 				B9383F3E29074B4600ACAAF4 /* ExampleUsageBoxView.swift in Sources */,
 				B9383F3A2907456D00ACAAF4 /* SynonymsBoxView.swift in Sources */,

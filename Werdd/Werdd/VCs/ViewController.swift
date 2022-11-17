@@ -12,7 +12,6 @@ class ViewController: UIViewController {
     
     //MARK: - UI Properties
     
-    //let words = Words()
     var words: [Word] = []
     var searchText = ""
     var antonyms = ""
@@ -71,11 +70,21 @@ class ViewController: UIViewController {
         return spinner
     }()
     
+    lazy var favoritesButton: UIBarButtonItem = {
+        let config = UIImage.SymbolConfiguration(textStyle: .title1)
+        let icon = UIImage(systemName: "heart.text.square.fill", withConfiguration: config)
+        let button = UIBarButtonItem(image: icon, style: .plain, target: self, action: #selector(favButtonTapped))
+        button.tintColor = UIColor(named: "favButtonColor")
+        return button
+    }()
+    
     // MARK: - Initializers
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.init(named: "Color5")
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: werddTitle)
+        navigationItem.rightBarButtonItem = favoritesButton
         setup()
     }
     
@@ -89,7 +98,6 @@ class ViewController: UIViewController {
     //MARK: - UI Setup
     
     private func setup() {
-        view.addSubview(werddTitle)
         view.addSubview(definitionBoxView)
         view.addSubview(newWordButton)
         view.addSubview(tableView)
@@ -102,13 +110,11 @@ class ViewController: UIViewController {
         tableView.tableHeaderView = searchBar
         
         NSLayoutConstraint.activate([
-            werddTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            werddTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             
             newWordButton.trailingAnchor.constraint(equalTo: definitionBoxView.trailingAnchor, constant: -40),
             newWordButton.bottomAnchor.constraint(equalTo: definitionBoxView.bottomAnchor),
             
-            definitionBoxView.topAnchor.constraint(equalTo: werddTitle.bottomAnchor),
+            definitionBoxView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             definitionBoxView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             definitionBoxView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             definitionBoxView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.25),
@@ -123,10 +129,15 @@ class ViewController: UIViewController {
         ])
     }
     
-    // MARK: - Functions
+    //MARK: - Functions
     
     @objc func newWordButtonPressed() {
         fetchRandomWord()
+    }
+    
+    @objc func favButtonTapped() {
+        let favoritesVC = FavoritesViewController()
+        navigationController?.pushViewController(favoritesVC, animated: true)
     }
     
     private func updateDefinitionBox(withword randomWord: RandomWord?) {
