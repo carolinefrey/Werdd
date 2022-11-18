@@ -1,20 +1,19 @@
 //
-//  CustomTableViewCell.swift
+//  FavoritesTableViewCell.swift
 //  Werdd
 //
-//  Created by Caroline Frey on 10/13/22.
+//  Created by Caroline Frey on 11/17/22.
 //
 
 import UIKit
 
-class CustomTableViewCell: UITableViewCell {
+class FavoritesTableViewCell: UITableViewCell {
     
     //MARK: - UI Properties
-    
     var backgroundCell: UIView = {
         let cell = UIView()
         cell.translatesAutoresizingMaskIntoConstraints = false
-        cell.backgroundColor = UIColor(named: "Color2")
+        cell.backgroundColor = UIColor(named: "favoritesColor")
         cell.clipsToBounds = true
         cell.layer.cornerRadius = 20
         return cell
@@ -48,9 +47,10 @@ class CustomTableViewCell: UITableViewCell {
         return defLabel
     }()
     
-    static let identifier = "CustomTableViewCell"
+    static let favoritesTableViewCellIdentifier = "FavoritesTableViewCell"
     
     //MARK: - Initializers
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
@@ -60,15 +60,15 @@ class CustomTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setFetchedResults(word: Word) {
+    func setFavoriteWords(word: FavoriteWord) {
         wordLabel.text = word.word
         partOfSpeechLabel.text = word.partOfSpeech
         definitionLabel.text = word.definition
     }
-    
+
     //MARK: - UI Setup
     
-    func setup() {
+    private func setup() {
         
         addSubview(backgroundCell)
         addSubview(wordLabel)
@@ -92,4 +92,5 @@ class CustomTableViewCell: UITableViewCell {
             definitionLabel.trailingAnchor.constraint(equalTo: backgroundCell.trailingAnchor, constant: -20)
         ])
     }
+
 }

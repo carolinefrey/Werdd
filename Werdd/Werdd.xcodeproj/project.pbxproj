@@ -20,12 +20,17 @@
 		B99BEC0928EC4FDC000AB9BE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99BEC0828EC4FDC000AB9BE /* ViewController.swift */; };
 		B99BEC0E28EC4FDD000AB9BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B99BEC0D28EC4FDD000AB9BE /* Assets.xcassets */; };
 		B99BEC1128EC4FDD000AB9BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B99BEC0F28EC4FDD000AB9BE /* LaunchScreen.storyboard */; };
-		B9C194AF28F82F8B008FFABF /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C194AE28F82F8B008FFABF /* CustomTableViewCell.swift */; };
+		B9C194AF28F82F8B008FFABF /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C194AE28F82F8B008FFABF /* SearchTableViewCell.swift */; };
 		B9C4E22928ED0502000E3B32 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B9C4E22628ED04B9000E3B32 /* Rubik-Regular.ttf */; };
 		B9C4E22A28ED0504000E3B32 /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B9C4E22728ED04C3000E3B32 /* Rubik-Bold.ttf */; };
 		B9C4E22C28ED05AB000E3B32 /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B9C4E22B28ED05A9000E3B32 /* Rubik-Light.ttf */; };
 		B9C4E22E28ED0DE5000E3B32 /* Rubik-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B9C4E22D28ED0DE3000E3B32 /* Rubik-Italic.ttf */; };
 		B9E3F1DB291BDE3100CE8449 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E3F1DA291BDE3000CE8449 /* APIConstants.swift */; };
+		B9F13C212926F66F007BE0AF /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F13C202926F66F007BE0AF /* FavoritesTableViewCell.swift */; };
+		B9F13C242926FD69007BE0AF /* FavoriteWords.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B9F13C222926FD69007BE0AF /* FavoriteWords.xcdatamodeld */; };
+		B9F13C262926FDC1007BE0AF /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F13C252926FDC1007BE0AF /* DataManager.swift */; };
+		B9F13C2829270441007BE0AF /* FavoriteWord+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F13C2729270441007BE0AF /* FavoriteWord+CoreDataClass.swift */; };
+		B9F13C2A29270452007BE0AF /* FavoriteWord+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F13C2929270452007BE0AF /* FavoriteWord+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,12 +49,17 @@
 		B99BEC0D28EC4FDD000AB9BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B99BEC1028EC4FDD000AB9BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B99BEC1228EC4FDD000AB9BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B9C194AE28F82F8B008FFABF /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		B9C194AE28F82F8B008FFABF /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		B9C4E22628ED04B9000E3B32 /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
 		B9C4E22728ED04C3000E3B32 /* Rubik-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Bold.ttf"; sourceTree = "<group>"; };
 		B9C4E22B28ED05A9000E3B32 /* Rubik-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Light.ttf"; sourceTree = "<group>"; };
 		B9C4E22D28ED0DE3000E3B32 /* Rubik-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Italic.ttf"; sourceTree = "<group>"; };
 		B9E3F1DA291BDE3000CE8449 /* APIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
+		B9F13C202926F66F007BE0AF /* FavoritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewCell.swift; sourceTree = "<group>"; };
+		B9F13C232926FD69007BE0AF /* FavoriteWords.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FavoriteWords.xcdatamodel; sourceTree = "<group>"; };
+		B9F13C252926FDC1007BE0AF /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		B9F13C2729270441007BE0AF /* FavoriteWord+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoriteWord+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B9F13C2929270452007BE0AF /* FavoriteWord+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoriteWord+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,7 +87,8 @@
 			isa = PBXGroup;
 			children = (
 				B981341328F63D8F00F0DED9 /* DefinitionBoxView.swift */,
-				B9C194AE28F82F8B008FFABF /* CustomTableViewCell.swift */,
+				B9C194AE28F82F8B008FFABF /* SearchTableViewCell.swift */,
+				B9F13C202926F66F007BE0AF /* FavoritesTableViewCell.swift */,
 				B96480232902E68300010EBD /* DefinitionBoxDetailView.swift */,
 				B9383F392907456D00ACAAF4 /* SynonymsBoxView.swift */,
 				B9383F3B290749E100ACAAF4 /* AntonymsBoxView.swift */,
@@ -89,6 +100,8 @@
 		B99BEBF828EC4FDC000AB9BE = {
 			isa = PBXGroup;
 			children = (
+				B9F13C2729270441007BE0AF /* FavoriteWord+CoreDataClass.swift */,
+				B9F13C2929270452007BE0AF /* FavoriteWord+CoreDataProperties.swift */,
 				B99BEC0328EC4FDC000AB9BE /* Werdd */,
 				B99BEC0228EC4FDC000AB9BE /* Products */,
 			);
@@ -105,6 +118,8 @@
 		B99BEC0328EC4FDC000AB9BE /* Werdd */ = {
 			isa = PBXGroup;
 			children = (
+				B9F13C222926FD69007BE0AF /* FavoriteWords.xcdatamodeld */,
+				B9F13C252926FDC1007BE0AF /* DataManager.swift */,
 				B9C4E22828ED04E6000E3B32 /* Rubik */,
 				B99BEC0428EC4FDC000AB9BE /* AppDelegate.swift */,
 				B99BEC0628EC4FDC000AB9BE /* SceneDelegate.swift */,
@@ -227,18 +242,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				B90578532926602100D1CA57 /* FavoritesViewController.swift in Sources */,
+				B9F13C262926FDC1007BE0AF /* DataManager.swift in Sources */,
+				B9F13C242926FD69007BE0AF /* FavoriteWords.xcdatamodeld in Sources */,
 				B96480242902E68300010EBD /* DefinitionBoxDetailView.swift in Sources */,
 				B9383F3E29074B4600ACAAF4 /* ExampleUsageBoxView.swift in Sources */,
 				B9383F3A2907456D00ACAAF4 /* SynonymsBoxView.swift in Sources */,
+				B9F13C2829270441007BE0AF /* FavoriteWord+CoreDataClass.swift in Sources */,
 				B99BEC0928EC4FDC000AB9BE /* ViewController.swift in Sources */,
-				B9C194AF28F82F8B008FFABF /* CustomTableViewCell.swift in Sources */,
+				B9C194AF28F82F8B008FFABF /* SearchTableViewCell.swift in Sources */,
 				B99BEC0528EC4FDC000AB9BE /* AppDelegate.swift in Sources */,
 				B9383F3C290749E100ACAAF4 /* AntonymsBoxView.swift in Sources */,
 				B923C57C2900291F00CC37A1 /* DetailViewController.swift in Sources */,
 				B9E3F1DB291BDE3100CE8449 /* APIConstants.swift in Sources */,
 				B921919928FEC50500E6EBD8 /* Words.swift in Sources */,
 				B99BEC0728EC4FDC000AB9BE /* SceneDelegate.swift in Sources */,
+				B9F13C2A29270452007BE0AF /* FavoriteWord+CoreDataProperties.swift in Sources */,
 				B981341428F63D8F00F0DED9 /* DefinitionBoxView.swift in Sources */,
+				B9F13C212926F66F007BE0AF /* FavoritesTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +466,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B9F13C222926FD69007BE0AF /* FavoriteWords.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B9F13C232926FD69007BE0AF /* FavoriteWords.xcdatamodel */,
+			);
+			currentVersion = B9F13C232926FD69007BE0AF /* FavoriteWords.xcdatamodel */;
+			path = FavoriteWords.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B99BEBF928EC4FDC000AB9BE /* Project object */;
 }

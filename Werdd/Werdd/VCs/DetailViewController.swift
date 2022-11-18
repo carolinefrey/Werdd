@@ -9,6 +9,8 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
+    //MARK: - UI Properties
+    
     var selectedWord = Word()
     
     let wordTitle: UILabel = {
@@ -28,7 +30,7 @@ class DetailViewController: UIViewController {
     var antonymsBox: AntonymsBoxView
     var exampleBox: ExampleUsageBoxView
     
-    var stackView: UIStackView = {
+    let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -37,6 +39,16 @@ class DetailViewController: UIViewController {
         stackView.spacing = 160
         return stackView
     }()
+    
+    lazy var addToFavoritesButton: UIBarButtonItem = {
+        let config = UIImage.SymbolConfiguration(textStyle: .title1)
+        let icon = UIImage(systemName: "heart", withConfiguration: config)
+        let button = UIBarButtonItem(image: icon, style: .plain, target: self, action: #selector(addWordToFavorites))
+        button.tintColor = UIColor(named: "favoritesColor")
+        return button
+    }()
+    
+    //MARK: - Initializers
     
     init(word: Word, antonyms: String, exampleUsage: String) {
         self.selectedWord = word
@@ -57,9 +69,19 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.init(named: "Color5")
+        navigationItem.rightBarButtonItem = addToFavoritesButton
+        
         setup()
     }
+    
+    //MARK: - Functions
+    
+    @objc func addWordToFavorites() {
+        DataManager.addFavoriteWord(word: selectedWord.word, definition: selectedWord.definition, partOfSpeech: selectedWord.partOfSpeech)
+    }
 
+    //MARK: - UI Setup
+    
     private func setup() {
 
         view.addSubview(wordTitle)

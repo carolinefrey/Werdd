@@ -74,7 +74,7 @@ class ViewController: UIViewController {
         let config = UIImage.SymbolConfiguration(textStyle: .title1)
         let icon = UIImage(systemName: "heart.text.square.fill", withConfiguration: config)
         let button = UIBarButtonItem(image: icon, style: .plain, target: self, action: #selector(favButtonTapped))
-        button.tintColor = UIColor(named: "favButtonColor")
+        button.tintColor = UIColor(named: "favoritesColor")
         return button
     }()
     
@@ -105,7 +105,7 @@ class ViewController: UIViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
+        tableView.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.searchTableViewCellIdentifier)
         searchBar.delegate = self
         tableView.tableHeaderView = searchBar
         
@@ -276,7 +276,7 @@ extension ViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier) as! CustomTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.searchTableViewCellIdentifier) as! SearchTableViewCell
         let currentWord = words[indexPath.row]
         cell.setFetchedResults(word: currentWord)
         
