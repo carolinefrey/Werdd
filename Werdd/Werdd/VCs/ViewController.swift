@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     //MARK: - UI Properties
     
     var words: [Word] = []
+    var randomWord = RandomWord(word: "", results: [])
     var searchText = ""
     var antonyms = ""
     var exampleUsage = ""
@@ -43,6 +44,17 @@ class ViewController: UIViewController {
         button.addTarget(self, action: #selector(newWordButtonPressed), for: .touchUpInside)
         return button
     }()
+
+    lazy var favoriteRandomWordButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        let largeConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .regular, scale: .large)
+        let buttonSymbol = UIImage(systemName: "heart", withConfiguration: largeConfig)
+        button.setImage(buttonSymbol, for: .normal)
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(favoriteRandomWord), for: .touchUpInside)
+        return button
+    }()
     
     var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
@@ -66,7 +78,6 @@ class ViewController: UIViewController {
     let spinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(style: .large)
         spinner.translatesAutoresizingMaskIntoConstraints = false
-        
         return spinner
     }()
     
@@ -100,6 +111,7 @@ class ViewController: UIViewController {
     private func setup() {
         view.addSubview(definitionBoxView)
         view.addSubview(newWordButton)
+        view.addSubview(favoriteRandomWordButton)
         view.addSubview(tableView)
         view.addSubview(spinner)
         
@@ -113,6 +125,9 @@ class ViewController: UIViewController {
             
             newWordButton.trailingAnchor.constraint(equalTo: definitionBoxView.trailingAnchor, constant: -40),
             newWordButton.bottomAnchor.constraint(equalTo: definitionBoxView.bottomAnchor),
+            
+            favoriteRandomWordButton.trailingAnchor.constraint(equalTo: newWordButton.leadingAnchor, constant: -5),
+            favoriteRandomWordButton.bottomAnchor.constraint(equalTo: definitionBoxView.bottomAnchor),
             
             definitionBoxView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             definitionBoxView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
@@ -133,6 +148,10 @@ class ViewController: UIViewController {
     
     @objc func newWordButtonPressed() {
         fetchRandomWord()
+    }
+    
+    @objc func favoriteRandomWord() {
+        DataManager.addFavoriteWord(word: randomWord.word, definition: randomWord.results[0].definition, partOfSpeech: randomWord.results[0].partOfSpeech)
     }
     
     @objc func favButtonTapped() {
@@ -171,6 +190,7 @@ class ViewController: UIViewController {
                 let randomWord = try JSONDecoder().decode(RandomWord.self, from: data)
                 DispatchQueue.main.async {
                     self.updateDefinitionBox(withword: randomWord)
+                    self.randomWord = randomWord
                     self.spinner.stopAnimating()
                 }
             } catch {
