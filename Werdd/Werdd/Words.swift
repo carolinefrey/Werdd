@@ -12,14 +12,12 @@ struct Word {
     var partOfSpeech: String
     var definition: String
     var synonyms: [String]?
-    //var antonyms: [String]?
     
     init(word: String = "", partOfSpeech: String = "", definition: String = "", synonyms: [String] = [], antonyms: [String] = []) {
         self.word = word
         self.partOfSpeech = partOfSpeech
         self.definition = definition
         self.synonyms = synonyms
-        //self.antonyms = antonyms
     }
     
     init(word: String, searchResult: SearchResult) {
@@ -27,7 +25,6 @@ struct Word {
         self.partOfSpeech = searchResult.partOfSpeech
         self.definition = searchResult.definition
         self.synonyms = searchResult.synonyms
-        //self.antonyms = []
     }
 }
 

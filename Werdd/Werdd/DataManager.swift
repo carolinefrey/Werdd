@@ -66,10 +66,11 @@ class DataManager {
     
     // MARK: - Update
 //
-//    static func updateToDo(item: ToDoItem, title: String, description: String) {
+//    static func updateToDo(item: FavoriteWord, word: String, definition: String, partOfSpeech: String) {
 //
-//        item.title = title
-//        item.itemDescription = description
+//        item.word = word
+//        item.definition = definition
+//        item.partOfSpeech = partOfSpeech
 //
 //        do {
 //            try managedObjectContext.save()

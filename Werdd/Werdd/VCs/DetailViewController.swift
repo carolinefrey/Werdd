@@ -12,6 +12,7 @@ class DetailViewController: UIViewController {
     //MARK: - UI Properties
     
     var selectedWord = Word()
+    var showAddtoFavorites: Bool
     
     let wordTitle: UILabel = {
         let wordTitle = UILabel()
@@ -50,7 +51,7 @@ class DetailViewController: UIViewController {
     
     //MARK: - Initializers
     
-    init(word: Word, antonyms: String, exampleUsage: String) {
+    init(word: Word, antonyms: String, exampleUsage: String, showAddtoFavorites: Bool) {
         self.selectedWord = word
 
         wordTitle.text = word.word
@@ -58,6 +59,7 @@ class DetailViewController: UIViewController {
         synonymsBox = SynonymsBoxView(word: word)
         antonymsBox = AntonymsBoxView(antonyms: antonyms)
         exampleBox = ExampleUsageBoxView(usage: exampleUsage)
+        self.showAddtoFavorites = showAddtoFavorites
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -69,8 +71,9 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.init(named: "Color5")
-        navigationItem.rightBarButtonItem = addToFavoritesButton
-        
+        if showAddtoFavorites == true {
+            navigationItem.rightBarButtonItem = addToFavoritesButton
+        }
         setup()
     }
     

@@ -309,7 +309,7 @@ extension ViewController: UITableViewDataSource {
 extension ViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailVC = DetailViewController(word: words[indexPath.row], antonyms: antonyms, exampleUsage: exampleUsage)
+        let detailVC = DetailViewController(word: words[indexPath.row], antonyms: antonyms, exampleUsage: exampleUsage, showAddtoFavorites: true)
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }
