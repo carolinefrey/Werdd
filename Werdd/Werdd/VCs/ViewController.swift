@@ -176,16 +176,13 @@ class ViewController: UIViewController {
     
     private func updateDefinitionBox(withword randomWord: RandomWord?) {
         definitionBoxView.word.text = randomWord?.word
-        
         let partOfSpeech = randomWord?.results[0].partOfSpeech
         definitionBoxView.partOfSpeech.text = "\(partOfSpeech ?? "Not found")"
-        
         let definition = randomWord?.results[0].definition
         definitionBoxView.definition.text = "\(definition ?? "Definition not found")"
     }
     
     func fetchRandomWord(completion: @escaping (RandomWord?, Error?) -> Void) {
-        
         let headers: HTTPHeaders = [
             "x-rapidapi-host": "wordsapiv1.p.rapidapi.com",
             "x-rapidapi-key" : APIConstants.key,
@@ -205,90 +202,55 @@ class ViewController: UIViewController {
     }
     
     func fetchWord(word: String) {
-        guard let wordsURL = URL(string: "https://wordsapiv1.p.rapidapi.com/words/\(word)") else {
-            print("Invalid URL")
-            return
+        let headers: HTTPHeaders = [
+            "x-rapidapi-host": "wordsapiv1.p.rapidapi.com",
+            "x-rapidapi-key" : APIConstants.key,
+        ]
+        
+        AF.request("https://wordsapiv1.p.rapidapi.com/words/\(word)", method: .get, headers: headers).responseDecodable(of: SearchedWord.self) { response in
+            if let error = response.error {
+                print(error.localizedDescription)
+            }
+            
+            self.spinner.startAnimating()
+            
+            self.words = response.value?.results.map { result in
+                Word(word: self.searchText, searchResult: result)
+            } ?? []
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.spinner.stopAnimating()
+            }
         }
-        
-        var urlRequest = URLRequest(url: wordsURL)
-        urlRequest.httpMethod = "GET"
-        urlRequest.setValue(APIConstants.key, forHTTPHeaderField: "x-rapidapi-key")
-        urlRequest.setValue("wordsapiv1.p.rapidapi.com", forHTTPHeaderField: "x-rapidapi-host")
-        
-        spinner.startAnimating()
-        
-        URLSession.shared.dataTask(with: urlRequest) { data, response, error in
-            guard let data = data, error == nil else {
-                return
-            }
-            do {
-                let result = try JSONDecoder().decode(SearchedWord.self, from: data)
-                
-                self.words = result.results.map { result in
-                    Word(word: self.searchText, searchResult: result)
-                }
-                
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                    self.spinner.stopAnimating()
-                }
-                
-            } catch {
-                print("Failed to convert \(error.localizedDescription)")
-            }
-        }.resume()
     }
     
     func fetchAntonyms(word: String) {
-        guard let wordsURL = URL(string: "https://wordsapiv1.p.rapidapi.com/words/\(word)/antonyms") else {
-            print("Invalid URL")
-            return
+        let headers: HTTPHeaders = [
+            "x-rapidapi-host": "wordsapiv1.p.rapidapi.com",
+            "x-rapidapi-key" : APIConstants.key,
+        ]
+        
+        AF.request("https://wordsapiv1.p.rapidapi.com/words/\(word)/antonyms", method: .get, headers: headers).responseDecodable(of: Antonyms.self) { response in
+            if let error = response.error {
+                print(error.localizedDescription)
+            }
+            self.antonyms = response.value?.antonyms.joined(separator: ", ") ?? "Antonyms not found"
         }
-        
-        var urlRequest = URLRequest(url: wordsURL)
-        urlRequest.httpMethod = "GET"
-        urlRequest.setValue(APIConstants.key, forHTTPHeaderField: "x-rapidapi-key")
-        urlRequest.setValue("wordsapiv1.p.rapidapi.com", forHTTPHeaderField: "x-rapidapi-host")
-        
-        URLSession.shared.dataTask(with: urlRequest) { data, response, error in
-            guard let data = data, error == nil else {
-                return
-            }
-            do {
-                let result = try JSONDecoder().decode(Antonyms.self, from: data)
-                
-                self.antonyms = result.antonyms.joined(separator: ", ")
-                
-            } catch {
-                print("Failed to convert \(error.localizedDescription)")
-            }
-        }.resume()
     }
     
     func fetchExampleUsage(word: String) {
-        guard let wordsURL = URL(string: "https://wordsapiv1.p.rapidapi.com/words/\(word)/examples") else {
-            print("Invalid URL")
-            return
+        let headers: HTTPHeaders = [
+            "x-rapidapi-host": "wordsapiv1.p.rapidapi.com",
+            "x-rapidapi-key" : APIConstants.key,
+        ]
+        
+        AF.request("https://wordsapiv1.p.rapidapi.com/words/\(word)/examples", method: .get, headers: headers).responseDecodable(of: ExampleUsage.self) { response in
+            if let error = response.error {
+                print(error.localizedDescription)
+            }
+            self.exampleUsage = response.value?.examples.joined(separator: ", ") ?? "Examples not found"
         }
-        
-        var urlRequest = URLRequest(url: wordsURL)
-        urlRequest.httpMethod = "GET"
-        urlRequest.setValue(APIConstants.key, forHTTPHeaderField: "x-rapidapi-key")
-        urlRequest.setValue("wordsapiv1.p.rapidapi.com", forHTTPHeaderField: "x-rapidapi-host")
-        
-        URLSession.shared.dataTask(with: urlRequest) { data, response, error in
-            guard let data = data, error == nil else {
-                return
-            }
-            do {
-                let result = try JSONDecoder().decode(ExampleUsage.self, from: data)
-                
-                self.exampleUsage = result.examples.joined(separator: ", ")
-                
-            } catch {
-                print("Failed to convert \(error.localizedDescription)")
-            }
-        }.resume()
     }
 }
 
