@@ -7,6 +7,7 @@
 
 import UIKit
 import Foundation
+import Alamofire
 
 class ViewController: UIViewController {
     
@@ -147,7 +148,21 @@ class ViewController: UIViewController {
     //MARK: - Functions
     
     @objc func newWordButtonPressed() {
-        fetchRandomWord()
+        fetchRandomWord { word, error in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+            
+            DispatchQueue.main.async {
+                if let word = word {
+                    self.updateDefinitionBox(withword: word)
+                    self.randomWord = word
+                    self.spinner.stopAnimating()
+                } else {
+                    print("No word found")
+                }
+            }
+        }
     }
     
     @objc func favoriteRandomWord() {
@@ -169,34 +184,24 @@ class ViewController: UIViewController {
         definitionBoxView.definition.text = "\(definition ?? "Definition not found")"
     }
     
-    func fetchRandomWord() {
-        guard let wordsURL = URL(string: "https://wordsapiv1.p.rapidapi.com/words/?random=true") else {
-            print("Invalid URL")
-            return
+    func fetchRandomWord(completion: @escaping (RandomWord?, Error?) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "x-rapidapi-host": "wordsapiv1.p.rapidapi.com",
+            "x-rapidapi-key" : APIConstants.key,
+        ]
+        
+        AF.request("https://wordsapiv1.p.rapidapi.com/words/?random=true", method: .get, headers: headers).responseDecodable(of: RandomWord.self) { response in
+            if let error = response.error {
+                completion(nil, error)
+                print(error.localizedDescription)
+            }
+            
+            self.spinner.startAnimating()
+            
+            let randomWord = response.value
+            completion(randomWord, nil)
         }
-        
-        var urlRequest = URLRequest(url: wordsURL)
-        urlRequest.httpMethod = "GET"
-        urlRequest.setValue(APIConstants.key, forHTTPHeaderField: "x-rapidapi-key")
-        urlRequest.setValue("wordsapiv1.p.rapidapi.com", forHTTPHeaderField: "x-rapidapi-host")
-        
-        spinner.startAnimating()
-        
-        URLSession.shared.dataTask(with: urlRequest) { data, response, error in
-            guard let data = data, error == nil else {
-                return
-            }
-            do {
-                let randomWord = try JSONDecoder().decode(RandomWord.self, from: data)
-                DispatchQueue.main.async {
-                    self.updateDefinitionBox(withword: randomWord)
-                    self.randomWord = randomWord
-                    self.spinner.stopAnimating()
-                }
-            } catch {
-                print("Failed to convert \(error.localizedDescription)")
-            }
-        }.resume()
     }
     
     func fetchWord(word: String) {

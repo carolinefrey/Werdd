@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		855E0BC0544EF137F19BD458 /* Pods_Werdd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6380C2AC4B27E83E2D5075C3 /* Pods_Werdd.framework */; };
 		B90578532926602100D1CA57 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90578522926602100D1CA57 /* FavoritesViewController.swift */; };
 		B921919928FEC50500E6EBD8 /* Words.swift in Sources */ = {isa = PBXBuildFile; fileRef = B921919828FEC50500E6EBD8 /* Words.swift */; };
 		B923C57C2900291F00CC37A1 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B923C57B2900291F00CC37A1 /* DetailViewController.swift */; };
@@ -34,6 +35,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1FE4D7486E25C6DBD522389C /* Pods-Werdd.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Werdd.debug.xcconfig"; path = "Target Support Files/Pods-Werdd/Pods-Werdd.debug.xcconfig"; sourceTree = "<group>"; };
+		41CF5C10E48B940648A7360E /* Pods-Werdd.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Werdd.release.xcconfig"; path = "Target Support Files/Pods-Werdd/Pods-Werdd.release.xcconfig"; sourceTree = "<group>"; };
+		6380C2AC4B27E83E2D5075C3 /* Pods_Werdd.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Werdd.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B90578522926602100D1CA57 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		B921919828FEC50500E6EBD8 /* Words.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Words.swift; sourceTree = "<group>"; };
 		B923C57B2900291F00CC37A1 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -67,12 +71,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				855E0BC0544EF137F19BD458 /* Pods_Werdd.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B9A5A783127D649D8605C35 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1FE4D7486E25C6DBD522389C /* Pods-Werdd.debug.xcconfig */,
+				41CF5C10E48B940648A7360E /* Pods-Werdd.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		B92B128829094FAA0002537B /* VCs */ = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +119,8 @@
 				B9F13C2929270452007BE0AF /* FavoriteWord+CoreDataProperties.swift */,
 				B99BEC0328EC4FDC000AB9BE /* Werdd */,
 				B99BEC0228EC4FDC000AB9BE /* Products */,
+				1B9A5A783127D649D8605C35 /* Pods */,
+				EB5FE9541DB156223BD0C4BB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -145,6 +162,14 @@
 			path = Rubik;
 			sourceTree = "<group>";
 		};
+		EB5FE9541DB156223BD0C4BB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6380C2AC4B27E83E2D5075C3 /* Pods_Werdd.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -152,10 +177,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B99BEC1528EC4FDD000AB9BE /* Build configuration list for PBXNativeTarget "Werdd" */;
 			buildPhases = (
+				E0B8F7B2125A064DF5C51DA7 /* [CP] Check Pods Manifest.lock */,
 				B99BEBFD28EC4FDC000AB9BE /* Sources */,
 				B99BEBFE28EC4FDC000AB9BE /* Frameworks */,
 				B99BEBFF28EC4FDC000AB9BE /* Resources */,
 				B905785129265BD700D1CA57 /* Display Warnings for TODOs and FIXMEs */,
+				9886C13233FC02F7FD60F528 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -216,6 +243,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		9886C13233FC02F7FD60F528 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Werdd/Pods-Werdd-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Werdd/Pods-Werdd-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Werdd/Pods-Werdd-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B905785129265BD700D1CA57 /* Display Warnings for TODOs and FIXMEs */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -233,6 +277,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nTAGS=\"TODO:|FIXME:|WARNING:\"\nERRORTAG=\"ERROR:\"\nfind \"${SRCROOT}\" \\( -name \"*.h\" -or -name \"*.m\" -or -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$|($ERRORTAG).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\"| perl -p -e \"s/($ERRORTAG)/ error: \\$1/\"\n";
+		};
+		E0B8F7B2125A064DF5C51DA7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Werdd-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -392,6 +458,7 @@
 		};
 		B99BEC1628EC4FDD000AB9BE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1FE4D7486E25C6DBD522389C /* Pods-Werdd.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -419,6 +486,7 @@
 		};
 		B99BEC1728EC4FDD000AB9BE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 41CF5C10E48B940648A7360E /* Pods-Werdd.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
