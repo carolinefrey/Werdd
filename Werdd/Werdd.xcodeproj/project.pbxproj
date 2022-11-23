@@ -18,9 +18,10 @@
 		B981341428F63D8F00F0DED9 /* DefinitionBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B981341328F63D8F00F0DED9 /* DefinitionBoxView.swift */; };
 		B99BEC0528EC4FDC000AB9BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99BEC0428EC4FDC000AB9BE /* AppDelegate.swift */; };
 		B99BEC0728EC4FDC000AB9BE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99BEC0628EC4FDC000AB9BE /* SceneDelegate.swift */; };
-		B99BEC0928EC4FDC000AB9BE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99BEC0828EC4FDC000AB9BE /* ViewController.swift */; };
+		B99BEC0928EC4FDC000AB9BE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99BEC0828EC4FDC000AB9BE /* MainViewController.swift */; };
 		B99BEC0E28EC4FDD000AB9BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B99BEC0D28EC4FDD000AB9BE /* Assets.xcassets */; };
 		B99BEC1128EC4FDD000AB9BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B99BEC0F28EC4FDD000AB9BE /* LaunchScreen.storyboard */; };
+		B9B5CAC3292EA96000C7EC58 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B5CAC2292EA96000C7EC58 /* TableViewController.swift */; };
 		B9C194AF28F82F8B008FFABF /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C194AE28F82F8B008FFABF /* SearchTableViewCell.swift */; };
 		B9C4E22928ED0502000E3B32 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B9C4E22628ED04B9000E3B32 /* Rubik-Regular.ttf */; };
 		B9C4E22A28ED0504000E3B32 /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B9C4E22728ED04C3000E3B32 /* Rubik-Bold.ttf */; };
@@ -49,10 +50,11 @@
 		B99BEC0128EC4FDC000AB9BE /* Werdd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Werdd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B99BEC0428EC4FDC000AB9BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B99BEC0628EC4FDC000AB9BE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B99BEC0828EC4FDC000AB9BE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B99BEC0828EC4FDC000AB9BE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B99BEC0D28EC4FDD000AB9BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B99BEC1028EC4FDD000AB9BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B99BEC1228EC4FDD000AB9BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B9B5CAC2292EA96000C7EC58 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		B9C194AE28F82F8B008FFABF /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		B9C4E22628ED04B9000E3B32 /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
 		B9C4E22728ED04C3000E3B32 /* Rubik-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Bold.ttf"; sourceTree = "<group>"; };
@@ -84,14 +86,14 @@
 				1FE4D7486E25C6DBD522389C /* Pods-Werdd.debug.xcconfig */,
 				41CF5C10E48B940648A7360E /* Pods-Werdd.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
 		B92B128829094FAA0002537B /* VCs */ = {
 			isa = PBXGroup;
 			children = (
-				B99BEC0828EC4FDC000AB9BE /* ViewController.swift */,
+				B99BEC0828EC4FDC000AB9BE /* MainViewController.swift */,
+				B9B5CAC2292EA96000C7EC58 /* TableViewController.swift */,
 				B923C57B2900291F00CC37A1 /* DetailViewController.swift */,
 				B90578522926602100D1CA57 /* FavoritesViewController.swift */,
 			);
@@ -314,12 +316,13 @@
 				B9383F3E29074B4600ACAAF4 /* ExampleUsageBoxView.swift in Sources */,
 				B9383F3A2907456D00ACAAF4 /* SynonymsBoxView.swift in Sources */,
 				B9F13C2829270441007BE0AF /* FavoriteWord+CoreDataClass.swift in Sources */,
-				B99BEC0928EC4FDC000AB9BE /* ViewController.swift in Sources */,
+				B99BEC0928EC4FDC000AB9BE /* MainViewController.swift in Sources */,
 				B9C194AF28F82F8B008FFABF /* SearchTableViewCell.swift in Sources */,
 				B99BEC0528EC4FDC000AB9BE /* AppDelegate.swift in Sources */,
 				B9383F3C290749E100ACAAF4 /* AntonymsBoxView.swift in Sources */,
 				B923C57C2900291F00CC37A1 /* DetailViewController.swift in Sources */,
 				B9E3F1DB291BDE3100CE8449 /* APIConstants.swift in Sources */,
+				B9B5CAC3292EA96000C7EC58 /* TableViewController.swift in Sources */,
 				B921919928FEC50500E6EBD8 /* Words.swift in Sources */,
 				B99BEC0728EC4FDC000AB9BE /* SceneDelegate.swift in Sources */,
 				B9F13C2A29270452007BE0AF /* FavoriteWord+CoreDataProperties.swift in Sources */,
