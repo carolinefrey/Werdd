@@ -32,7 +32,7 @@ struct Word {
 
 struct RandomWord: Codable {
     let word: String
-    let results: [Result]
+    let results: [Result]?
 }
 
 struct Result: Codable {

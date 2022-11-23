@@ -19,12 +19,12 @@ class DataManager {
     
     // MARK: - Create
     
-    static func addFavoriteWord(word: String, definition: String, partOfSpeech: String) {
+    static func addFavoriteWord(word: String, definition: String?, partOfSpeech: String?) {
         
         let favoritedWord = FavoriteWord(context: managedObjectContext)
         favoritedWord.word = word
-        favoritedWord.definition = definition
-        favoritedWord.partOfSpeech = partOfSpeech
+        favoritedWord.definition = definition ?? "Definition not found"
+        favoritedWord.partOfSpeech = partOfSpeech ?? "Part of speech not found"
         
         do {
             try managedObjectContext.save()

@@ -51,7 +51,7 @@ class DetailViewController: UIViewController {
     
     //MARK: - Initializers
     
-    init(word: Word, antonyms: String, exampleUsage: String, showAddtoFavorites: Bool) {
+    init(word: Word, antonyms: String, exampleUsage: [String], showAddtoFavorites: Bool) {
         self.selectedWord = word
 
         wordTitle.text = word.word

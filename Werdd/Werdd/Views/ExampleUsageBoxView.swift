@@ -20,34 +20,14 @@ class ExampleUsageBoxView: UIView {
         return box
     }()
     
-    let example1: UILabel = {
-        let example1 = UILabel()
-        example1.translatesAutoresizingMaskIntoConstraints = false
-        example1.textColor = .black
-        example1.font = UIFont(name: "Rubik-Regular", size: 16)
-        example1.lineBreakMode = .byWordWrapping
-        example1.numberOfLines = 2
-        return example1
-    }()
-    
-    let example2: UILabel = {
-        let example2 = UILabel()
-        example2.translatesAutoresizingMaskIntoConstraints = false
-        example2.textColor = .black
-        example2.font = UIFont(name: "Rubik-Regular", size: 16)
-        example2.lineBreakMode = .byWordWrapping
-        example2.numberOfLines = 2
-        return example2
-    }()
-    
-    let example3: UILabel = {
-        let example3 = UILabel()
-        example3.translatesAutoresizingMaskIntoConstraints = false
-        example3.textColor = .black
-        example3.font = UIFont(name: "Rubik-Regular", size: 16)
-        example3.lineBreakMode = .byWordWrapping
-        example3.numberOfLines = 2
-        return example3
+    let example: UILabel = {
+        let example = UILabel()
+        example.translatesAutoresizingMaskIntoConstraints = false
+        example.textColor = .black
+        example.font = UIFont(name: "Rubik-Regular", size: 16)
+        example.lineBreakMode = .byWordWrapping
+        example.numberOfLines = 4
+        return example
     }()
     
     let usageBoxLabel: UILabel = {
@@ -61,16 +41,10 @@ class ExampleUsageBoxView: UIView {
     
     //MARK: - Initializers
 
-    init(usage: String) {
+    init(usage: [String]) {
         super.init(frame: CGRect.zero)
-        let usageArr = usage.components(separatedBy: ", ")
-        if usageArr.count > 0 {
-            self.example1.text = "1. \(usageArr[0])"
-        } else if usageArr.count > 1 {
-            self.example2.text = "2. \(usageArr[1])"
-        } else if usageArr.count > 2 {
-            self.example3.text = "3. \(usageArr[2])"
-        }
+        let usageString = usage.joined(separator: ".\n")
+        self.example.text = usageString
         setup()
     }
     
@@ -83,26 +57,16 @@ class ExampleUsageBoxView: UIView {
     private func setup() {
         
         addSubview(orangeBox)
-        addSubview(example1)
-        addSubview(example2)
-        addSubview(example3)
+        addSubview(example)
         addSubview(usageBoxLabel)
         
         NSLayoutConstraint.activate([
             orangeBox.heightAnchor.constraint(equalToConstant: 150),
             orangeBox.widthAnchor.constraint(equalTo: widthAnchor),
             
-            example1.topAnchor.constraint(equalTo: orangeBox.topAnchor, constant: 20),
-            example1.leadingAnchor.constraint(equalTo: orangeBox.leadingAnchor, constant: 20),
-            example1.trailingAnchor.constraint(equalTo: orangeBox.trailingAnchor, constant: -20),
-            
-            example2.topAnchor.constraint(equalTo: example1.bottomAnchor, constant: 5),
-            example2.leadingAnchor.constraint(equalTo: orangeBox.leadingAnchor, constant: 20),
-            example2.trailingAnchor.constraint(equalTo: orangeBox.trailingAnchor, constant: -20),
-            
-            example3.topAnchor.constraint(equalTo: example2.bottomAnchor, constant: 5),
-            example3.leadingAnchor.constraint(equalTo: orangeBox.leadingAnchor, constant: 20),
-            example3.trailingAnchor.constraint(equalTo: orangeBox.trailingAnchor, constant: -20),
+            example.topAnchor.constraint(equalTo: orangeBox.topAnchor, constant: 20),
+            example.leadingAnchor.constraint(equalTo: orangeBox.leadingAnchor, constant: 20),
+            example.trailingAnchor.constraint(equalTo: orangeBox.trailingAnchor, constant: -20),
             
             usageBoxLabel.bottomAnchor.constraint(equalTo: orangeBox.bottomAnchor, constant: -20),
             usageBoxLabel.leadingAnchor.constraint(equalTo: orangeBox.leadingAnchor, constant: 20),

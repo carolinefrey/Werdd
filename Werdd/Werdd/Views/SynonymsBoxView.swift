@@ -45,10 +45,14 @@ class SynonymsBoxView: UIView {
 
     init(word: Word) {
         super.init(frame: CGRect.zero)
-
-        self.word.synonyms = word.synonyms
-        synonyms.text = word.synonyms?.joined(separator: ", ")
         
+        self.word.synonyms = word.synonyms
+
+        if word.synonyms != [] {
+            synonyms.text = word.synonyms?.joined(separator: ", ")
+        } else {
+            synonyms.text = "Synonyms not found"
+        }
         setup()
     }
     

@@ -100,7 +100,7 @@ extension FavoritesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let word = Word(word: favorites[indexPath.row].word, partOfSpeech: favorites[indexPath.row].partOfSpeech, definition: favorites[indexPath.row].definition, synonyms: [], antonyms: [])
         
-        let detailVC = DetailViewController(word: word, antonyms: "", exampleUsage: "", showAddtoFavorites: false)
+        let detailVC = DetailViewController(word: word, antonyms: "", exampleUsage: [], showAddtoFavorites: false)
         navigationController?.pushViewController(detailVC, animated: true)
     }
     

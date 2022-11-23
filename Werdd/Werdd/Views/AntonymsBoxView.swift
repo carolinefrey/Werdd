@@ -42,7 +42,11 @@ class AntonymsBoxView: UIView {
     init(antonyms: String) {
         super.init(frame: CGRect.zero)
         
-        self.antonyms.text = antonyms
+        if antonyms != "" {
+            self.antonyms.text = antonyms
+        } else {
+            self.antonyms.text = "Antonyms not found"
+        }
         
         setup()
     }

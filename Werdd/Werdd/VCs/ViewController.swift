@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     var randomWord = RandomWord(word: "", results: [])
     var searchText = ""
     var antonyms = ""
-    var exampleUsage = ""
+    var exampleUsage: [String] = []
     
     let werddTitle: UILabel = {
         let werddTitle = UILabel()
@@ -166,7 +166,7 @@ class ViewController: UIViewController {
     }
     
     @objc func favoriteRandomWord() {
-        DataManager.addFavoriteWord(word: randomWord.word, definition: randomWord.results[0].definition, partOfSpeech: randomWord.results[0].partOfSpeech)
+        DataManager.addFavoriteWord(word: randomWord.word, definition: randomWord.results?[0].definition, partOfSpeech: randomWord.results?[0].partOfSpeech)
     }
     
     @objc func favButtonTapped() {
@@ -176,9 +176,9 @@ class ViewController: UIViewController {
     
     private func updateDefinitionBox(withword randomWord: RandomWord?) {
         definitionBoxView.word.text = randomWord?.word
-        let partOfSpeech = randomWord?.results[0].partOfSpeech
+        let partOfSpeech = randomWord?.results?[0].partOfSpeech
         definitionBoxView.partOfSpeech.text = "\(partOfSpeech ?? "Not found")"
-        let definition = randomWord?.results[0].definition
+        let definition = randomWord?.results?[0].definition
         definitionBoxView.definition.text = "\(definition ?? "Definition not found")"
     }
     
@@ -253,7 +253,7 @@ class ViewController: UIViewController {
             if let error = response.error {
                 print(error.localizedDescription)
             }
-            self.exampleUsage = response.value?.examples.joined(separator: ", ") ?? "Examples not found"
+            self.exampleUsage = response.value?.examples ?? ["Example usage not found"]
         }
     }
 }
@@ -305,7 +305,6 @@ extension ViewController: UISearchBarDelegate {
                     let ok = UIAlertAction(title: "Try again", style: .default)
                     message.addAction(ok)
                     self.present(message, animated: true, completion: nil)
-                    print("Word not found")
                 }
             }
         }
