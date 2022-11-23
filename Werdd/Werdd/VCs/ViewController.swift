@@ -45,7 +45,7 @@ class ViewController: UIViewController {
         button.addTarget(self, action: #selector(newWordButtonPressed), for: .touchUpInside)
         return button
     }()
-
+    
     lazy var favoriteRandomWordButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -159,7 +159,7 @@ class ViewController: UIViewController {
                     self.randomWord = word
                     self.spinner.stopAnimating()
                 } else {
-                    print("No word found")
+                    print("Word not found")
                 }
             }
         }
@@ -189,39 +189,43 @@ class ViewController: UIViewController {
         ]
         
         AF.request("https://wordsapiv1.p.rapidapi.com/words/?random=true", method: .get, headers: headers).responseDecodable(of: RandomWord.self) { response in
+            
+            self.spinner.startAnimating()
+            
             if let error = response.error {
                 completion(nil, error)
                 print(error.localizedDescription)
             }
-            
-            self.spinner.startAnimating()
             
             let randomWord = response.value
             completion(randomWord, nil)
         }
     }
     
-    func fetchWord(word: String) {
+    func fetchWord(word: String, completion: @escaping ([Word]?, Error?) -> Void) {
         let headers: HTTPHeaders = [
             "x-rapidapi-host": "wordsapiv1.p.rapidapi.com",
             "x-rapidapi-key" : APIConstants.key,
         ]
-        
+                
         AF.request("https://wordsapiv1.p.rapidapi.com/words/\(word)", method: .get, headers: headers).responseDecodable(of: SearchedWord.self) { response in
+            
+            self.spinner.startAnimating()
+
             if let error = response.error {
                 print(error.localizedDescription)
             }
             
-            self.spinner.startAnimating()
+            if let error = response.error {
+                completion(nil, error)
+                print(error.localizedDescription)
+            }
             
-            self.words = response.value?.results.map { result in
+            let response = response.value?.results.map { result in
                 Word(word: self.searchText, searchResult: result)
             } ?? []
             
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-                self.spinner.stopAnimating()
-            }
+            completion(response, nil)
         }
     }
     
@@ -286,9 +290,27 @@ extension ViewController: UITableViewDelegate {
 extension ViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchText = searchBar.text ?? ""
-        fetchWord(word: searchText)
+        
+        fetchWord(word: searchText) { result, error in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+            DispatchQueue.main.async {
+                if let result = result {
+                    self.words = result
+                    self.tableView.reloadData()
+                    self.spinner.stopAnimating()
+                } else {
+                    let message = UIAlertController(title: "Oops!", message: "Word not found.", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "Try again", style: .default)
+                    message.addAction(ok)
+                    self.present(message, animated: true, completion: nil)
+                    print("Word not found")
+                }
+            }
+        }
+        
         fetchAntonyms(word: searchText)
         fetchExampleUsage(word: searchText)
     }
 }
-
