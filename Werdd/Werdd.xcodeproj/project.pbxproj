@@ -14,6 +14,7 @@
 		B9383F3A2907456D00ACAAF4 /* SynonymsBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9383F392907456D00ACAAF4 /* SynonymsBoxView.swift */; };
 		B9383F3C290749E100ACAAF4 /* AntonymsBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9383F3B290749E100ACAAF4 /* AntonymsBoxView.swift */; };
 		B9383F3E29074B4600ACAAF4 /* ExampleUsageBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9383F3D29074B4600ACAAF4 /* ExampleUsageBoxView.swift */; };
+		B94D5066292FCF8A00FC138F /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94D5065292FCF8A00FC138F /* APIConstants.swift */; };
 		B96480242902E68300010EBD /* DefinitionBoxDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96480232902E68300010EBD /* DefinitionBoxDetailView.swift */; };
 		B981341428F63D8F00F0DED9 /* DefinitionBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B981341328F63D8F00F0DED9 /* DefinitionBoxView.swift */; };
 		B99BEC0528EC4FDC000AB9BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99BEC0428EC4FDC000AB9BE /* AppDelegate.swift */; };
@@ -27,7 +28,6 @@
 		B9C4E22A28ED0504000E3B32 /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B9C4E22728ED04C3000E3B32 /* Rubik-Bold.ttf */; };
 		B9C4E22C28ED05AB000E3B32 /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B9C4E22B28ED05A9000E3B32 /* Rubik-Light.ttf */; };
 		B9C4E22E28ED0DE5000E3B32 /* Rubik-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B9C4E22D28ED0DE3000E3B32 /* Rubik-Italic.ttf */; };
-		B9E3F1DB291BDE3100CE8449 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E3F1DA291BDE3000CE8449 /* APIConstants.swift */; };
 		B9F13C212926F66F007BE0AF /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F13C202926F66F007BE0AF /* FavoritesTableViewCell.swift */; };
 		B9F13C242926FD69007BE0AF /* FavoriteWords.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B9F13C222926FD69007BE0AF /* FavoriteWords.xcdatamodeld */; };
 		B9F13C262926FDC1007BE0AF /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F13C252926FDC1007BE0AF /* DataManager.swift */; };
@@ -45,6 +45,7 @@
 		B9383F392907456D00ACAAF4 /* SynonymsBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynonymsBoxView.swift; sourceTree = "<group>"; };
 		B9383F3B290749E100ACAAF4 /* AntonymsBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntonymsBoxView.swift; sourceTree = "<group>"; };
 		B9383F3D29074B4600ACAAF4 /* ExampleUsageBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUsageBoxView.swift; sourceTree = "<group>"; };
+		B94D5065292FCF8A00FC138F /* APIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIConstants.swift; path = Model/APIConstants.swift; sourceTree = "<group>"; };
 		B96480232902E68300010EBD /* DefinitionBoxDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefinitionBoxDetailView.swift; sourceTree = "<group>"; };
 		B981341328F63D8F00F0DED9 /* DefinitionBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefinitionBoxView.swift; sourceTree = "<group>"; };
 		B99BEC0128EC4FDC000AB9BE /* Werdd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Werdd.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,7 +61,6 @@
 		B9C4E22728ED04C3000E3B32 /* Rubik-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Bold.ttf"; sourceTree = "<group>"; };
 		B9C4E22B28ED05A9000E3B32 /* Rubik-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Light.ttf"; sourceTree = "<group>"; };
 		B9C4E22D28ED0DE3000E3B32 /* Rubik-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Italic.ttf"; sourceTree = "<group>"; };
-		B9E3F1DA291BDE3000CE8449 /* APIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		B9F13C202926F66F007BE0AF /* FavoritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewCell.swift; sourceTree = "<group>"; };
 		B9F13C232926FD69007BE0AF /* FavoriteWords.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FavoriteWords.xcdatamodel; sourceTree = "<group>"; };
 		B9F13C252926FDC1007BE0AF /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -143,7 +143,7 @@
 				B99BEC0428EC4FDC000AB9BE /* AppDelegate.swift */,
 				B99BEC0628EC4FDC000AB9BE /* SceneDelegate.swift */,
 				B921919828FEC50500E6EBD8 /* Words.swift */,
-				B9E3F1DA291BDE3000CE8449 /* APIConstants.swift */,
+				B94D5065292FCF8A00FC138F /* APIConstants.swift */,
 				B92B128829094FAA0002537B /* VCs */,
 				B92B128929094FB80002537B /* Views */,
 				B99BEC0D28EC4FDD000AB9BE /* Assets.xcassets */,
@@ -314,6 +314,7 @@
 				B9F13C242926FD69007BE0AF /* FavoriteWords.xcdatamodeld in Sources */,
 				B96480242902E68300010EBD /* DefinitionBoxDetailView.swift in Sources */,
 				B9383F3E29074B4600ACAAF4 /* ExampleUsageBoxView.swift in Sources */,
+				B94D5066292FCF8A00FC138F /* APIConstants.swift in Sources */,
 				B9383F3A2907456D00ACAAF4 /* SynonymsBoxView.swift in Sources */,
 				B9F13C2829270441007BE0AF /* FavoriteWord+CoreDataClass.swift in Sources */,
 				B99BEC0928EC4FDC000AB9BE /* MainViewController.swift in Sources */,
@@ -321,7 +322,6 @@
 				B99BEC0528EC4FDC000AB9BE /* AppDelegate.swift in Sources */,
 				B9383F3C290749E100ACAAF4 /* AntonymsBoxView.swift in Sources */,
 				B923C57C2900291F00CC37A1 /* DetailViewController.swift in Sources */,
-				B9E3F1DB291BDE3100CE8449 /* APIConstants.swift in Sources */,
 				B9B5CAC3292EA96000C7EC58 /* TableViewController.swift in Sources */,
 				B921919928FEC50500E6EBD8 /* Words.swift in Sources */,
 				B99BEC0728EC4FDC000AB9BE /* SceneDelegate.swift in Sources */,
