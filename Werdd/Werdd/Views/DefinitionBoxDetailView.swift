@@ -9,63 +9,72 @@ import UIKit
 
 class DefinitionBoxDetailView: UIView {
     
-    var word = Word(word: "", partOfSpeech: "", definition: "", synonyms: "", antonyms: "")
-    let blueBox = UIView()
-    let partOfSpeech = UILabel()
-    let definition = UILabel()
-    let defBoxLabel = UILabel()
+    //MARK: - UI Properties
     
-    init(word: Word) {
-        super.init(frame: CGRect.zero)
-
-        self.word.partOfSpeech = word.partOfSpeech
-        self.word.definition = word.definition
-
-        addSubview(blueBox)
-        addSubview(partOfSpeech)
-        addSubview(definition)
-        addSubview(defBoxLabel)
-        
-        configureBox()
-        configurePartOfSpeech()
-        configureDefinition()
-        configureDefBoxLabel()
-        
-        setConstraints()
-    }
+    var word = Word()
     
-    private func configureBox() {
-        blueBox.backgroundColor = UIColor(named: "Color1")
-        blueBox.clipsToBounds = true
-        blueBox.layer.cornerRadius = 30
-    }
+    let blueBox: UIView = {
+        let box = UIView()
+        box.translatesAutoresizingMaskIntoConstraints = false
+        box.backgroundColor = UIColor(named: "Color1")
+        box.clipsToBounds = true
+        box.layer.cornerRadius = 30
+        return box
+    }()
     
-    private func configurePartOfSpeech() {
-        partOfSpeech.text = word.partOfSpeech
+    let partOfSpeech: UILabel = {
+        let partOfSpeech = UILabel()
+        partOfSpeech.translatesAutoresizingMaskIntoConstraints = false
         partOfSpeech.textColor = .black
         partOfSpeech.font = UIFont(name: "Rubik-Italic", size: 14)
-    }
+        return partOfSpeech
+    }()
     
-    private func configureDefinition() {
-        definition.text = word.definition
+    let definition: UILabel = {
+        let definition = UILabel()
+        definition.translatesAutoresizingMaskIntoConstraints = false
         definition.textColor = .black
         definition.font = UIFont(name: "Rubik-Regular", size: 18)
         definition.lineBreakMode = .byTruncatingTail
         definition.numberOfLines = 3
         definition.adjustsFontSizeToFitWidth = true
+        return definition
+    }()
+    
+    let defBoxLabel: UILabel = {
+        let boxLabel = UILabel()
+        boxLabel.translatesAutoresizingMaskIntoConstraints = false
+        boxLabel.text = "Definition"
+        boxLabel.textColor = .white
+        boxLabel.font = UIFont(name: "Rubik-Regular", size: 12)
+        return boxLabel
+    }()
+    
+    //MARK: - Initializers
+    
+    init(word: Word) {
+        super.init(frame: CGRect.zero)
+
+        self.word = word
+
+        partOfSpeech.text = word.partOfSpeech
+        definition.text = word.definition
+
+        setup()
     }
     
-    private func configureDefBoxLabel() {
-        defBoxLabel.text = "Definition"
-        defBoxLabel.textColor = .white
-        defBoxLabel.font = UIFont(name: "Rubik-Regular", size: 12)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
+
+    //MARK: - UI Setup
     
-    private func setConstraints() {
-        blueBox.translatesAutoresizingMaskIntoConstraints = false
-        partOfSpeech.translatesAutoresizingMaskIntoConstraints = false
-        definition.translatesAutoresizingMaskIntoConstraints = false
-        defBoxLabel.translatesAutoresizingMaskIntoConstraints = false
+    private func setup() {
+        
+        addSubview(blueBox)
+        addSubview(partOfSpeech)
+        addSubview(definition)
+        addSubview(defBoxLabel)
         
         NSLayoutConstraint.activate([
             blueBox.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -82,9 +91,5 @@ class DefinitionBoxDetailView: UIView {
             defBoxLabel.bottomAnchor.constraint(equalTo: blueBox.bottomAnchor, constant: -20),
             defBoxLabel.leadingAnchor.constraint(equalTo: blueBox.leadingAnchor, constant: 20),
         ])
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

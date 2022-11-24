@@ -9,49 +9,59 @@ import UIKit
 
 class AntonymsBoxView: UIView {
     
-    var word = Word(word: "", partOfSpeech: "", definition: "", synonyms: "", antonyms: "")
-    let pinkBox = UIView()
-    let antonyms = UILabel()
-    let antBoxLabel = UILabel()
+    //MARK: - UI Properties
     
-    init(word: Word) {
-        super.init(frame: CGRect.zero)
+    let pinkBox: UIView = {
+        let box = UIView()
+        box.translatesAutoresizingMaskIntoConstraints = false
+        box.backgroundColor = UIColor(named: "Color4")
+        box.clipsToBounds = true
+        box.layer.cornerRadius = 30
+        return box
+    }()
+    
+    let antonyms: UILabel = {
+        let antonyms = UILabel()
+        antonyms.translatesAutoresizingMaskIntoConstraints = false
+        antonyms.textColor = .black
+        antonyms.font = UIFont(name: "Rubik-Regular", size: 18)
+        return antonyms
+    }()
+    
+    let antBoxLabel: UILabel = {
+        let boxLabel = UILabel()
+        boxLabel.translatesAutoresizingMaskIntoConstraints = false
+        boxLabel.text = "Antonyms"
+        boxLabel.textColor = .white
+        boxLabel.font = UIFont(name: "Rubik-Regular", size: 12)
+        return boxLabel
+    }()
+    
+    //MARK: - Initializers
 
-        self.word.antonyms = word.antonyms
+    init(antonyms: String) {
+        super.init(frame: CGRect.zero)
+        
+        if antonyms != "" {
+            self.antonyms.text = antonyms
+        } else {
+            self.antonyms.text = "Antonyms not found"
+        }
+        
+        setup()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: - UI Setup
+
+    private func setup() {
         
         addSubview(pinkBox)
         addSubview(antonyms)
         addSubview(antBoxLabel)
-        
-        configurePinkBox()
-        configureAntonyms()
-        configureAntBoxLabel()
-        
-        setConstraints()
-    }
-    
-    private func configurePinkBox() {
-        pinkBox.backgroundColor = UIColor(named: "Color4")
-        pinkBox.clipsToBounds = true
-        pinkBox.layer.cornerRadius = 30
-    }
-    
-    private func configureAntonyms() {
-        antonyms.text = word.antonyms
-        antonyms.textColor = .black
-        antonyms.font = UIFont(name: "Rubik-Light", size: 14)
-    }
-    
-    private func configureAntBoxLabel() {
-        antBoxLabel.text = "Antonyms"
-        antBoxLabel.textColor = .white
-        antBoxLabel.font = UIFont(name: "Rubik-Regular", size: 12)
-    }
-    
-    private func setConstraints() {
-        pinkBox.translatesAutoresizingMaskIntoConstraints = false
-        antonyms.translatesAutoresizingMaskIntoConstraints = false
-        antBoxLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             pinkBox.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -65,9 +75,5 @@ class AntonymsBoxView: UIView {
             antBoxLabel.bottomAnchor.constraint(equalTo: pinkBox.bottomAnchor, constant: -20),
             antBoxLabel.leadingAnchor.constraint(equalTo: pinkBox.leadingAnchor, constant: 20),
         ])
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

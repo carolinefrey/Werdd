@@ -8,51 +8,62 @@
 import UIKit
 
 class SynonymsBoxView: UIView {
-
-    var word = Word(word: "", partOfSpeech: "", definition: "", synonyms: "", antonyms: "")
-    let greenBox = UIView()
-    let synonyms = UILabel()
-    let synBoxLabel = UILabel()
     
+    //MARK: - UI Properties
+
+    var word = Word()
+    
+    let greenBox: UIView = {
+        let box = UIView()
+        box.translatesAutoresizingMaskIntoConstraints = false
+        box.backgroundColor = UIColor(named: "Color3")
+        box.clipsToBounds = true
+        box.layer.cornerRadius = 30
+        return box
+    }()
+    
+    let synonyms: UILabel = {
+        let synonyms = UILabel()
+        synonyms.translatesAutoresizingMaskIntoConstraints = false
+        synonyms.textColor = .black
+        synonyms.font = UIFont(name: "Rubik-Regular", size: 18)
+        synonyms.lineBreakMode = .byWordWrapping
+        synonyms.numberOfLines = 0
+        return synonyms
+    }()
+    
+    let synBoxLabel: UILabel = {
+        let boxLabel = UILabel()
+        boxLabel.translatesAutoresizingMaskIntoConstraints = false
+        boxLabel.text = "Synonyms"
+        boxLabel.textColor = .white
+        boxLabel.font = UIFont(name: "Rubik-Regular", size: 12)
+        return boxLabel
+    }()
+    
+    //MARK: - Initializers
+
     init(word: Word) {
         super.init(frame: CGRect.zero)
-
+        
         self.word.synonyms = word.synonyms
+
+        if word.synonyms != [] {
+            synonyms.text = word.synonyms?.joined(separator: ", ")
+        } else {
+            synonyms.text = "Synonyms not found"
+        }
+        setup()
+    }
+    
+    //MARK: - UI Setup
+    
+    private func setup() {
         
         addSubview(greenBox)
         addSubview(synonyms)
         addSubview(synBoxLabel)
-        
-        configureGreenBox()
-        configureSynonyms()
-        configureSynBoxLabel()
-        
-        setConstraints()
-    }
-    
-    private func configureGreenBox() {
-        greenBox.backgroundColor = UIColor(named: "Color3")
-        greenBox.clipsToBounds = true
-        greenBox.layer.cornerRadius = 30
-    }
-    
-    private func configureSynonyms() {
-        synonyms.text = word.synonyms
-        synonyms.textColor = .black
-        synonyms.font = UIFont(name: "Rubik-Light", size: 14)
-    }
-    
-    private func configureSynBoxLabel() {
-        synBoxLabel.text = "Synonyms"
-        synBoxLabel.textColor = .white
-        synBoxLabel.font = UIFont(name: "Rubik-Regular", size: 12)
-    }
-    
-    private func setConstraints() {
-        greenBox.translatesAutoresizingMaskIntoConstraints = false
-        synonyms.translatesAutoresizingMaskIntoConstraints = false
-        synBoxLabel.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             greenBox.leadingAnchor.constraint(equalTo: leadingAnchor),
             greenBox.trailingAnchor.constraint(equalTo: trailingAnchor),

@@ -7,45 +7,65 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		855E0BC0544EF137F19BD458 /* Pods_Werdd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6380C2AC4B27E83E2D5075C3 /* Pods_Werdd.framework */; };
+		B90578532926602100D1CA57 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90578522926602100D1CA57 /* FavoritesViewController.swift */; };
 		B921919928FEC50500E6EBD8 /* Words.swift in Sources */ = {isa = PBXBuildFile; fileRef = B921919828FEC50500E6EBD8 /* Words.swift */; };
 		B923C57C2900291F00CC37A1 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B923C57B2900291F00CC37A1 /* DetailViewController.swift */; };
 		B9383F3A2907456D00ACAAF4 /* SynonymsBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9383F392907456D00ACAAF4 /* SynonymsBoxView.swift */; };
 		B9383F3C290749E100ACAAF4 /* AntonymsBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9383F3B290749E100ACAAF4 /* AntonymsBoxView.swift */; };
 		B9383F3E29074B4600ACAAF4 /* ExampleUsageBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9383F3D29074B4600ACAAF4 /* ExampleUsageBoxView.swift */; };
+		B94D5066292FCF8A00FC138F /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94D5065292FCF8A00FC138F /* APIConstants.swift */; };
 		B96480242902E68300010EBD /* DefinitionBoxDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96480232902E68300010EBD /* DefinitionBoxDetailView.swift */; };
 		B981341428F63D8F00F0DED9 /* DefinitionBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B981341328F63D8F00F0DED9 /* DefinitionBoxView.swift */; };
 		B99BEC0528EC4FDC000AB9BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99BEC0428EC4FDC000AB9BE /* AppDelegate.swift */; };
 		B99BEC0728EC4FDC000AB9BE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99BEC0628EC4FDC000AB9BE /* SceneDelegate.swift */; };
-		B99BEC0928EC4FDC000AB9BE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99BEC0828EC4FDC000AB9BE /* ViewController.swift */; };
+		B99BEC0928EC4FDC000AB9BE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99BEC0828EC4FDC000AB9BE /* MainViewController.swift */; };
 		B99BEC0E28EC4FDD000AB9BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B99BEC0D28EC4FDD000AB9BE /* Assets.xcassets */; };
 		B99BEC1128EC4FDD000AB9BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B99BEC0F28EC4FDD000AB9BE /* LaunchScreen.storyboard */; };
-		B9C194AF28F82F8B008FFABF /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C194AE28F82F8B008FFABF /* CustomTableViewCell.swift */; };
+		B9B5CAC3292EA96000C7EC58 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B5CAC2292EA96000C7EC58 /* TableViewController.swift */; };
+		B9C194AF28F82F8B008FFABF /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C194AE28F82F8B008FFABF /* SearchTableViewCell.swift */; };
 		B9C4E22928ED0502000E3B32 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B9C4E22628ED04B9000E3B32 /* Rubik-Regular.ttf */; };
 		B9C4E22A28ED0504000E3B32 /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B9C4E22728ED04C3000E3B32 /* Rubik-Bold.ttf */; };
 		B9C4E22C28ED05AB000E3B32 /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B9C4E22B28ED05A9000E3B32 /* Rubik-Light.ttf */; };
 		B9C4E22E28ED0DE5000E3B32 /* Rubik-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B9C4E22D28ED0DE3000E3B32 /* Rubik-Italic.ttf */; };
+		B9F13C212926F66F007BE0AF /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F13C202926F66F007BE0AF /* FavoritesTableViewCell.swift */; };
+		B9F13C242926FD69007BE0AF /* FavoriteWords.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B9F13C222926FD69007BE0AF /* FavoriteWords.xcdatamodeld */; };
+		B9F13C262926FDC1007BE0AF /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F13C252926FDC1007BE0AF /* DataManager.swift */; };
+		B9F13C2829270441007BE0AF /* FavoriteWord+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F13C2729270441007BE0AF /* FavoriteWord+CoreDataClass.swift */; };
+		B9F13C2A29270452007BE0AF /* FavoriteWord+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F13C2929270452007BE0AF /* FavoriteWord+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1FE4D7486E25C6DBD522389C /* Pods-Werdd.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Werdd.debug.xcconfig"; path = "Target Support Files/Pods-Werdd/Pods-Werdd.debug.xcconfig"; sourceTree = "<group>"; };
+		41CF5C10E48B940648A7360E /* Pods-Werdd.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Werdd.release.xcconfig"; path = "Target Support Files/Pods-Werdd/Pods-Werdd.release.xcconfig"; sourceTree = "<group>"; };
+		6380C2AC4B27E83E2D5075C3 /* Pods_Werdd.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Werdd.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B90578522926602100D1CA57 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		B921919828FEC50500E6EBD8 /* Words.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Words.swift; sourceTree = "<group>"; };
 		B923C57B2900291F00CC37A1 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		B9383F392907456D00ACAAF4 /* SynonymsBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynonymsBoxView.swift; sourceTree = "<group>"; };
 		B9383F3B290749E100ACAAF4 /* AntonymsBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntonymsBoxView.swift; sourceTree = "<group>"; };
 		B9383F3D29074B4600ACAAF4 /* ExampleUsageBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUsageBoxView.swift; sourceTree = "<group>"; };
+		B94D5065292FCF8A00FC138F /* APIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIConstants.swift; path = Model/APIConstants.swift; sourceTree = "<group>"; };
 		B96480232902E68300010EBD /* DefinitionBoxDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefinitionBoxDetailView.swift; sourceTree = "<group>"; };
 		B981341328F63D8F00F0DED9 /* DefinitionBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefinitionBoxView.swift; sourceTree = "<group>"; };
 		B99BEC0128EC4FDC000AB9BE /* Werdd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Werdd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B99BEC0428EC4FDC000AB9BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B99BEC0628EC4FDC000AB9BE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B99BEC0828EC4FDC000AB9BE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B99BEC0828EC4FDC000AB9BE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B99BEC0D28EC4FDD000AB9BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B99BEC1028EC4FDD000AB9BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B99BEC1228EC4FDD000AB9BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B9C194AE28F82F8B008FFABF /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		B9B5CAC2292EA96000C7EC58 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		B9C194AE28F82F8B008FFABF /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		B9C4E22628ED04B9000E3B32 /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
 		B9C4E22728ED04C3000E3B32 /* Rubik-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Bold.ttf"; sourceTree = "<group>"; };
 		B9C4E22B28ED05A9000E3B32 /* Rubik-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Light.ttf"; sourceTree = "<group>"; };
 		B9C4E22D28ED0DE3000E3B32 /* Rubik-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Italic.ttf"; sourceTree = "<group>"; };
+		B9F13C202926F66F007BE0AF /* FavoritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewCell.swift; sourceTree = "<group>"; };
+		B9F13C232926FD69007BE0AF /* FavoriteWords.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FavoriteWords.xcdatamodel; sourceTree = "<group>"; };
+		B9F13C252926FDC1007BE0AF /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		B9F13C2729270441007BE0AF /* FavoriteWord+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoriteWord+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B9F13C2929270452007BE0AF /* FavoriteWord+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoriteWord+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,17 +73,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				855E0BC0544EF137F19BD458 /* Pods_Werdd.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B9A5A783127D649D8605C35 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1FE4D7486E25C6DBD522389C /* Pods-Werdd.debug.xcconfig */,
+				41CF5C10E48B940648A7360E /* Pods-Werdd.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		B92B128829094FAA0002537B /* VCs */ = {
 			isa = PBXGroup;
 			children = (
-				B99BEC0828EC4FDC000AB9BE /* ViewController.swift */,
+				B99BEC0828EC4FDC000AB9BE /* MainViewController.swift */,
+				B9B5CAC2292EA96000C7EC58 /* TableViewController.swift */,
 				B923C57B2900291F00CC37A1 /* DetailViewController.swift */,
+				B90578522926602100D1CA57 /* FavoritesViewController.swift */,
 			);
 			path = VCs;
 			sourceTree = "<group>";
@@ -72,7 +104,8 @@
 			isa = PBXGroup;
 			children = (
 				B981341328F63D8F00F0DED9 /* DefinitionBoxView.swift */,
-				B9C194AE28F82F8B008FFABF /* CustomTableViewCell.swift */,
+				B9C194AE28F82F8B008FFABF /* SearchTableViewCell.swift */,
+				B9F13C202926F66F007BE0AF /* FavoritesTableViewCell.swift */,
 				B96480232902E68300010EBD /* DefinitionBoxDetailView.swift */,
 				B9383F392907456D00ACAAF4 /* SynonymsBoxView.swift */,
 				B9383F3B290749E100ACAAF4 /* AntonymsBoxView.swift */,
@@ -84,8 +117,12 @@
 		B99BEBF828EC4FDC000AB9BE = {
 			isa = PBXGroup;
 			children = (
+				B9F13C2729270441007BE0AF /* FavoriteWord+CoreDataClass.swift */,
+				B9F13C2929270452007BE0AF /* FavoriteWord+CoreDataProperties.swift */,
 				B99BEC0328EC4FDC000AB9BE /* Werdd */,
 				B99BEC0228EC4FDC000AB9BE /* Products */,
+				1B9A5A783127D649D8605C35 /* Pods */,
+				EB5FE9541DB156223BD0C4BB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,10 +137,13 @@
 		B99BEC0328EC4FDC000AB9BE /* Werdd */ = {
 			isa = PBXGroup;
 			children = (
+				B9F13C222926FD69007BE0AF /* FavoriteWords.xcdatamodeld */,
+				B9F13C252926FDC1007BE0AF /* DataManager.swift */,
 				B9C4E22828ED04E6000E3B32 /* Rubik */,
 				B99BEC0428EC4FDC000AB9BE /* AppDelegate.swift */,
 				B99BEC0628EC4FDC000AB9BE /* SceneDelegate.swift */,
 				B921919828FEC50500E6EBD8 /* Words.swift */,
+				B94D5065292FCF8A00FC138F /* APIConstants.swift */,
 				B92B128829094FAA0002537B /* VCs */,
 				B92B128929094FB80002537B /* Views */,
 				B99BEC0D28EC4FDD000AB9BE /* Assets.xcassets */,
@@ -124,6 +164,14 @@
 			path = Rubik;
 			sourceTree = "<group>";
 		};
+		EB5FE9541DB156223BD0C4BB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6380C2AC4B27E83E2D5075C3 /* Pods_Werdd.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -131,9 +179,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B99BEC1528EC4FDD000AB9BE /* Build configuration list for PBXNativeTarget "Werdd" */;
 			buildPhases = (
+				E0B8F7B2125A064DF5C51DA7 /* [CP] Check Pods Manifest.lock */,
 				B99BEBFD28EC4FDC000AB9BE /* Sources */,
 				B99BEBFE28EC4FDC000AB9BE /* Frameworks */,
 				B99BEBFF28EC4FDC000AB9BE /* Resources */,
+				B905785129265BD700D1CA57 /* Display Warnings for TODOs and FIXMEs */,
+				9886C13233FC02F7FD60F528 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -193,22 +244,90 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		9886C13233FC02F7FD60F528 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Werdd/Pods-Werdd-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Werdd/Pods-Werdd-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Werdd/Pods-Werdd-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B905785129265BD700D1CA57 /* Display Warnings for TODOs and FIXMEs */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Display Warnings for TODOs and FIXMEs";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nTAGS=\"TODO:|FIXME:|WARNING:\"\nERRORTAG=\"ERROR:\"\nfind \"${SRCROOT}\" \\( -name \"*.h\" -or -name \"*.m\" -or -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$|($ERRORTAG).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\"| perl -p -e \"s/($ERRORTAG)/ error: \\$1/\"\n";
+		};
+		E0B8F7B2125A064DF5C51DA7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Werdd-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B99BEBFD28EC4FDC000AB9BE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B90578532926602100D1CA57 /* FavoritesViewController.swift in Sources */,
+				B9F13C262926FDC1007BE0AF /* DataManager.swift in Sources */,
+				B9F13C242926FD69007BE0AF /* FavoriteWords.xcdatamodeld in Sources */,
 				B96480242902E68300010EBD /* DefinitionBoxDetailView.swift in Sources */,
 				B9383F3E29074B4600ACAAF4 /* ExampleUsageBoxView.swift in Sources */,
+				B94D5066292FCF8A00FC138F /* APIConstants.swift in Sources */,
 				B9383F3A2907456D00ACAAF4 /* SynonymsBoxView.swift in Sources */,
-				B99BEC0928EC4FDC000AB9BE /* ViewController.swift in Sources */,
-				B9C194AF28F82F8B008FFABF /* CustomTableViewCell.swift in Sources */,
+				B9F13C2829270441007BE0AF /* FavoriteWord+CoreDataClass.swift in Sources */,
+				B99BEC0928EC4FDC000AB9BE /* MainViewController.swift in Sources */,
+				B9C194AF28F82F8B008FFABF /* SearchTableViewCell.swift in Sources */,
 				B99BEC0528EC4FDC000AB9BE /* AppDelegate.swift in Sources */,
 				B9383F3C290749E100ACAAF4 /* AntonymsBoxView.swift in Sources */,
 				B923C57C2900291F00CC37A1 /* DetailViewController.swift in Sources */,
+				B9B5CAC3292EA96000C7EC58 /* TableViewController.swift in Sources */,
 				B921919928FEC50500E6EBD8 /* Words.swift in Sources */,
 				B99BEC0728EC4FDC000AB9BE /* SceneDelegate.swift in Sources */,
+				B9F13C2A29270452007BE0AF /* FavoriteWord+CoreDataProperties.swift in Sources */,
 				B981341428F63D8F00F0DED9 /* DefinitionBoxView.swift in Sources */,
+				B9F13C212926F66F007BE0AF /* FavoritesTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +461,7 @@
 		};
 		B99BEC1628EC4FDD000AB9BE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1FE4D7486E25C6DBD522389C /* Pods-Werdd.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -369,6 +489,7 @@
 		};
 		B99BEC1728EC4FDD000AB9BE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 41CF5C10E48B940648A7360E /* Pods-Werdd.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -416,6 +537,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B9F13C222926FD69007BE0AF /* FavoriteWords.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B9F13C232926FD69007BE0AF /* FavoriteWords.xcdatamodel */,
+			);
+			currentVersion = B9F13C232926FD69007BE0AF /* FavoriteWords.xcdatamodel */;
+			path = FavoriteWords.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B99BEBF928EC4FDC000AB9BE /* Project object */;
 }
